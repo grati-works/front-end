@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #ffffff;
+    --background: #F6F7F8;
+    --gray-900: #2D3142;
+
+    --primary: #6874E8;
+}
+
+@media (max-width: 1080px) {
+    html {
+        font-size: 98.75%;
+    }
+}
+@media (max-width: 720px) {
+    html {
+        font-size: 83.5%;
+    }
+}
+
+body {
+    background-color: var(--background);
+    color: var(--gray-900);
+}
+
+body,
+input,
+textarea,
+select,
+button {
+    font: 400 1rem 'Inter', san-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
