@@ -1,6 +1,15 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { CssBaseline } from '@nextui-org/react';
 
 export default class MyDocument extends Document {
+    static async getInitialProps(ctx) {
+        const initialProps = await Document.getInitialProps(ctx);
+        return {
+          ...initialProps,
+          styles: <>{initialProps.styles}</>
+        };
+      }
+
     render() {
         return (
             <Html lang="pt-br">
@@ -11,6 +20,7 @@ export default class MyDocument extends Document {
                         rel="stylesheet"
                     />
                     <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+                    {CssBaseline.flush()}
                 </Head>
                 <body>
                     <Main />

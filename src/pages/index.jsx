@@ -1,8 +1,9 @@
-import styles from './home.module.scss';
+import { UIProvider } from '../providers/UIProvider';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-    </div>
+    <UIProvider>
+      <h1>Grati</h1>
+    </UIProvider>
   )
 }
