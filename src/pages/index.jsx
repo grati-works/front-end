@@ -1,9 +1,12 @@
-import { UIProvider } from '../providers/UIProvider';
+import Head from 'next/head';
 
 export default function Home() {
   return (
-    <UIProvider>
+    <>
+      <Head>
+          <title>Grati | Página inicial</title>
+      </Head>
       <h1>Grati</h1>
-    </UIProvider>
+    </>
   )
 }

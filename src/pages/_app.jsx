@@ -1,10 +1,13 @@
 import '../styles/global.scss';
 import { NextUIProvider } from '@nextui-org/react';
+import { UIProvider } from '../providers/UIProvider';
 
 function MyApp({ Component, pageProps }) {
   return (
     <NextUIProvider>
-      <Component {...pageProps} />
+      <UIProvider>
+        <Component {...pageProps} />
+      </UIProvider>
     </NextUIProvider>
   )
 }
