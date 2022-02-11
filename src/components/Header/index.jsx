@@ -2,10 +2,10 @@ import styles from './styles.module.scss';
 import { ActiveLink } from '../ActiveLink';
 import { Button } from '../Button';
 import { Avatar, Textarea } from '@nextui-org/react';
-import { VscBell, VscSearch } from 'react-icons/vsc';
+import { Notification, Search } from 'react-iconly'
 import { useState } from 'react';
 
-export function Header({ isLogged = false, privatePage = "" }) {
+export function Header({ isLogged = true, privatePage = "" }) {
     const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
 
     function toggleSearchBar() {
@@ -50,8 +50,8 @@ export function Header({ isLogged = false, privatePage = "" }) {
                                 maxRows={1}
                             />
                         }
-                        <VscSearch onClick={toggleSearchBar} />
-                        <VscBell />
+                        <Search set="light" onClick={toggleSearchBar} />
+                        <Notification set="light" />
                         <p>Túlio Nogueira</p>
                         <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" size="lg" />
                     </a>

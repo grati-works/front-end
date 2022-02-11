@@ -14,7 +14,7 @@
         justify-content: center;
 
         svg {
-            fill: var(--white);
+            color: var(--gray-200);
             width: 2rem;
             height: 2rem;
         }
@@ -26,4 +26,8 @@
     background-color: var(--gray-900);
     border-left: 3px solid var(--primary);
     padding-right: 3px;
+
+    svg {
+        color: var(--white) !important;
+    }
 }
