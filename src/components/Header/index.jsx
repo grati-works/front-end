@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import { ActiveLink } from '../ActiveLink';
 import { Button } from '../Button';
-import { Avatar, Textarea } from '@nextui-org/react';
+import { Avatar, Input } from '@nextui-org/react';
 import { Notification, Search } from 'react-iconly'
 import { useState } from 'react';
 
@@ -45,9 +45,11 @@ export function Header({ isLogged = true, privatePage = "" }) {
                     <Button>Fazer login</Button> :
                     <a className={styles.userContainer} href="#">
                         { searchBarIsOpen &&
-                            <Textarea
+                            <Input
+                                clearable
+                                shadow={false}
+                                size="md"
                                 placeholder="Insira o termo a ser pesquisado"
-                                maxRows={1}
                             />
                         }
                         <Search set="light" onClick={toggleSearchBar} />
