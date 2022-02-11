@@ -5,7 +5,7 @@ import { ActiveLink } from '../ActiveLink';
 export function NavBar() {
     return (
         <nav className={styles.navbarContainer}>
-            <ActiveLink activeClassname={styles.active} href="/">
+            <ActiveLink activeClassname={styles.active} href="/organizations">
                 <a><People set="light" /></a>
             </ActiveLink>
             <ActiveLink activeClassname={styles.active} href="/home">
