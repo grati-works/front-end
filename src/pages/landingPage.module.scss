@@ -1,0 +1,56 @@
+
+.text {
+    text-align: center;
+
+    h1 {
+    display: block;
+    max-width: 36%;
+    font-size: 100px;
+    margin: auto;
+    font-weight: bold;
+    left: 500px;
+    top: -200px;
+    span {
+        color: #6874E8;
+    }
+    }
+}
+.text h3 {
+        font-size: 30px;
+        max-width: 35%;
+        margin: auto;
+        left: 500px;
+}
+.circle1 {
+    z-index: -1;
+    display: flex;
+        img {
+            max-width: 50%;
+            width: 500px;
+            height: 500px;
+        }
+}
+.circle2 {
+    z-index: -1;
+    display: flex;
+        img {
+            max-width: 50%;
+            transform: rotate(180deg);
+            width: 500px;
+            height: 500px;
+        }
+}
+.imgMockups {
+    max-width: 50%;
+    margin-top: 5%;
+}
+.imgAppStore {
+    align-items: center;
+    top: 150px;
+
+
+}
+.imgGooglePlay {
+    align-items: center;
+
+}

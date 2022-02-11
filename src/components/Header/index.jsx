@@ -5,7 +5,7 @@ import { Avatar, Input } from '@nextui-org/react';
 import { Notification, Search } from 'react-iconly'
 import { useState } from 'react';
 
-export function Header({ isLogged = true, privatePage = "" }) {
+export function Header({ isLogged = false, privatePage = "" }) {
     const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
 
     function toggleSearchBar() {
