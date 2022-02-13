@@ -1,20 +1,26 @@
 .navbarContainer {
     height: calc(100vh - 5rem);
     width: 5rem;
-    background-color: var(--gray-800);
+    background-color: var(--nextui-colors-backgroundHighlight);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    a {
+    z-index: 10;
+    position: fixed;
+
+    div, a {
         width: 100%;
+    }
+    
+    a {
         height: 3.8rem;
         display: flex;
         justify-content: center;
 
         svg {
-            color: var(--gray-200);
+            color: var(--nextui-colors-tone7);
             width: 2rem;
             height: 2rem;
         }
@@ -23,11 +29,11 @@
 
 
 .active {
-    background-color: var(--gray-900);
-    border-left: 3px solid var(--primary);
+    background-color: var(--nextui-colors-tone2);
+    border-left: 3px solid var(--nextui-colors-primary);
     padding-right: 3px;
 
     svg {
-        color: var(--white) !important;
+        color: var(--nextui-colors-tone8) !important;
     }
 }

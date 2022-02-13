@@ -1,17 +1,31 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { cloneElement } from 'react';
+import { Tooltip } from '@nextui-org/react';
 
-export function ActiveLink({ children, activeClassname, ...rest }) {
+export function ActiveLink({ children, activeClassname, tooltip, placement = "right", ...rest }) {
     const { asPath } = useRouter();
 
     const className = asPath === rest.href ? activeClassname : '';
 
     return (
-        <Link href={rest.href} {...rest}>
-            {cloneElement(children, {
-                className,
-            })}
-        </Link>
+        <>
+            {
+                tooltip ?
+                    <Tooltip content={tooltip} placement={placement}>
+                        <Link href={rest.href} {...rest}>
+                            {cloneElement(children, {
+                                className,
+                            })}
+                        </Link>
+                    </Tooltip>
+                    :
+                    <Link href={rest.href} {...rest}>
+                        {cloneElement(children, {
+                            className,
+                        })}
+                    </Link>
+            }
+        </>
     );
 }

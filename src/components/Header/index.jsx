@@ -1,9 +1,11 @@
 import styles from './styles.module.scss';
+import { useState } from 'react';
+
 import { ActiveLink } from '../ActiveLink';
 import { Button } from '../Button';
+import { ThemeSwitcher } from '../ThemeSwitcher';
 import { Avatar, Input } from '@nextui-org/react';
-import { Notification, Search } from 'react-iconly'
-import { useState } from 'react';
+import { Notification, Search } from 'react-iconly';
 
 export function Header({ isLogged = false, privatePage = "" }) {
     const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
@@ -42,7 +44,10 @@ export function Header({ isLogged = false, privatePage = "" }) {
                 </nav>
                 {
                     isLogged == false ?
-                    <Button>Fazer login</Button> :
+                    <div className={styles.notLogged}>
+                        <ThemeSwitcher style={styles.icon} />
+                        <Button>Fazer login</Button>
+                    </div> :
                     <a className={styles.userContainer} href="#">
                         { searchBarIsOpen &&
                             <Input
@@ -52,8 +57,9 @@ export function Header({ isLogged = false, privatePage = "" }) {
                                 placeholder="Insira o termo a ser pesquisado"
                             />
                         }
-                        <Search set="light" onClick={toggleSearchBar} />
-                        <Notification set="light" />
+                        <Search set="light" onClick={toggleSearchBar} className={styles.icon}/>
+                        <ThemeSwitcher style={styles.icon} />
+                        <Notification set="light" className={styles.icon} />
                         <p>Túlio Nogueira</p>
                         <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" size="lg" />
                     </a>

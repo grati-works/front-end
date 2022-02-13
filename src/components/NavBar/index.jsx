@@ -5,18 +5,18 @@ import { ActiveLink } from '../ActiveLink';
 export function NavBar() {
     return (
         <nav className={styles.navbarContainer}>
-            <ActiveLink activeClassname={styles.active} href="/organizations">
+            <ActiveLink activeClassname={styles.active} href="/organizations" tooltip="Organizações">
                 <a><People set="light" /></a>
             </ActiveLink>
-            <ActiveLink activeClassname={styles.active} href="/home">
-                <a><Home set="light" /></a>
-            </ActiveLink>
-            <ActiveLink activeClassname={styles.active} href="/profile">
-                <a><User set="light" /></a>
-            </ActiveLink>
-            <ActiveLink activeClassname={styles.active} href="/ranking">
-                <a><TicketStar set="light" /></a>
-            </ActiveLink>
+                <ActiveLink activeClassname={styles.active} href="/home" tooltip="Início">
+                    <a><Home set="light" /></a>
+                </ActiveLink>
+                <ActiveLink activeClassname={styles.active} href="/profile" tooltip="Perfil">
+                    <a><User set="light" /></a>
+                </ActiveLink>
+                <ActiveLink activeClassname={styles.active} href="/ranking" tooltip="Ranking">
+                    <a><TicketStar set="light" /></a>
+                </ActiveLink>
         </nav>
     );
 }

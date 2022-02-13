@@ -1,10 +1,11 @@
 .headerContainer {
     height: 5rem;
     position: fixed;
+    z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--white);
+    background-color: var(--nextui-colors-backgroundHighlight);
 
     display: flex;
     flex-direction: row;
@@ -31,7 +32,7 @@
             padding: 0 0.5rem;
             height: 5rem;
             line-height: 5rem;
-            color: var(--gray-600);
+            color: var(--nextui-colors-tone7);
 
             transition: color 0.2s;
 
@@ -40,34 +41,26 @@
             }
 
             &:hover {
-                color: var(--gray-800);
+                color: var(--nextui-colors-tone9);
             }
 
             &.active {
-                color: var(--gray-800);
+                color: var(--nextui-colors-tone9);
                 font-weight: bold;
-            }
-
-            &.active::after {
-                content: '';
-                height: 3px;
-                border-radius: 3px 3px 0 0;
-                width: 100%;
-                position: absolute;
-                bottom: 1px;
-                left: 0;
-                background-color: var(--yellow-500);
             }
         }
     }
 
-    button {
+    .notLogged {
         margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
 }
 
 .logoContainer {
-    background-color: var(--primary);
+    background-color: var(--nextui-colors-primary);
     height: 5rem;
     width: 5rem;
 
@@ -86,20 +79,25 @@
     align-items: center;
     gap: .5rem;
 
-    svg {
-        height: 1.4rem;
-        width: 1.4rem;
-        color: var(--gray-600);
-        margin-right: 1rem;
-    }
-
     p {
         font-weight: 500;
         font-size: 1rem;
-        color: var(--gray-600);
+        color: var(--nextui-colors-tone7);
     }
 
     span {
         cursor: pointer;
+    }
+}
+
+.icon {
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-right: 1rem;
+    cursor: pointer;
+
+    &, * {
+        color: var(--nextui-colors-tone7);
+        stroke: var(--nextui-colors-tone7);
     }
 }
