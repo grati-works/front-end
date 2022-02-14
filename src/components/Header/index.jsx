@@ -48,7 +48,7 @@ export function Header({ isLogged = false, privatePage = "" }) {
                         <ThemeSwitcher style={styles.icon} />
                         <Button>Fazer login</Button>
                     </div> :
-                    <a className={styles.userContainer} href="#">
+                    <a className={styles.userContainer} href="">
                         { searchBarIsOpen &&
                             <Input
                                 clearable
