@@ -1,8 +1,107 @@
-.divImgFundo {
-    width: 70%;
-    display: flex;
+.ImgFundo {
+    width: 65%;
+    height: 100%;
+    display: block;
+    float: left;
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }
+
 .containerLogin {
-    width: 30%;
+    display: flex;
     flex-direction: row;
+    width: 35%;
+    height: 100%;
+    float: right;
+    display: table;
+    margin-top: 300px;
+    text-align: center;
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            text-align: justify;
+            input {
+                margin-bottom: 20px;
+                width: 400px;
+                height: 60px;
+                padding-left: 25px;
+                border: 0.5px solid #7A7A80;
+            }
+            .containerInput {
+                display: flex;
+                flex-direction: row;
+            }
+            .imgUser {
+                text-align: center;
+                padding-top: 15px;
+                height: 60px;
+                width: 75px;
+                background: white;
+                border: 0.5px solid #7A7A80;
+                box-sizing: border-box;
+            }
+            .imgPassword {
+                text-align: center;
+                padding-top: 15px;
+                height: 60px;
+                width: 75px;
+                background: white;
+                border: 0.5px solid #7A7A80;
+                box-sizing: border-box;
+            }
+        }
+        h1 {
+            margin-top: 40px;
+            color: #29292acc;
+        }
+            .button1{
+                margin-left: 160px;
+                text-align: center;
+                align-items: center;
+                background: #6874E8;
+                border-radius: 4px;
+                border: 0px;
+                color: white;
+                width: 475px;
+                height: 62px;
+                font-weight: bold;
+                font-size: 1.4rem;
+            }
+            .esqueciminhaSenha{
+                margin-left: 50px;
+                display: flex;
+                width: 80%;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .button2{
+                background: white;
+                color: black;
+                width: 384px;
+                height: 62px;
+                border: 1px solid #7A7A80;
+                box-sizing: border-box;
+                border-radius: 5px;
+                font-size: 1.4rem;
+                font-weight: bold;
+
+            }
+            a{
+                margin-top: 10px;
+                margin-right: 75px;
+                text-decoration: underline;
+                text-align: right;
+                font-weight: bold;
+            }
+            h2 {
+                font-size: medium;
+                color: #7A7A80;
+                font-weight: lighter;
+            }
 }
