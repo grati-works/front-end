@@ -91,6 +91,25 @@
 
       background-color: var(--nextui-colors-background);
     }
+
+    .giphyListWrapper {
+      overflow-x: hidden;
+    }
+
+    .giphySearchForm {
+      height: 50px;
+      * {
+          font-size: 16px;
+          display: block;
+          width: 100%;
+          padding: 5px 25px 6px 10px;
+          border-radius: 5px;
+          border: 1px solid var(--nextui-colors-tone3);
+          background: var(--nextui-colors-tone2);
+          color: var(--nextui-colors-tone8);
+          outline: 0;
+      }
+    }
   }
 
   .sendGratiButton {

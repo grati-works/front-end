@@ -2,7 +2,7 @@ import { NextUIProvider, createTheme } from '@nextui-org/react';
 import { UIProvider } from '../providers/UIProvider';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import '../styles/global.scss';
-import '../styles/emoji-mart.css'
+import '../styles/attachment.css'
 
 function MyApp({ Component, pageProps }) {
   const defaultColors = {

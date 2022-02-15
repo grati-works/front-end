@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Card, Divider, Button, Tooltip } from '@nextui-org/react';
 import styles from './styles.module.scss';
 import { Heart, ChevronDown } from 'react-iconly';
 import { Picker } from 'emoji-mart'
+import ReactGiphySearchbox from 'react-giphy-searchbox'
 
 export function TextEditor() {
   const emojiPickerTexts = {
@@ -32,7 +34,8 @@ export function TextEditor() {
       5: 'Tom de pele meio-escuro',
       6: 'Tom de pele escuro',
     },
-  }
+  };
+
   return (
     <Card className={styles.textEditorContainer} shadow={false}>
       <Card.Header className={styles.header}>
@@ -94,9 +97,22 @@ export function TextEditor() {
           <Button className={styles.attachment} auto>
             <img src="/icons/image.svg" alt="" />
           </Button>
-          <Button className={styles.attachment} auto>
-            <img src="/icons/gif.svg" alt="" />
-          </Button>
+          <Tooltip placement="right" trigger="click" content={
+            <ReactGiphySearchbox
+              apiKey={process.env.NEXT_PUBLIC_GIPHY_API_KEY}
+              onSelect={item => console.log(item)}
+              messageError="Não foi possível carregar a biblioteca de GIF'S"
+              messageLoading="Carregando..."
+              messageNoMatches="Nenhum GIF encontrado"
+              searchPlaceholder="Pesquisar GIF"
+              listWrapperClassName={styles.giphyListWrapper}
+              searchFormClassName={styles.giphySearchForm}
+            />
+          }>
+            <Button className={styles.attachment} auto>
+              <img src="/icons/gif.svg" alt="" />
+            </Button>
+          </Tooltip>
           <Button className={styles.attachment} auto>
             <img src="/icons/document.svg" alt="" />
           </Button>
