@@ -4,17 +4,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --white: #ffffff;
-    --background: #F6F7F8;
-
-    --gray-200: #BCC1D6;
-    --gray-600: #4B5066;
-    --gray-800: #2D3142;
-    --gray-900: #151824;
-    --primary: #6874E8;
-}
-
 @media (max-width: 1080px) {
     html {
         font-size: 98.75%;
