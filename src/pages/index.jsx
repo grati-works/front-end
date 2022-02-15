@@ -10,6 +10,8 @@ export default function Home() {
       <>
         <img src="/images/circle.png" alt="circle1" className={styles.circle1} />
         <img src="/images/circle.png" alt="circle2" className={styles.circle2} />
+        <img src="/images/circle.png" alt="circle3" className={styles.circle3} />
+
         <div className={styles.text}>
           <h1>Adote <span>feedbacks</span> em sua organização</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci dui sed amet elementum, nunc augue mauris gravida ultrices.</p>

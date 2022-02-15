@@ -57,6 +57,15 @@
     opacity: .5;
     animation:spin 8s linear infinite;
 }
+.circle3 {
+    position: absolute;
+    top: 70%;
+    left: -172px;
+    z-index: 0;
+    display: flex;
+    opacity: .5;
+    animation:spin 8s linear infinite;
+}
 
 .imgMockups {
     max-width: 50%;

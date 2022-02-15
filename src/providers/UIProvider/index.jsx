@@ -8,7 +8,7 @@ export function UIProvider({ children }) {
     asPath = asPath.split('/')[1];
 
     const privateRoutes = {
-        "organizations": "Organizações",
+        "organizacao": "Organizações",
         "home": "Início",
         "profile": "Perfil",
         "ranking": "Ranking"

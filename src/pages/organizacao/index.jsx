@@ -8,9 +8,7 @@ export default function Organizacao() {
       <Head>
           <title>Grati | Organização</title>
       </Head>
-      <div>
-        
-      </div>
+      
     </>
   )
 }
