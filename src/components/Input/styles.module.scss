@@ -1,0 +1,24 @@
+.inputContainer {
+  display: flex;
+  
+  .inputIconContainer {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid var(--nextui-colors-tone2);
+    background: var(--nextui-colors-backgroundHighlight);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
+
+.input {
+  height: 4rem;
+  display: flex;
+  flex: 1;
+  border: 1px solid var(--nextui-colors-tone2);
+  background: var(--nextui-colors-backgroundHighlight);
+  padding: 0 1rem;
+}
