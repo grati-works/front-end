@@ -1,0 +1,22 @@
+.rankingContainer {
+  margin-left: 5rem;
+  padding: 3rem 7rem;
+
+  .rankingTable {
+    width: 100%;
+    border-collapse: collapse;
+    
+    thead {
+      th {
+        color: var(--nextui-colors-tone5);
+        font-size: .9rem;
+        text-align: left;
+        padding-bottom: 1rem;
+  
+        &.positionTitle {
+          width: 5rem;
+        }
+      }
+    }
+  }
+}

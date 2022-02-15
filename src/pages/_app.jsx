@@ -3,6 +3,15 @@ import { UIProvider } from '../providers/UIProvider';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 function MyApp({ Component, pageProps }) {
+  const defaultColors = {
+    primaryLight: '#7b87f0',
+    primary: '#6874E8',
+    primaryDark: '#5562db',
+
+    success: '#4CD62B',
+    error: '#E83F5B'
+  }
+
   const lightTheme = createTheme({
     type: 'light',
     theme: {
@@ -10,9 +19,7 @@ function MyApp({ Component, pageProps }) {
         sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;",
       },
       colors: {
-        primaryLight: '#7b87f0',
-        primary: '#6874E8',
-        primaryDark: '#5562db',
+        ...defaultColors,
 
         background: '#F6F7F8',
         backgroundHighlight: '#FFF',
@@ -37,9 +44,7 @@ function MyApp({ Component, pageProps }) {
         sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;",
       },
       colors: {
-        primaryLight: '#7b87f0',
-        primary: '#6874E8',
-        primaryDark: '#5562db',
+        ...defaultColors,
 
         background: '#1a1a1a',
         backgroundHighlight: '#252525',

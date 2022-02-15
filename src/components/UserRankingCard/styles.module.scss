@@ -1,0 +1,63 @@
+.cardContainer {
+  height: 6rem;
+  border-bottom: .5rem solid var(--nextui-colors-background);
+
+  td {
+    height: 100%;
+    background-color: var(--nextui-colors-backgroundHighlight);
+
+    p {
+      margin: 0;
+    }
+
+    &.position {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-right: 4px solid var(--nextui-colors-background);
+      border-radius: 5px 0px 0px 5px;
+    }
+
+    &.user {
+      padding: 0 1.5rem;
+
+      .name {
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .levelContainer {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+        .up {
+          color: var(--nextui-colors-success);
+        }
+
+        .down {
+          color: var(--nextui-colors-error);
+        }
+      }
+    }
+
+    &.experience {
+      border-radius: 0px 5px 5px 0px;
+    }
+
+    p {
+      color: var(--nextui-colors-tone8)
+    }
+
+    span {
+      color: var(--nextui-colors-primary);
+    }
+  }
+}

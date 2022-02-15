@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import styles from './ranking.module.scss';
+import { UserRankingCard } from '../../components/UserRankingCard';
 
 export default function Ranking() {
   return (
@@ -8,27 +9,22 @@ export default function Ranking() {
       <Head>
           <title>Grati | Ranking</title>
       </Head>
-        <table>
+      <div className={styles.rankingContainer}>
+      <table className={styles.rankingTable}>
+        <thead>
           <tr>
-            <th>POSIÇÃO</th>
+            <th className={styles.positionTitle}>POSIÇÃO</th>
             <th>USUÁRIO</th>
             <th>GRATI'S</th>
             <th>EXPERIÊNCIA</th>
-            <tr>
-              <td>
-                <div className={styles.containerNumber}>
-                  <h1>1</h1>
-                </div>
-                <div className={conatinerInfo}>
-                  <nav className={styles.name}>
-                    <h1>Luciano Monteiro</h1>
-                    <h2>Nivel 12</h2>
-                  </nav>
-                </div>
-              </td>
-            </tr>
           </tr>
-        </table>
+        </thead>
+        <tbody>
+          <UserRankingCard position="1" avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" status="up" level="12" gratis="37" experience="1600" />
+          <UserRankingCard position="2" avatar="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" name="Carlos Almeida" status="down" level="11" gratis="34" experience="1560" />
+        </tbody>
+      </table>
+      </div>
     </>
   )
 }
