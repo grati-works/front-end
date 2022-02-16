@@ -1,0 +1,61 @@
+.gratiCardContainer {
+    background-color: var(--nextui-colors-backgroundHighlight);
+    border-radius: 5px;
+  
+    width: 100%;
+
+    .userInfo {
+        display: flex;
+        gap: 1rem;
+
+        .texts {
+            display: flex;
+            flex-direction: column;
+            font-size: 1rem;
+
+            .userInfoText {
+                color: var(--nextui-colors-primary);
+                font-weight: 600;
+    
+                span {
+                    font-size: .75rem;
+                    color: var(--nextui-colors-tone6);
+                    font-weight: 400;
+                    margin-left: 4px;
+                }
+            }
+    
+            .gratiInfoText {
+                color: var(--nextui-colors-tone6);
+                font-weight: 400;
+    
+                span {
+                    font-weight: 600;
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+
+    .gratiInfo {
+        display: flex;
+        width: 100%;
+        gap: 16px;
+
+        .divider {
+            width: 1px;
+            height: 100%;
+            background-color: var(--nextui-colors-tone6);
+        }
+
+        p {
+            font-size: 14px;
+            color: var(--nextui-colors-tone6);
+
+            a {
+                font-weight: 600;
+                text-decoration: underline;
+            }
+        }
+    }
+}
