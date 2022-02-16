@@ -430,3 +430,7 @@
 .reactGiphySearchbox-componentWrapper {
   width: 270px !important;
 }
+
+.reactGiphySearchbox-searchForm-input {
+  border: none !important;
+}
