@@ -36,6 +36,13 @@ function MyApp({ Component, pageProps }) {
         tone8: '$gray800',
         tone9: '$gray900',
       },
+      shadows: {
+        xs: '-4px 0 4px rgb(0 0 0 / 5%);',
+        sm: '0 5px 20px -5px rgba(0, 0, 0, 0.1)',
+        md: '0 8px 30px rgba(0, 0, 0, 0.15)',
+        lg: '0 30px 60px rgba(0, 0, 0, 0.15)',
+        xl: '0 40px 80px rgba(0, 0, 0, 0.25)'
+      }
     },
   });
 
@@ -64,6 +71,13 @@ function MyApp({ Component, pageProps }) {
         tone8: '$gray200',
         tone9: '$gray100',
       },
+      shadows: {
+        xs: '-4px 0 15px rgb(0 0 0 / 50%)',
+        sm: '0 5px 20px -5px rgba(20, 20, 20, 0.1)',
+        md: '0 8px 30px rgba(20, 20, 20, 0.15)',
+        lg: '0 30px 60px rgba(20, 20, 20, 0.15)',
+        xl: '0 40px 80px rgba(20, 20, 20, 0.25)'
+      }
     },
   });
 

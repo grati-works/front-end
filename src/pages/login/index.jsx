@@ -10,13 +10,13 @@ export default function Login() {
       <Head>
           <title>Grati | Login</title>
       </Head>
-      <img src="/images/imgFundoLogin.jpg" alt="imagemDeFundo" className={styles.ImgFundo}/>
+      <img src="/images/auth_background.png" alt="Ilustração de autenticação" className={styles.ImgFundo}/>
       <div className={styles.conteudo}>
-        <img src="/images/Logo1.png" alt="logoGrati" />
+        <img src="/images/logo_dark.svg" alt="Logo Grati" />
         <h1>Login</h1>
         <div className={styles.inputs}>
           <Input Icon={User} placeholder="Usuário" required />
-          <Input Icon={Lock} placeholder="Senha" required />
+          <Input Icon={Lock} placeholder="Senha" required password />
         </div>
         <Button>Autenticar</Button>
         <a href="#">Esqueci minha senha</a>

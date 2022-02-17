@@ -16,8 +16,8 @@ export default function Home() {
           <h1>Adote <span>feedbacks</span> em sua organização</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci dui sed amet elementum, nunc augue mauris gravida ultrices.</p>
           <div className={styles.adquireButtons}>
-            <a href=""><img src="/images/appStore.png" alt="appStore" /></a>
-            <a href=""><img src="/images/googlePlay.png" alt="googlePlay" /></a>
+            <a href=""><img src="/images/app_store.png" alt="appStore" /></a>
+            <a href=""><img src="/images/google_play.png" alt="googlePlay" /></a>
           </div>
         <img src="/images/mockups.png" alt="Aplicativos mobile" /> 
         </div>
