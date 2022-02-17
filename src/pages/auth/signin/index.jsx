@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import styles from './login.module.scss';
-import { Input } from '../../components/Input';
+import { Input } from '../../../components/Input';
 import { User, Lock } from 'react-iconly';
-import { Button } from '../../components/Button';
+import { Button } from '../../../components/Button';
 
 export default function Login() {
   return (
