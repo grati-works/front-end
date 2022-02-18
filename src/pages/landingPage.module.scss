@@ -76,5 +76,43 @@
     100% { 
         -webkit-transform: rotate(360deg); 
         transform:rotate(360deg); 
-    } 
+    }   
+}
+
+.containerPlanos{
+    width: 100%;
+    text-align: center;
+    margin-top: 200px;
+
+    button{
+        background-color: rgb(231, 229, 229);
+        font-size: 1.5rem;
+        font-weight: bold;
+        width: 250px;
+        height: 55px;
+        color: black;
+        border-radius: 7px;
+        margin-top: 25px;
+        margin-inline-start: 20px;
+        margin-inline-end: 20px;
+    }
+    button:hover {
+        background-color: white;
+    }
+}
+
+.containerSobre{
+    width: 100%;
+    text-align: center;
+    margin-block-start: 500px;
+    margin-block-end: 500px;
+    h1{
+        width: 100%;
+    }
+    p{
+        text-align: center;
+        margin-inline-start: 500px;
+        margin-inline-end: 500px;
+    }
+
 }

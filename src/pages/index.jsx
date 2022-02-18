@@ -21,6 +21,29 @@ export default function Home() {
           </div>
         <img src="/images/mockups.png" alt="Aplicativos mobile" /> 
         </div>
+
+        <div className={styles.containerPlanos}>
+          <h1>Planos</h1>
+          <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sem odio ut viverra mi quam.</h2>
+          <button><a href="#">Plano Mensal</a></button>
+          <button><a href="#">Plano Anual</a></button>
+        </div>
+
+        <div className={styles.containerSobre}>
+          <h1>Sobre nós</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Dolor sem odio ut viverra mi quam. Vitae fames porttitor arcu tempor vulputate proin. 
+            Vitae erat a, vitae a amet vestibulum. Diam a etiam ipsum quis auctor massa. 
+            Lacinia at amet facilisi mattis massa placerat. 
+            Adipiscing id libero, placerat egestas. Sit amet, morbi viverra in cras amet non quam. 
+            Habitant maecenas mattis fermentum id. 
+            Pretium pretium maecenas maecenas elit facilisi.
+            Turpis suscipit interdum proin curabitur vulputate. 
+            Placerat duis nunc molestie dui mi. Velit, aliquam cum faucibus at maecenas at auctor ut in. 
+            Neque urna cum ultrices vitae odio etiam quam sed nunc. 
+            Felis rhoncus at gravida condimentum viverra quis id bibendum sollicitudin.
+            </p>
+        </div>
       </>
     </>
   )
