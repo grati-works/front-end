@@ -8,7 +8,10 @@ export default function Organizacao() {
       <Head>
           <title>Grati | Organização</title>
       </Head>
-      
+      <div className={styles.cardOrganization}>
+        <img src="https://jandira.sp.senai.br/Img/logo-senai2.png" alt="imgSenai" />
+          <h1>Senai</h1>
+      </div>
     </>
   )
 }
