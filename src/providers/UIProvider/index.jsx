@@ -8,20 +8,21 @@ export function UIProvider({ children }) {
     asPath = asPath.split('/')[1];
 
     const privateRoutes = {
-        "organizacao": "Organizações",
+        "organizacao": "Organizações Inscritas",
         "home": "Início",
         "profile": "Perfil",
         "ranking": "Ranking"
     };
 
     const privateRoutesPath = Object.keys(privateRoutes);
+    const isPrivateRoute = privateRoutesPath.includes(asPath) 
 
     return (
         <div className={styles.container}>
-            <Header privatePage={privateRoutesPath.includes(asPath) ? privateRoutes[asPath] : ""} />
+            <Header privatePage={isPrivateRoute ? privateRoutes[asPath] : ""} />
             <div className={styles.contentContainer}>
-                {privateRoutesPath.includes(asPath) && <NavBar /> }
-                <div className={styles.content}>
+                {isPrivateRoute && <NavBar /> }
+                <div className={styles[isPrivateRoute ? "contentNavbarWidth" : "contentFullWidth"]}>
                     {children}
                 </div>
             </div>
