@@ -29,6 +29,21 @@ export default function Profile() {
 
         <div className={styles.contentWrapper}>
           <div className={styles.personalInfo}>
+            <div className={styles.aboutPerson}>
+              <h1>Sobre mim</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Ultrices nulla nunc tortor magna posuere. 
+                Amet, faucibus sed malesuada vitae malesuada. 
+                Amet eros, ultrices ut viverra enim est diam pellentesque. 
+                Sapien sodales tempus viverra risus a elit placerat euismod risus. 
+                Ipsum mattis volutpat massa tortor lacinia.</p>
+            </div>
+            <div className={styles.skills}>
+              <div className={styles.expPropria}>
+                Tenho experiência
+                <h1></h1>
+              </div>
+            </div>
 
           </div>
           <div className={styles.messageList}>
