@@ -39,10 +39,38 @@ export default function Profile() {
                 Ipsum mattis volutpat massa tortor lacinia.</p>
             </div>
             <div className={styles.skills}>
-              <div className={styles.expPropria}>
-                Tenho experiência
-                <h1></h1>
+              <h1>Skills</h1> 
+              <div className={styles.skills2}>
+              <div className={styles.boxExpPropria}>
+                <ul>Tenho experiência</ul>
+                <li>Comunicação</li>
+                <li>Trabalhar sobre pressão</li>
               </div>
+
+              <div className={styles.boxEstudando}>
+              <ul>Estou estudando</ul>
+                <li>liderança de equipe</li>
+              </div>
+              </div>
+            </div>
+            <div className={styles.formation}>
+              <h1>Formação</h1>
+            <div className={styles.formation2}>
+              <div className={styles.boxCompleted}>
+                <ul>Concluida</ul>
+                <li>Graduação em Ciência da computação [2016]</li>
+              </div>
+
+              <div className={styles.boxProgress}>
+                <ul>Em andamento</ul>
+                <li>Curso de Java Spring avançado</li>
+              </div>
+
+              <div className={styles.boxInterest}>
+                <ul>Tenho interesse</ul>
+                <li>Tecnologia em Processamento de Dados</li>
+              </div>
+            </div>
             </div>
 
           </div>

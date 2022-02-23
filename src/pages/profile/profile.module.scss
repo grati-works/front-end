@@ -85,10 +85,50 @@
 
     .personalInfo{
         flex: 3;
-        background-color: tan;
+            .aboutPerson{
+                margin-bottom: 40px;
+                padding: 40px;
+                background-color: white;
+                border-radius: 7px;
+                h1{
+                    font-size: 2.0rem;
+                }
+                p{
+                    font-size: 1.4rem;
+                }
+            }
+            .skills{
+                background-color: white;
+                padding: 40px;
+                border-radius: 7px;
+                margin-bottom: 40px;
+                    h1{
+                        font-size: 2.0rem;
+                    }
+            .skills2{
+                display: flex;
+                font-size: 1.7rem;
+                flex-direction: row;
+                justify-content: space-between;
+                    li{
+                        font-size: 1.4rem;
+                    }
+            }
+        }
+        .formation{
+            background-color: white;
+                padding: 40px;
+                border-radius: 7px;
+                margin-bottom: 40px;
+            .formation2{
+                display: flex;
+                font-size: 1.7rem;
+                flex-direction: row;
+                
+            }
     }
+}
     .messageList{
         flex: 4;
-        background-color: tomato;
     }
 }
