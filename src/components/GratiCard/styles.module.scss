@@ -4,58 +4,103 @@
   
     width: 100%;
 
-    .userInfo {
-        display: flex;
-        gap: 1rem;
-
-        .texts {
+    .gratiCardHeader {
+        padding: 1rem 2rem;
+        .userInfo {
             display: flex;
-            flex-direction: column;
-            font-size: 1rem;
-
-            .userInfoText {
-                color: var(--nextui-colors-primary);
-                font-weight: 600;
+            gap: 1rem;
     
-                span {
-                    font-size: .75rem;
+            .texts {
+                display: flex;
+                flex-direction: column;
+                font-size: 1rem;
+    
+                .userInfoText {
+                    color: var(--nextui-colors-primary);
+                    font-weight: 600;
+        
+                    span {
+                        font-size: .75rem;
+                        color: var(--nextui-colors-tone6);
+                        font-weight: 400;
+                        margin-left: 4px;
+                    }
+                }
+        
+                .gratiInfoText {
                     color: var(--nextui-colors-tone6);
                     font-weight: 400;
-                    margin-left: 4px;
+        
+                    span {
+                        font-weight: 600;
+                        margin-left: 4px;
+                    }
+                }
+            }
+        }
+    
+        .gratiInfo {
+            display: flex;
+            gap: 16px;
+            margin-left: auto;
+    
+            .divider {
+                width: 1px;
+                background-color: var(--nextui-colors-tone6);
+            }
+
+            svg {
+                cursor: pointer;
+                transition: transform .3s ease-in-out, color .3s ease-in-out;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    color: var(--nextui-colors-primary);
                 }
             }
     
-            .gratiInfoText {
+            p {
+                font-size: 14px;
                 color: var(--nextui-colors-tone6);
-                font-weight: 400;
     
-                span {
+                a {
                     font-weight: 600;
-                    margin-left: 4px;
+                    text-decoration: underline;
                 }
             }
         }
     }
 
-    .gratiInfo {
-        display: flex;
-        width: 100%;
-        gap: 16px;
+    .gratiCardFooter {
+        .reactionsContainer {
+            display: flex;
+            gap: 12px;
+            
+            .reaction {
+                display: flex;
+                gap: 6px;
+                align-items: center;
 
-        .divider {
-            width: 1px;
-            height: 100%;
-            background-color: var(--nextui-colors-tone6);
-        }
+                cursor: pointer;
+                transition: filter .3s ease-in-out;
 
-        p {
-            font-size: 14px;
-            color: var(--nextui-colors-tone6);
+                background: var(--nextui-colors-tone2);
+                border: 1px solid var(--nextui-colors-tone6);
 
-            a {
-                font-weight: 600;
-                text-decoration: underline;
+                border-radius: 8px;
+                padding: 4px 10px;
+                font-size: 14px;
+
+                &.reacted {
+                    background: var(--nextui-colors-primaryOpaque);
+                    border: 1px solid var(--nextui-colors-primary);
+                }
+
+                &:hover {
+                    filter: brightness(1.1);
+                }
             }
         }
     }
+
 }

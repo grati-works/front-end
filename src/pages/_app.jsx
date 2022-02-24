@@ -6,6 +6,7 @@ import '../styles/attachment.css'
 
 function MyApp({ Component, pageProps }) {
   const defaultColors = {
+    primaryOpaque: '#7b87f033',
     primaryLight: '#7b87f0',
     primary: '#6874E8',
     primaryDark: '#5562db',
