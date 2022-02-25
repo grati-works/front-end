@@ -129,6 +129,35 @@
     }
 }
     .messageList{
+        width: 100%;
         flex: 4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+            .commentHeader{
+                margin-bottom: 50px;
+                width: 100%;
+                border-bottom: 2px solid #bfbfc0;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 4.5rem;
+                font-size: 2rem;
+                    .messageSent{
+                        margin-bottom: 20px;
+                        &:hover{
+                            font-weight: bold;
+                        }
+                    }
+                    .messageReceveid{
+                        margin-bottom: 20px;
+                        &:hover{
+                            font-weight: bold;
+                        }
+                    }
+                   
+            }
     }
 }

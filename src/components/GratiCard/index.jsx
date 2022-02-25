@@ -11,7 +11,7 @@ export function GratiCard() {
         <Card className={styles.gratiCardContainer} shadow={false}>
             <Card.Header className={styles.gratiCardHeader}>
                 <div className={styles.userInfo}>
-                    <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" size="lg" />
+                    <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/10.webp" size="lg" />
                     <div className={styles.texts}>
                         <p className={styles.userInfoText}>
                             Eduarda Camargo

@@ -1,7 +1,8 @@
 import Head from 'next/head';
 
 import styles from './profile.module.scss';
-import { Avatar } from '@nextui-org/react';
+import { Avatar, Card } from '@nextui-org/react';
+import { GratiCard } from '../../components/GratiCard';
 
 export default function Profile() {
   return (
@@ -14,7 +15,7 @@ export default function Profile() {
         <div className={styles.containerNavBar}>
           <img className={styles.imgFundo} src="/images/imgFundoProfile.png" alt="imagemDeFundo" />
           <div className={styles.headerContent}>
-            <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className={styles.imgPerfil} />
+            <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" className={styles.imgPerfil} />
             <dir className={styles.userName}>
               <h1>Túlio Nogueira</h1>
               <h2>Product Owner</h2>
@@ -75,7 +76,15 @@ export default function Profile() {
 
           </div>
           <div className={styles.messageList}>
-            
+            <div className={styles.commentHeader}>
+              <div className={styles.messageSent}>
+                Enviados
+              </div>
+              <div className={styles.messageReceveid}>
+                Recebidos
+              </div>
+            </div>
+            <GratiCard></GratiCard>
           </div>
         </div>
       </div>
