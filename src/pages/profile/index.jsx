@@ -77,14 +77,16 @@ export default function Profile() {
           </div>
           <div className={styles.messageList}>
             <div className={styles.commentHeader}>
-              <div className={styles.messageSent}>
+              <div className={`${styles.cardFilter} ${styles.filterActive}`}>
                 Enviados
               </div>
-              <div className={styles.messageReceveid}>
+              <div className={`${styles.cardFilter} ${styles.filterActive}`}>
                 Recebidos
               </div>
             </div>
             <GratiCard></GratiCard>
+            <GratiCard></GratiCard>
+
           </div>
         </div>
       </div>

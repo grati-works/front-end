@@ -1,0 +1,23 @@
+.homeWrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+        .navigation{
+            width: 70%;
+            display: flex;
+            flex-direction: row;
+            .sendGrati{
+                width: 100%;
+                background-color: white;
+                border-radius: 7px;
+                display: flex;
+                flex-direction: row;
+            }
+        }
+        .rankingRight{
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+        }
+}
