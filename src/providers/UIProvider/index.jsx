@@ -8,7 +8,7 @@ export function UIProvider({ children }) {
     asPath = asPath.split('/')[1];
 
     const privateRoutes = {
-        "organizacao": "Organizações Inscritas",
+        "organizations": "Organizações Inscritas",
         "home": "Início",
         "profile": "Perfil",
         "ranking": "Ranking"
@@ -19,7 +19,7 @@ export function UIProvider({ children }) {
 
     return (
         <div className={styles.container}>
-            <Header privatePage={isPrivateRoute ? privateRoutes[asPath] : ""} />
+            <Header privatePage={isPrivateRoute ? privateRoutes[asPath] : ""} isLogged={isPrivateRoute} />
             <div className={styles.contentContainer}>
                 {isPrivateRoute && <NavBar /> }
                 <div className={styles[isPrivateRoute ? "contentNavbarWidth" : "contentFullWidth"]}>

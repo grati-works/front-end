@@ -48,13 +48,14 @@ export function Header({ isLogged = false, privatePage = "" }) {
                         <ThemeSwitcher style={styles.icon} />
                         <a href="/auth/signin"><Button>Fazer login</Button></a>
                     </div> :
-                    <a className={styles.userContainer} href="">
+                    <a className={styles.userContainer} href="#">
                         { searchBarIsOpen &&
                             <Input
                                 clearable
                                 shadow={false}
                                 size="md"
                                 placeholder="Insira o termo a ser pesquisado"
+                                type="search"
                             />
                         }
                         <Search set="light" onClick={toggleSearchBar} className={styles.icon}/>
