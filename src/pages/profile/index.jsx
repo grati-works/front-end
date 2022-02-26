@@ -4,6 +4,7 @@ import Head from 'next/head';
 import styles from './profile.module.scss';
 import { Avatar, Card, Modal } from '@nextui-org/react';
 import { GratiCard } from '../../components/GratiCard';
+import { Button } from '../../components/Button';
 
 export default function Profile() {
   const [isVisible, setModalIsVisible] = useState(false);
@@ -106,16 +107,19 @@ export default function Profile() {
         aria-labelledby="modal-title"
         open={isVisible}
         onClose={handleOpenDeleteModal}
+        className={styles.deleteModal}
+        width="500px"
       >
-        <Modal.Header>
+        <Modal.Header className={styles.deleteModalHeader}>
+          <img src="/icons/close.svg" alt="Ícone de exclusão" />
           <h4>Deletar Grati</h4>
         </Modal.Header>
         <Modal.Body>
           <p>Tem certeza que deseja deletar essa mensagem?</p>
         </Modal.Body>
-        <Modal.Footer>
-          <button>Cancelar</button>
-          <button>Sim, deletar</button>
+        <Modal.Footer className={styles.deleteModalFooter}>
+          <Button bordered auto onClick={handleOpenDeleteModal}>Cancelar</Button>
+          <Button color="error" auto>Sim, deletar</Button>
         </Modal.Footer>
       </Modal>
     </>
