@@ -42,6 +42,10 @@
       }
 
       .imgIcons {
+        @media (max-width: 980px) {
+          display: none;
+        }
+
         margin-left: auto;
 
         display: flex;
@@ -83,6 +87,10 @@
   flex-direction: row;
   gap: 1.5rem;
 
+  @media (max-width: 1300px) {
+    flex-direction: column;
+  }
+
   .personalInfo {
     flex: 4;
     display: flex;
@@ -121,52 +129,6 @@
             }
         }
     }
-    /*
-    .aboutPerson {
-      margin-bottom: 40px;
-      padding: 40px;
-      background-color: white;
-      border-radius: 7px;
-      h1 {
-        font-size: 2rem;
-      }
-      p {
-        font-size: 1.4rem;
-      }
-    }
-    .skills {
-      background-color: white;
-      padding: 40px;
-      border-radius: 7px;
-      margin-bottom: 40px;
-      h1 {
-        font-size: 2rem;
-      }
-      .skills2 {
-        display: flex;
-        font-size: 1.7rem;
-        flex-direction: row;
-        justify-content: space-between;
-        li {
-          font-size: 1.4rem;
-        }
-      }
-    }
-    .formation {
-      background-color: white;
-      padding: 40px;
-      border-radius: 7px;
-      margin-bottom: 40px;
-      h1 {
-        font-size: 2rem;
-      }
-      .formation2 {
-        display: flex;
-        font-size: 1.7rem;
-        flex-direction: row;
-      }
-    }
-    */
   }
   .messageList {
     width: 100%;
