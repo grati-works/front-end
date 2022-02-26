@@ -1,12 +1,38 @@
+import { useState } from 'react';
 import { Card, Avatar } from '@nextui-org/react';
 import { Delete } from 'react-iconly';
-import { Emoji } from 'emoji-mart'
+import { Emoji } from 'emoji-mart';
 import styles from './styles.module.scss';
 
-export function GratiCard() {
-    function handleDeleteGrati() {
+export function GratiCard({ deleteFunction }) {
+    const [reactions, setReactions] = useState([
+        {
+            emoji: 'brain',
+            reacted: true,
+            amount: 7
+        },
+        {
+            emoji: 'mage',
+            reacted: false,
+            amount: 2
+        },
+    ]);
 
+    function toggleReaction(id) {
+        const newReactions = reactions.map(reaction => {
+            if (reaction.emoji === id) {
+                return {
+                    ...reaction,
+                    reacted: !reaction.reacted,
+                    amount: reaction.reacted ? reaction.amount - 1 : reaction.amount + 1
+                }
+            }
+            return reaction;
+        });
+
+        setReactions(newReactions);
     }
+
     return (
         <Card className={styles.gratiCardContainer} shadow={false}>
             <Card.Header className={styles.gratiCardHeader}>
@@ -27,7 +53,7 @@ export function GratiCard() {
                     <p>Há 4h por <a href="#">Túlio N.</a></p>
                     <Emoji emoji={{ id: 'mage' }} set='twitter' size={24} />
                     <div className={styles.divider}/>
-                    <Delete onClick={handleDeleteGrati} />
+                    <Delete onClick={() => deleteFunction(1)} />
                 </div>
             </Card.Header>
             <Card.Body>
@@ -35,14 +61,18 @@ export function GratiCard() {
             </Card.Body>
             <Card.Footer className={styles.gratiCardFooter}>
                 <div className={styles.reactionsContainer}>
-                    <span className={`${styles.reaction} ${styles.reacted}`}>
-                        <Emoji emoji={{ id: 'brain' }} set='twitter' size={16} />
-                        7
-                    </span>
-                    <span className={styles.reaction}>
-                        <Emoji emoji={{ id: 'clap' }} set='twitter' size={16} />
-                        2
-                    </span>
+                    {
+                        reactions.map(reaction => (
+                            <span
+                                className={`${styles.reaction} ${reaction.reacted && styles.reacted}`}
+                                onClick={() => toggleReaction(reaction.emoji)}
+                                key={reaction.emoji}
+                            >
+                                <Emoji emoji={{ id: reaction.emoji }} set='twitter' size={16} />
+                                {reaction.amount}
+                            </span>
+                        ))
+                    }
                 </div>
             </Card.Footer>
         </Card>

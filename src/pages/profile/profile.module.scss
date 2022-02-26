@@ -1,161 +1,218 @@
 .profileWrapper {
-    padding: 2rem 3rem;
+  padding: 2rem 3rem;
 
-    .containerNavBar {
-        width: 100%;
-
-        .imgFundo {
-            width: 100%;
-            height: 13rem;
-        }
-
-        .headerContent {
-            padding: 0 2rem;
-            display: flex;
-            gap: 12px;
-            margin-top: -8.625rem;
-    
-            .imgPerfil {
-                width: 11.25rem;
-                height: 11.25rem;
-                border-radius: 8rem;
-                border: .4rem solid var(--nextui-colors-background);
-            }
-
-            .userName {
-                margin-top: 3.625rem;
-
-                * {
-                    color: var(--nextui-colors-tone1);
-                    text-align: center;
-                    line-height: 1;
-                }
-
-                h1 {
-                    font-size: 1.5rem;
-                }
-
-                h2 {
-                    font-size: 1.125rem;
-                    font-weight: normal;
-                }
-            }
-
-            .imgIcons {
-                margin-left: auto;
-
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-
-                button {
-                    background-color: var(--nextui-colors-tone1);
-                    color: var(--nextui-colors-tone8);
-                    border-radius: 5px;
-                    padding: 8px 12px;
-
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-
-                    transition: filter .2s ease-in-out;
-                    
-                    img {
-                        height: 1.5rem;
-                        width: 1.5rem;
-                    }
-
-                    &:hover {
-                        filter: brightness(1.2);
-                    }
-                }
-            }
-        }
-    }
-}
-
-.contentWrapper{
+  .containerNavBar {
     width: 100%;
-    height: 800px;
-    margin-top: 2rem;
 
+    .imgFundo {
+      width: 100%;
+      height: 13rem;
+    }
+
+    .headerContent {
+      padding: 0 2rem;
+      display: flex;
+      gap: 12px;
+      margin-top: -8.625rem;
+
+      .imgPerfil {
+        width: 11.25rem;
+        height: 11.25rem;
+        border-radius: 8rem;
+        border: 0.4rem solid var(--nextui-colors-background);
+      }
+
+      .userName {
+        margin-top: 3.625rem;
+
+        * {
+          color: var(--nextui-colors-tone1);
+          text-align: center;
+          line-height: 1;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        h2 {
+          font-size: 1.125rem;
+          font-weight: normal;
+        }
+      }
+
+      .imgIcons {
+        margin-left: auto;
+
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        button {
+          background-color: var(--nextui-colors-tone1);
+          color: var(--nextui-colors-tone8);
+          border-radius: 5px;
+          padding: 8px 12px;
+
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          transition: filter 0.2s ease-in-out;
+
+          img {
+            height: 1.5rem;
+            width: 1.5rem;
+          }
+
+          &:hover {
+            filter: brightness(1.2);
+          }
+        }
+      }
+    }
+  }
+}
+
+.contentWrapper {
+  width: 100%;
+  height: 800px;
+  margin-top: 2rem;
+
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+
+  .personalInfo {
+    flex: 4;
     display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
+    flex-direction: column;
+    gap: 1rem;
 
-    .personalInfo{
-        flex: 3;
-            .aboutPerson{
-                margin-bottom: 40px;
-                padding: 40px;
-                background-color: white;
-                border-radius: 7px;
-                h1{
-                    font-size: 2.0rem;
-                }
-                p{
-                    font-size: 1.4rem;
-                }
+    .aboutPersonCard, .skillsCard, .formationCard {
+        padding: 1.5rem 2rem;
+        background-color: var(--nextui-colors-backgroundHighlight);
+        border-radius: 5px;
+        font-size: 1rem;
+
+        h1 {
+            color: var(--nextui-colors-tone8);
+            font-size: 1.5rem;
+        }
+    }
+
+    .skillsContent, .formationContent {
+        display: flex;
+        font-size: 1rem;
+
+        > * {
+            flex: 1;
+
+            ul {
+                margin: 0;
+                font-weight: 600;
+                color: var(--nextui-colors-tone7);
+                margin-bottom: .5rem;
             }
-            .skills{
-                background-color: white;
-                padding: 40px;
-                border-radius: 7px;
-                margin-bottom: 40px;
-                    h1{
-                        font-size: 2.0rem;
-                    }
-            .skills2{
-                display: flex;
-                font-size: 1.7rem;
-                flex-direction: row;
-                justify-content: space-between;
-                    li{
-                        font-size: 1.4rem;
-                    }
+
+            li {
+                margin-left: 1rem;
+                margin-bottom: 4px;
             }
         }
-        .formation{
-            background-color: white;
-                padding: 40px;
-                border-radius: 7px;
-                margin-bottom: 40px;
-                h1{
-                    font-size: 2.0rem;
-                }
-            .formation2{
-                display: flex;
-                font-size: 1.7rem;
-                flex-direction: row;
-                
-            }
     }
-}
-    .messageList{
-        width: 100%;
-        flex: 4;
+    /*
+    .aboutPerson {
+      margin-bottom: 40px;
+      padding: 40px;
+      background-color: white;
+      border-radius: 7px;
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.4rem;
+      }
+    }
+    .skills {
+      background-color: white;
+      padding: 40px;
+      border-radius: 7px;
+      margin-bottom: 40px;
+      h1 {
+        font-size: 2rem;
+      }
+      .skills2 {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 30px;
-            .commentHeader{
-                margin-bottom: 50px;
-                width: 100%;
-                border-bottom: 2px solid #bfbfc0;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                gap: 4.5rem;
-                font-size: 2rem;
-                    .cardFilter{
-                        margin-bottom: 20px;
-                     
-                    }
-                    .filterActive:hover{
-                        border-bottom: 2px solid #6874E8;
-                    }
-                   
-            }
+        font-size: 1.7rem;
+        flex-direction: row;
+        justify-content: space-between;
+        li {
+          font-size: 1.4rem;
+        }
+      }
     }
+    .formation {
+      background-color: white;
+      padding: 40px;
+      border-radius: 7px;
+      margin-bottom: 40px;
+      h1 {
+        font-size: 2rem;
+      }
+      .formation2 {
+        display: flex;
+        font-size: 1.7rem;
+        flex-direction: row;
+      }
+    }
+    */
+  }
+  .messageList {
+    width: 100%;
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .commentHeader {
+      margin-bottom: 1.3rem;
+      width: 100%;
+      border-bottom: 2px solid #bfbfc0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+
+      h3 {
+        font-size: 1.2rem;
+      }
+      .cardFilter {
+        padding: 1rem;
+        padding-bottom: 0;
+        margin-bottom: 10px;
+        cursor: pointer;
+        height: 100%;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+          background-color: var(--nextui-colors-tone2);
+        }
+      }
+
+      .filterActive:after {
+        content: '';
+        height: 4px;
+        width: calc(100% + 2rem);
+        margin-left: -1rem;
+        background-color: var(--nextui-colors-primary);
+        position: relative;
+        bottom: -1.05rem;
+        display: block;
+        left: 0;
+      }
+    }
+  }
 }
