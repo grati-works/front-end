@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from './homePage.module.scss';
 import { GratiCard } from '../../components/GratiCard';
+import { TextEditor } from '../../components/TextEditor';
 
 export default function HomeUser() {
   return (
@@ -11,15 +12,13 @@ export default function HomeUser() {
       <>
       <div className={styles.homeWrapper}>
             <div className={styles.navigation}>
-                <div className={styles.sendGrati}>
-
-                </div>
+                <TextEditor />
                 <div className={styles.feed}>
-                    {/* <GratiCard></GratiCard>
-                    <GratiCard></GratiCard> */}
+                    <GratiCard />
+                    <GratiCard />
                 </div>
             </div>
-            <div className={styles.rankingRight}>
+            <div className={styles.info}>
                 <div className={styles.points}></div>
                 <div className={styles.experience}></div>
                 <div className={styles.ranking}></div>
