@@ -10,6 +10,11 @@ export default function SignUp() {
     <div className={styles.containerLogin}>
       <Head>
           <title>Grati | Cadastro</title>
+          <meta name="description" content="Realizar cadastro" />
+          <meta property="og:title" content="Cadastro" />
+          <meta property="og:description" content="Realizar cadastro" />
+          <meta property="og:url" content="https://grati.works/auth/signup" />
+          <meta property="og:type" content="website" />
       </Head>
       <img src="/images/auth_background.png" alt="Ilustração de autenticação" className={styles.ImgFundo}/>
       <div className={styles.conteudo}>

@@ -5,7 +5,12 @@ export default function Home() {
   return (
     <>
       <Head>
-          <title>Grati | Página inicial</title>
+          <title>Grati</title>
+          <meta name="description" content="Adote feedbacks em sua organização!" />
+          <meta property="og:title" content="Grati" />
+          <meta property="og:description" content="Adote feedbacks em sua organização!" />
+          <meta property="og:url" content="https://grati.works/" />
+          <meta property="og:type" content="website" />
       </Head>
       <>
         <img src="/images/circle.png" alt="circle1" className={styles.circle1} />

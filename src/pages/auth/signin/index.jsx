@@ -9,6 +9,11 @@ export default function SignIn() {
     <div className={styles.containerLogin}>
       <Head>
           <title>Grati | Login</title>
+          <meta name="description" content="Realizar login" />
+          <meta property="og:title" content="Login" />
+          <meta property="og:description" content="Realizar login" />
+          <meta property="og:url" content="https://grati.works/auth/signin" />
+          <meta property="og:type" content="website" />
       </Head>
       <img src="/images/auth_background.png" alt="Ilustração de autenticação" className={styles.ImgFundo}/>
       <div className={styles.conteudo}>
