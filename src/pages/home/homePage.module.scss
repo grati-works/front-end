@@ -5,7 +5,7 @@
   gap: 1.4rem;
 
   .navigation {
-    flex: 7;
+    flex: 7.5;
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
@@ -18,9 +18,9 @@
   }
 
   .info {
-    flex: 3;
+    flex: 2.5;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 
     .points, .experience, .ranking {
         width: 100%;
@@ -29,15 +29,38 @@
     }
 
     .points {
-        
+        margin-block-end: 20px;
+        display: flex;
+        flex-direction: row;
+        padding: 30px;
+          img{
+            width: 40px;
+            height: 40px;
+            margin-inline-end: 20px;
+          }
+          p{
+            font-size: 1.2rem;
+          }
     }
 
     .experience {
-
+      margin-block-start: 20px;
+      margin-block-end: 20px;
+      display: flex;
+      flex-direction: row;
+      padding: 30px;
+        img{
+          width: 40px;
+          height: 40px;
+          margin-inline-end: 20px;
+        }
+        p{
+          font-size: 1.2rem;
+        }
     }
 
     .ranking {
-
+      margin-block-start: 20px;
     }
   }
 }
