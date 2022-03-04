@@ -1,4 +1,17 @@
-.text {
+.landingPageWrapper {
+  h1 {
+    display: block;
+    max-width: 14ch;
+    font-size: 4.5rem;
+    line-height: 5rem;
+    color: var(--nextui-colors-tone8);
+
+    span {
+      color: #6874e8;
+    }
+  }
+
+  .mainSectionContainer {
     position: relative;
     color: var(--nextui-colors-tone7);
     margin-top: 5rem;
@@ -12,107 +25,144 @@
 
     z-index: 1;
 
-    h1 {
-        display: block;
-        max-width: 14ch;
-        font-size: 4.5rem;
-        line-height: 5rem;
-        color: var(--nextui-colors-tone8);
+    p {
+      font-size: 1.4rem;
+      max-width: 45ch;
+      font-weight: 400;
+    }
 
-        span {
-            color: #6874E8;
+    .adquireButtons {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      margin-top: 41px;
+    }
+  }
+
+  .plansSectionContainer {
+    text-align: center;
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      color: var(--nextui-colors-tone8);
+    }
+
+    .planFilter {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--nextui-colors-backgroundHighlight);
+      padding: 0.125rem;
+      border-radius: 5px;
+      width: calc(20rem + 0.25rem + 0.5rem);
+      margin: 1rem 0;
+
+      button {
+        background-color: transparent;
+        font-size: 1rem;
+        width: 10rem;
+        height: 3rem;
+        color: var(--nextui-colors-tone7);
+        border-radius: 5px;
+
+        &.active {
+          background-color: var(--nextui-colors-background);
+          font-weight: 600;
+        }
+
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+    }
+
+    .planList {
+        display: flex;
+        gap: 1rem;
+
+        .plan {
+            background-color: var(--nextui-colors-backgroundHighlight);
+            border-radius: 5px;
+            padding: 1.75rem 1.5rem;
+            text-align: start;
+
+            h3 {
+              font-size: 1.4rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+
+            .planPrice {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+
+                span {
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+            }
+
+            button {
+                width: 100%;
+            }
         }
     }
+  }
 
+  .aboutSectionContainer {
+    width: 100%;
+    text-align: center;
+    margin-top: 8rem;
+
+    h1 {
+      width: 100%;
+    }
     p {
-        font-size: 1.5rem;    
-        max-width: 45ch;
+      text-align: center;
     }
-
-    
-    .adquireButtons {
-        display: flex;
-        flex-direction: row;
-        gap: 24px;
-        margin-top: 41px;
-    }
+  }
 }
 
 .circle1 {
-    position: absolute;
-    top: -132px;
-    left: -48px;
-    z-index: 0;
-    display: flex;
-    opacity: .5;
-    animation:spin 8s linear infinite;
+  position: absolute;
+  top: -132px;
+  left: -48px;
+  z-index: 0;
+  display: flex;
+  opacity: 0.5;
+  animation: spin 8s linear infinite;
 }
 
 .circle2 {
-    position: absolute;
-    top: 25%;
-    right: -172px;
-    z-index: 0;
-    display: flex;
-    opacity: .5;
-    animation:spin 8s linear infinite;
+  position: absolute;
+  top: 25%;
+  right: -172px;
+  z-index: 0;
+  display: flex;
+  opacity: 0.5;
+  animation: spin 8s linear infinite;
 }
+
 .circle3 {
-    position: absolute;
-    top: 70%;
-    left: -172px;
-    z-index: 0;
-    display: flex;
-    opacity: .5;
-    animation:spin 8s linear infinite;
+  position: absolute;
+  top: 70%;
+  left: -172px;
+  z-index: 0;
+  display: flex;
+  opacity: 0.5;
+  animation: spin 8s linear infinite;
 }
 
-.imgMockups {
-    max-width: 50%;
-    margin-top: 5%;
-}
-
-@keyframes spin { 
-    100% { 
-        -webkit-transform: rotate(360deg); 
-        transform:rotate(360deg); 
-    }   
-}
-
-.containerPlanos{
-    width: 100%;
-    text-align: center;
-    margin-top: 200px;
-
-    button{
-        background-color: rgb(231, 229, 229);
-        font-size: 1.5rem;
-        font-weight: bold;
-        width: 250px;
-        height: 55px;
-        color: black;
-        border-radius: 7px;
-        margin-top: 25px;
-        margin-inline-start: 20px;
-        margin-inline-end: 20px;
-    }
-    button:hover {
-        background-color: white;
-    }
-}
-
-.containerSobre{
-    width: 100%;
-    text-align: center;
-    margin-block-start: 500px;
-    margin-block-end: 500px;
-    h1{
-        width: 100%;
-    }
-    p{
-        text-align: center;
-        margin-inline-start: 500px;
-        margin-inline-end: 500px;
-    }
-
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
