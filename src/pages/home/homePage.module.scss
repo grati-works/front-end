@@ -33,6 +33,8 @@
         display: flex;
         flex-direction: row;
         padding: 30px;
+        align-items: center;
+
           img{
             width: 40px;
             height: 40px;
@@ -49,6 +51,7 @@
       display: flex;
       flex-direction: row;
       padding: 30px;
+      align-items: center;
         img{
           width: 40px;
           height: 40px;
@@ -61,6 +64,47 @@
 
     .ranking {
       margin-block-start: 20px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+        .top5{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-image: linear-gradient(to right, rgba(213, 210, 210, 0.626) , rgba(240, 239, 239, 0));
+                img{
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 20px;
+                    margin: 20px;
+                }
+                p{
+                    width: 100%;
+                    margin: 20px;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                        button{
+                            float: right;
+                            background-color: transparent;
+                            font-size: 2.5rem;
+                        }
+                }
+        }
+        .positions{
+            margin-inline-start: 50px;
+            margin-inline-end: 50px;
+            margin-block-start: 20px;
+            margin-block-end: 20px;
+        }
+        .date{
+            border-top: 2px solid #8c8d92;
+            .boxDate{
+                margin: 30px;
+                    span{
+                        float: right;
+                    }
+            }
+        }
     }
   }
 }
