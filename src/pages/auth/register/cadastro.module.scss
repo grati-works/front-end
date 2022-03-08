@@ -53,6 +53,19 @@
             margin: 0 12px;
         }
     }
+    .privacyPolicy{
+        margin-block-start: 24px;
+        display: flex;
+        flex-direction: row;
+            p{
+                font-size: 1.5rem;
+                font-weight: 50;
+                    span{
+                        color: #6874E8;
+                        text-decoration: underline;
+                    }
+            }
+    }
 
     button {
         width: 100%;
