@@ -122,10 +122,36 @@
     margin-top: 8rem;
 
     h1 {
-      width: 100%;
+      width: 100px;
+      // position: absolute;
+
+      // width: 236px;
+      // height: 58px;
+     
+      // font-family: Inter;
+      // font-style: normal;
+      // font-weight: bold;
+      // font-size: 48px;
+      // line-height: 58px;
+
+      // color: #2D3142;
     }
     p {
-      text-align: center;
+      text-align: center;  
+      // position: absolute;
+
+      width: 1200px;
+      height: 154px;
+      margin-inline-start: 680px;
+      
+      // font-family: Inter;
+      // font-style: normal;
+      // font-weight: normal;
+      // font-size: 18px;
+      // line-height: 22px;
+      // text-align: justify;
+
+      // color: #4B5066;
     }
   }
 }
