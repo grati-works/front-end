@@ -24,7 +24,7 @@ export default function SignIn() {
           <Input Icon={Lock} placeholder="Senha" required password />
         </div>
         <Button>Autenticar</Button>
-        <a href="#">Esqueci minha senha</a>
+        <a href="/auth/recoverPassword">Esqueci minha senha</a>
         <div className={styles.registerSection}>
           <div className={styles.divider}></div>
           <span>não possui uma conta?</span>

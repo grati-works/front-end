@@ -12,6 +12,7 @@ export function UIProvider({ children }) {
         "home": "Início",
         "profile": "Perfil",
         "ranking": "Ranking"
+        //"applicationManagement": "Gerenciamento"
     };
 
     const privateRoutesPath = Object.keys(privateRoutes);
