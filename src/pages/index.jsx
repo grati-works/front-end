@@ -28,6 +28,22 @@ export default function Home() {
         <img src="/images/mockups.png" alt="Aplicativos mobile" /> 
         </div>
 
+        <div className={styles.aboutSectionContainer}>
+          <h2>Sobre nós</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Dolor sem odio ut viverra mi quam. Vitae fames porttitor arcu tempor vulputate proin. 
+            Vitae erat a, vitae a amet vestibulum. Diam a etiam ipsum quis auctor massa. 
+            Lacinia at amet facilisi mattis massa placerat. 
+            Adipiscing id libero, placerat egestas. Sit amet, morbi viverra in cras amet non quam. 
+            Habitant maecenas mattis fermentum id. 
+            Pretium pretium maecenas maecenas elit facilisi.
+            Turpis suscipit interdum proin curabitur vulputate. 
+            Placerat duis nunc molestie dui mi. Velit, aliquam cum faucibus at maecenas at auctor ut in. 
+            Neque urna cum ultrices vitae odio etiam quam sed nunc. 
+            Felis rhoncus at gravida condimentum viverra quis id bibendum sollicitudin.
+          </p>
+        </div>
+
         <div className={styles.plansSectionContainer}>
           <h2>Planos</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sem odio ut viverra mi quam.</p>
@@ -66,21 +82,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.aboutSectionContainer}>
-          <h2>Sobre nós</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Dolor sem odio ut viverra mi quam. Vitae fames porttitor arcu tempor vulputate proin. 
-            Vitae erat a, vitae a amet vestibulum. Diam a etiam ipsum quis auctor massa. 
-            Lacinia at amet facilisi mattis massa placerat. 
-            Adipiscing id libero, placerat egestas. Sit amet, morbi viverra in cras amet non quam. 
-            Habitant maecenas mattis fermentum id. 
-            Pretium pretium maecenas maecenas elit facilisi.
-            Turpis suscipit interdum proin curabitur vulputate. 
-            Placerat duis nunc molestie dui mi. Velit, aliquam cum faucibus at maecenas at auctor ut in. 
-            Neque urna cum ultrices vitae odio etiam quam sed nunc. 
-            Felis rhoncus at gravida condimentum viverra quis id bibendum sollicitudin.
-          </p>
-        </div>
       </main>
     </>
   )
