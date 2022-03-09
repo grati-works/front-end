@@ -20,6 +20,7 @@ export default function RecoverPassword() {
         <h1>Recuperar Senha</h1>
         <div className={styles.inputs}>
           <Input Icon={Lock} placeholder="E-mail" />
+          
         </div>
         <Button>Autenticar</Button>
       </div>
