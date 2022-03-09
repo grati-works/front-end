@@ -46,7 +46,7 @@ export default function Home() {
 
         <div className={styles.plansSectionContainer}>
           <h2>Planos</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sem odio ut viverra mi quam.</p>
+          <p className={styles.plansSectionContainer2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sem odio ut viverra mi quam.</p>
           <div className={styles.planFilter}>
             <button className={styles.active}>Planos Mensais</button>
             <button>Planos Anuais</button>
