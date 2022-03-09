@@ -1,1 +1,234 @@
-//teste
+.editions{
+    display: flex;
+    flex-direction: row;
+    padding: 10rem;
+    gap: 2rem;
+        .editionsPage{
+            flex: 5;
+            font-size: 2rem;
+            font-weight: bolder;
+
+            .appearance{
+                background-color: white;
+                border-radius: 7px;
+                margin-block-start: 15px;
+                margin-block-end: 15px;
+                display: flex;
+                font-size: 1.5rem;
+                font-weight: 200;
+                flex-direction: row;
+                padding-block-start: 20px;
+                padding-block-end: 20px;
+                padding-inline-start: 20px;
+                padding-inline-end: 20px;
+                gap: 1.5rem;
+                    .darkMode{
+                        text-align: center;
+                        flex: 3;
+                        display: flex;
+                        flex-direction: column;
+                        button{
+                            border-radius: 5px;
+                            height: 150px;
+                            background-color: #4B5066;
+                            margin-block-end: 5px;
+                            &:focus{
+                                border: 5px solid #6874E8;
+                            }
+                        }
+                    }
+                    .clearMode{
+                        text-align: center;
+                        flex: 3;
+                        display: flex;
+                        flex-direction: column;
+                        button{
+                            border-radius: 5px;
+                            height: 150px;
+                            background-color: #F6F7F8;
+                            margin-block-end: 5px;
+                            &:focus{
+                                border: 5px solid #6874E8;
+                            }
+                            
+                        }
+                    }
+                    .automatic{
+                        text-align: center;
+                        flex: 3;
+                        display: flex;
+                        flex-direction: column;
+                        button{
+                            border-radius: 5px;
+                            height: 150px;
+                            background-image: linear-gradient(100deg, #4B5066 50%,#F6F7F8 50%);
+                            margin-block-end: 5px;
+                            &:focus{
+                                border: 5px solid #6874E8;
+                            }
+                        }
+                    }
+            }
+            .colorScheme{
+                background-color: white;
+                border-radius: 7px;
+                display: flex;
+                flex-direction: row;
+                margin-block-start: 25px;
+                margin-block-end: 25px;
+                padding: 20px;
+                gap: 3.5rem;
+                padding-inline-start: 50px;
+                padding-inline-end: 50px;
+                .red{
+                    background-color: red;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .yellow{
+                    background-color: yellow;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .green{
+                    background-color: green;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .blue{
+                    background-color: blue;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .purple{
+                    background-color: purple;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .pink{
+                    background-color: pink;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .black{
+                    background-color: black;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .gray{
+                    background-color: gray;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+            }
+
+            .manageGroups{
+                display: flex;
+                flex-direction: row;
+                margin-block-start: 25px;
+                margin-block-end: 25px;
+                gap: 2.5rem;
+                .gestao{
+                    div{
+                        background-color: red;
+                        width: 150px;
+                        height: 15px;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+                .squadTerno{
+                    div{
+                        background-color: black;
+                        width: 150px;
+                        height: 15px;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+                .squadTurtle{
+                    div{
+                        background-color: green;
+                        width: 150px;
+                        height: 15px;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+                .createGroup{
+                    div{
+                        margin-bottom: 5px;
+                        font-size: 2rem;
+                        font-weight: 600;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+            }
+
+            
+        }
+
+        .registerUser{
+            flex: 5;
+            display: flex;
+            flex-direction: column;
+                Input{
+                    border-radius: 7px;
+                }
+        }
+}
