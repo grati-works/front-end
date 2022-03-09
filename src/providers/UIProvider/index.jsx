@@ -11,8 +11,8 @@ export function UIProvider({ children }) {
         "organizations": "Organizações Inscritas",
         "home": "Início",
         "profile": "Perfil",
-        "ranking": "Ranking"
-        //"applicationManagement": "Gerenciamento"
+        "ranking": "Ranking",
+        "applicationManagement": "Gerenciamento"
     };
 
     const privateRoutesPath = Object.keys(privateRoutes);
