@@ -222,13 +222,90 @@
 
             
         }
-
-        .registerUser{
+        .boxGood{
             flex: 5;
-            display: flex;
-            flex-direction: column;
-                Input{
+            font-size: 2rem;
+            font-weight: 600;
+            .registerUser{
+                margin-block-start: 15px;
+                margin-block-end: 15px;
+                width: 350px;
+                display: flex;
+                flex-direction: column;
+                    Input{
                     border-radius: 7px;
-                }
+                    }
+            }
+            .addCsv{
+                background-color: white;
+                width: 350px;
+                display: flex;
+                flex-direction: row;
+                    .left{
+                        width: 60px;
+                        border-right: 1.5px solid rgb(218, 218, 218);
+                        text-align: center;
+                            img{  
+                                width: 30px;
+                                width: 30px;
+                                position: relative;
+                                margin-top: 20px;
+                            }
+                    }
+                    .right{
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 1rem;
+                        font-weight: lighter;
+                        max-width: 100%;
+                        margin: 20px;
+                        .boxGrape{
+                            align-items: center;
+                            margin-top: 10px;
+                                button{
+                                    padding-block-start: 15px;
+                                    padding-block-end: 15px;
+                                    background-color: #6874E8;
+                                    color: white;
+                                    border-radius: 5px;
+                                    font-weight: 800;
+                                    height: 50px;
+                                    width: 250px;
+                                    margin-bottom: 10px;
+
+                                    &:hover{
+                                        border: 2px solid #4B5066;
+                                        font-size: 1.2rem;
+                                        text-align: center;
+                                    }
+                                }
+                                .documenttCsv{
+                                    border: 1px solid rgb(218, 218, 218);
+                                    width: 250px;
+                                    height: 50px;
+                                    border-radius: 7px;
+                                    display: flex;
+                                    flex-direction: row;
+                                        img{
+                                            width: 30px;
+                                            height: 30px;
+                                            margin-inline-start: 7px;
+                                            margin-inline-end: 7px;
+                                            margin-block-start: 8px;
+                                            margin-block-end: 8px;
+                                        }
+                                        nav{
+                                            border-left: 1px solid rgb(218, 218, 218);
+                                            width: 100%;
+                                            height: 100%;
+                                            text-align: center;
+                                            display: inline-block;
+                                            vertical-align: middle;
+                                            padding-block-start: 15px;
+                                        }
+                                }
+                            }
+                    }
+            }
         }
 }

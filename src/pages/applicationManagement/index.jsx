@@ -60,20 +60,44 @@ export default function Manage() {
 
           </div>
       </div>
+      <div className={styles.boxGood}>
+      Dados
       <div className={styles.registerUser}>
-          Dados
           <Input Icon={Bookmark} placeholder="Nome da organização" />
       </div>
       <div className={styles.addCsv}>
           <div className={styles.left}>
-              {/* <img src="/images/user.png" alt="user" /> */}
+              <img src="/images/user.png" alt="user" />
           </div>
           <div className={styles.right}>
               Cadastro de usuários
+              <div className={styles.boxGrape}>
               <button>Cadastro manual</button>
-              <Input Icon={Document} placeholder="Importar arquivo CSV" />
+              <div className={styles.documenttCsv}>
+                  <img src="/images/info.png" alt="" />
+                  <nav>Importar arquivo csv</nav>
+              </div>
+              </div>
+          </div>
           </div>
       </div>
+      </div>
+      <div className={styles.tabelaUsuarios}>
+          <h1>Gerenciamento de grupos</h1>
+          <table className={styles.tableUsers}>
+        <thead>
+          <tr>
+            <th className={styles.positionTitle}>POSIÇÃO</th>
+            <th>USUÁRIO</th>
+            <th>EMAIL</th>
+            <th>GRUPO</th>
+            <th>AÇÕES</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+         </tbody>
+      </table>
       </div>
     </>
   )
