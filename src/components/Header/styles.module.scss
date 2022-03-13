@@ -1,104 +1,105 @@
 .headerContainer {
-    height: 5rem;
-    position: fixed;
-    z-index: 500;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--nextui-colors-backgroundHighlight);
+  height: 5rem;
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--nextui-colors-backgroundHighlight);
 
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .headerContent {
-    width: 90%;
-    height: 5rem;
-    margin: 0 auto;
-    padding: 0 2rem;
+  width: 90%;
+  height: 5rem;
+  margin: 0 auto;
+  padding: 0 2rem;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  nav {
+    max-width: 480px;
+    height: 5rem;
+    margin-right: 3rem;
+
+    a {
+      display: inline-block;
+      position: relative;
+      padding: 0 0.5rem;
+      height: 5rem;
+      line-height: 5rem;
+      color: var(--nextui-colors-accents7);
+
+      transition: color 0.2s;
+
+      & + a {
+        margin-left: 2rem;
+      }
+
+      &:hover {
+        color: var(--nextui-colors-accents9);
+      }
+
+      &.active {
+        color: var(--nextui-colors-accents9);
+        font-weight: bold;
+      }
+    }
+  }
+
+  .notLogged {
+    margin-left: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-    nav {
-        max-width: 480px;
-        height: 5rem;
-        margin-right: 3rem;
-
-        a {
-            display: inline-block;
-            position: relative;
-            padding: 0 0.5rem;
-            height: 5rem;
-            line-height: 5rem;
-            color: var(--nextui-colors-tone7);
-
-            transition: color 0.2s;
-
-            & + a {
-                margin-left: 2rem;
-            }
-
-            &:hover {
-                color: var(--nextui-colors-tone9);
-            }
-
-            &.active {
-                color: var(--nextui-colors-tone9);
-                font-weight: bold;
-            }
-        }
-    }
-
-    .notLogged {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+    gap: 12px;
+  }
 }
 
 .logoContainer {
-    background-color: var(--nextui-colors-primary);
-    box-shadow: var(--nextui-shadows-sm);
-    height: 5rem;
-    width: 5rem;
+  background-color: var(--nextui-colors-primary);
+  box-shadow: var(--nextui-shadows-sm);
+  height: 5rem;
+  width: 5rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    img {
-        height: 60%;
-        width: 60%;
-    }
+  img {
+    height: 60%;
+    width: 60%;
+  }
 }
 
 .userContainer {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
-    p {
-        font-weight: 500;
-        font-size: 1rem;
-        color: var(--nextui-colors-tone7);
-    }
+  p {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--nextui-colors-accents7);
+  }
 
-    span {
-        cursor: pointer;
-    }
+  span {
+    cursor: pointer;
+  }
 }
 
 .icon {
-    height: 1.4rem;
-    width: 1.4rem;
-    margin-right: 1rem;
-    cursor: pointer;
+  height: 1.4rem;
+  width: 1.4rem;
+  margin-right: 1rem;
+  cursor: pointer;
 
-    &, * {
-        color: var(--nextui-colors-tone7);
-        stroke: var(--nextui-colors-tone7);
-    }
+  &,
+  * {
+    color: var(--nextui-colors-accents7);
+    stroke: var(--nextui-colors-accents7);
+  }
 }

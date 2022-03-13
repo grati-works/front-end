@@ -1,89 +1,89 @@
 .ImgFundo {
-    height: calc(100vh - 5rem);
+  height: calc(100vh - 5rem);
 }
 
 .containerLogin {
-    width: 100%;
-    height: calc(100vh - 5rem);
-    display: flex;
+  width: 100%;
+  height: calc(100vh - 5rem);
+  display: flex;
 }
 
 .conteudo {
-    margin: auto;
+  margin: auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 6rem;
+
+  & > img {
+    width: 10rem;
+    height: auto;
+  }
+
+  h1 {
+    color: var(--nextui-colors-accents8);
+    margin-top: 33px;
+  }
+
+  .inputs {
+    width: 100%;
     display: flex;
-    flex: 1;
     flex-direction: column;
-    justify-content: center;
+    gap: 8px;
+  }
+
+  .registerSection {
+    width: 100%;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    margin-top: 12px;
 
-    padding: 0 6rem;
-
-    & > img {
-        width: 10rem;
-        height: auto;
+    .divider {
+      height: 1px;
+      display: flex;
+      flex: 1;
+      background-color: var(--nextui-colors-accents5);
     }
 
-    h1 {
-        color: var(--nextui-colors-tone8);
-        margin-top: 33px;
+    span {
+      font-size: 0.9rem;
+      margin: 0 12px;
     }
+  }
 
-    .inputs {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+  .checkbox {
+    input {
+      border-radius: 5px;
     }
+    margin: 0.7rem 0 0.7rem auto;
 
-    .registerSection {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 12px;
-
-        .divider {
-            height: 1px;
-            display: flex;
-            flex: 1;
-            background-color: var(--nextui-colors-tone5);
-        }
-
-        span {
-            font-size: .9rem;
-            margin: 0 12px;
-        }
+    span {
+      display: block;
     }
+  }
 
-    .checkbox {
-        input {
-            border-radius: 5px;
-        }
-        margin: .7rem 0 .7rem auto;
-        
-        span {
-            display: block;
-        }
+  button {
+    width: 100%;
+    height: 4rem;
+    margin-top: 24px;
+    border-radius: 5px;
+    font-weight: bold;
+
+    &.secondaryButton {
+      background: var(--nextui-colors-background);
+      color: var(--nextui-colors-accents8);
+      border: 1.6px solid var(--nextui-colors-accents5);
     }
+  }
 
-    button {
-        width: 100%;
-        height: 4rem;
-        margin-top: 24px;
-        border-radius: 5px;
-        font-weight: bold;
-
-        &.secondaryButton {
-            background: var(--nextui-colors-background);
-            color: var(--nextui-colors-tone8);
-            border: 1.6px solid var(--nextui-colors-tone5);
-        }
-    }
-
-    a {
-        color: var(--nextui-colors-primary);
-        text-decoration: underline;
-        margin-left: auto;
-        margin-top: 4px;
-    }
+  a {
+    color: var(--nextui-colors-primary);
+    text-decoration: underline;
+    margin-left: auto;
+    margin-top: 4px;
+  }
 }

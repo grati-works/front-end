@@ -3,7 +3,8 @@
   border-radius: 5px;
 
   width: 100%;
-  .users, .tags {
+  .users,
+  .tags {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -17,11 +18,11 @@
     justify-content: space-between;
 
     .users {
-      padding-left:.5rem;
-      
+      padding-left: 0.5rem;
+
       .user {
         background-color: var(--nextui-colors-background);
-        padding: .5rem 1rem;
+        padding: 0.5rem 1rem;
         border-radius: 5px;
       }
 
@@ -35,7 +36,7 @@
 
     .privacy {
       background-color: transparent;
-      padding-right: .5rem;
+      padding-right: 0.5rem;
     }
   }
 
@@ -59,7 +60,7 @@
     }
 
     .addIcon {
-      margin: .5rem;
+      margin: 0.5rem;
     }
 
     p {
@@ -82,7 +83,7 @@
     border: 4px solid var(--nextui-colors-primary);
     border-radius: 12px !important;
     padding: 4px;
-    opacity: .9;
+    opacity: 0.9;
     margin-left: 0;
   }
 
@@ -114,15 +115,15 @@
     .giphySearchForm {
       height: 50px;
       * {
-          font-size: 16px;
-          display: block;
-          width: 100%;
-          padding: 5px 25px 6px 10px;
-          border-radius: 5px;
-          border: 1px solid var(--nextui-colors-tone3);
-          background: var(--nextui-colors-tone2);
-          color: var(--nextui-colors-tone8);
-          outline: 0;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        padding: 5px 25px 6px 10px;
+        border-radius: 5px;
+        border: 1px solid var(--nextui-colors-accents3);
+        background: var(--nextui-colors-accents2);
+        color: var(--nextui-colors-accents8);
+        outline: 0;
       }
     }
   }

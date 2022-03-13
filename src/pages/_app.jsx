@@ -26,16 +26,6 @@ function MyApp({ Component, pageProps }) {
 
         background: '#F6F7F8',
         backgroundHighlight: '#FFF',
-
-        tone1: '$gray100',
-        tone2: '$gray200',
-        tone3: '$gray300',
-        tone4: '$gray400',
-        tone5: '$gray500',
-        tone6: '$gray600',
-        tone7: '$gray700',
-        tone8: '$gray800',
-        tone9: '$gray900',
       },
       shadows: {
         xs: '-4px 0 4px rgb(0 0 0 / 5%);',
@@ -61,16 +51,6 @@ function MyApp({ Component, pageProps }) {
 
         text1: '#e6e6e6',
         text5: '',
-
-        tone1: '$gray900',
-        tone2: '$gray800',
-        tone3: '$gray700',
-        tone4: '$gray600',
-        tone5: '$gray500',
-        tone6: '$gray400',
-        tone7: '$gray300',
-        tone8: '$gray200',
-        tone9: '$gray100',
       },
       shadows: {
         xs: '-4px 0 15px rgb(0 0 0 / 50%)',

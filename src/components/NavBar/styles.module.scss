@@ -1,39 +1,39 @@
 .navbarContainer {
-    height: calc(100vh - 5rem);
-    width: 5rem;
-    background-color: var(--nextui-colors-backgroundHighlight);
+  height: calc(100vh - 5rem);
+  width: 5rem;
+  background-color: var(--nextui-colors-backgroundHighlight);
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  z-index: 500;
+  position: fixed;
+
+  div,
+  a {
+    width: 100%;
+  }
+
+  a {
+    height: 3.8rem;
     display: flex;
-    flex-direction: column;
     justify-content: center;
 
-    z-index: 500;
-    position: fixed;
-
-    div, a {
-        width: 100%;
+    svg {
+      color: var(--nextui-colors-accents7);
+      width: 2rem;
+      height: 2rem;
     }
-    
-    a {
-        height: 3.8rem;
-        display: flex;
-        justify-content: center;
-
-        svg {
-            color: var(--nextui-colors-tone7);
-            width: 2rem;
-            height: 2rem;
-        }
-    }
+  }
 }
 
-
 .active {
-    background-color: var(--nextui-colors-tone2);
-    border-left: 3px solid var(--nextui-colors-primary);
-    padding-right: 3px;
+  background-color: var(--nextui-colors-accents2);
+  border-left: 3px solid var(--nextui-colors-primary);
+  padding-right: 3px;
 
-    svg {
-        color: var(--nextui-colors-tone8) !important;
-    }
+  svg {
+    color: var(--nextui-colors-accents8) !important;
+  }
 }

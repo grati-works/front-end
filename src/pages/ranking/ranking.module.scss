@@ -5,14 +5,14 @@
   .rankingTable {
     width: 100%;
     border-collapse: collapse;
-    
+
     thead {
       th {
-        color: var(--nextui-colors-tone5);
-        font-size: .9rem;
+        color: var(--nextui-colors-accents5);
+        font-size: 0.9rem;
         text-align: left;
         padding-bottom: 1rem;
-  
+
         &.positionTitle {
           width: 5rem;
         }

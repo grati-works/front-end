@@ -1,17 +1,16 @@
 .inputContainer {
   display: flex;
-  
+
   .inputIconContainer {
     width: 4rem;
     height: 4rem;
-    border: 1px solid var(--nextui-colors-tone2);
+    border: 1px solid var(--nextui-colors-accents2);
     background: var(--nextui-colors-backgroundHighlight);
 
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
 }
 
 .input {
@@ -20,6 +19,6 @@
   display: flex;
   border-radius: 0 5px 5px 0;
   flex: 1;
-  border: 1px solid var(--nextui-colors-tone2);
+  border: 1px solid var(--nextui-colors-accents2);
   background: var(--nextui-colors-backgroundHighlight);
 }

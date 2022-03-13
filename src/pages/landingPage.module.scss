@@ -4,7 +4,7 @@
     max-width: 14ch;
     font-size: 4.5rem;
     line-height: 5rem;
-    color: var(--nextui-colors-tone8);
+    color: var(--nextui-colors-accents8);
 
     span {
       color: #6874e8;
@@ -13,7 +13,7 @@
 
   .mainSectionContainer {
     position: relative;
-    color: var(--nextui-colors-tone7);
+    color: var(--nextui-colors-accents7);
     margin-top: 5rem;
     height: 100%;
     text-align: center;
@@ -47,23 +47,22 @@
     align-items: center;
 
     h2 {
-      color: var(--nextui-colors-tone8);
+      color: var(--nextui-colors-accents8);
 
       // width: 159px;
       // height: 58px;
-      
+
       font-family: Inter;
       font-style: normal;
       font-weight: bold;
       font-size: 48px;
       line-height: 58px;
       text-align: center;
-      
-      // color: #2D3142;
 
+      // color: #2D3142;
     }
 
-     .plansSectionContainer2{
+    .plansSectionContainer2 {
       margin-block-start: 10px;
 
       width: 810px;
@@ -76,7 +75,7 @@
       line-height: 22px;
       text-align: center;
 
-      color: #4B5066;
+      color: #4b5066;
     }
 
     .planFilter {
@@ -91,13 +90,12 @@
       margin: 1rem 0;
       margin-block-start: 30px;
 
-
       button {
         background-color: transparent;
         font-size: 1rem;
         width: 10rem;
         height: 3rem;
-        color: var(--nextui-colors-tone7);
+        color: var(--nextui-colors-accents7);
         border-radius: 5px;
 
         &.active {
@@ -112,56 +110,53 @@
     }
 
     .planList {
-        display: flex;
-        gap: 1.5rem;
-        margin-block-start: 30px;
+      display: flex;
+      gap: 1.5rem;
+      margin-block-start: 30px;
 
+      .plan {
+        background-color: var(--nextui-colors-backgroundHighlight);
+        border-radius: 5px;
+        padding: 1.75rem 1.5rem;
+        text-align: start;
 
-        .plan {
-            background-color: var(--nextui-colors-backgroundHighlight);
-            border-radius: 5px;
-            padding: 1.75rem 1.5rem;
-            text-align: start;
+        h3 {
+          font-size: 1.4rem;
 
-            h3 {
-              font-size: 1.4rem;
+          font-style: normal;
+          font-weight: normal;
+          line-height: 21px;
 
-              font-style: normal;
-              font-weight: normal;
-              line-height: 21px;
-              
-              color: #263238;
-            }
-            
-            p {
-                font-size: 1rem;
-
-                font-style: normal;
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 16px;
-
-                color: #263238;
-
-            }
-
-            .planPrice {
-                font-size: 2.5rem;
-                font-weight: 700;
-                margin-bottom: 2rem;
-                color: #263238;
-
-                span {
-                    font-size: 1rem;
-                    font-weight: 400;
-                    
-                }
-            }
-
-            button {
-                width: 100%;
-            }
+          color: #263238;
         }
+
+        p {
+          font-size: 1rem;
+
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 16px;
+
+          color: #263238;
+        }
+
+        .planPrice {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 2rem;
+          color: #263238;
+
+          span {
+            font-size: 1rem;
+            font-weight: 400;
+          }
+        }
+
+        button {
+          width: 100%;
+        }
+      }
     }
   }
 
@@ -176,17 +171,17 @@
       top: 1261px;
       width: 236px;
       height: 58px;
-     
+
       font-family: Inter;
       font-style: normal;
       font-weight: bold;
       font-size: 48px;
       line-height: 58px;
 
-      color: #2D3142;    
+      color: #2d3142;
     }
     p {
-      text-align: center;  
+      text-align: center;
       margin-inline-start: 785px;
 
       width: 980px;
@@ -199,8 +194,7 @@
       line-height: 22px;
       text-align: justify;
 
-      color: #4B5066;
-
+      color: #4b5066;
     }
   }
 }
@@ -235,9 +229,9 @@
   animation: spin 8s linear infinite;
 }
 
-  @keyframes spin {
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
+}

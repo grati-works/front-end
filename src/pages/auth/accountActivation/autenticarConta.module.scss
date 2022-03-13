@@ -1,61 +1,61 @@
 .ImgFundo {
-    height: calc(100vh - 5rem);
+  height: calc(100vh - 5rem);
 }
 
 .containerLogin {
-    width: 100%;
-    height: calc(100vh - 5rem);
-    display: flex;
+  width: 100%;
+  height: calc(100vh - 5rem);
+  display: flex;
 }
 
 .conteudo {
-    margin: auto;
+  margin: auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 6rem;
+
+  & > img {
+    width: 10rem;
+    height: auto;
+  }
+
+  h1 {
+    color: var(--nextui-colors-accents8);
+    margin-top: 33px;
+  }
+
+  .inputs {
+    width: 100%;
     display: flex;
-    flex: 1;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0 6rem;
-
-    & > img {
-        width: 10rem;
-        height: auto;
-    }
-
-    h1 {
-        color: var(--nextui-colors-tone8);
-        margin-top: 33px;
-    }
-
-    .inputs {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-    button {
-        width: 100%;
-        height: 4rem;
-        margin-top: 24px;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    a {
-        color: var(--nextui-colors-primary);
-        text-decoration: underline;
-        margin-left: auto;
-        margin-top: 4px;
-    }
+    gap: 8px;
+  }
+  button {
+    width: 100%;
+    height: 4rem;
+    margin-top: 24px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  a {
+    color: var(--nextui-colors-primary);
+    text-decoration: underline;
+    margin-left: auto;
+    margin-top: 4px;
+  }
 }
 
-    .checkbox {
-        input {
-            border-radius: 5px;
-        }
-        margin: .7rem 0 .7rem auto;
-        
-        span {
-            display: block;
-        }
-    }
+.checkbox {
+  input {
+    border-radius: 5px;
+  }
+  margin: 0.7rem 0 0.7rem auto;
+
+  span {
+    display: block;
+  }
+}

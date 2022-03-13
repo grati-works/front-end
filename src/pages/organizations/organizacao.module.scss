@@ -1,104 +1,104 @@
 .organizationWrapper {
-    padding: 5rem 7.25rem;
+  padding: 5rem 7.25rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+
+  .cardOrganization {
+    width: 16rem;
+    height: 11rem;
+    padding: 1.1rem;
+    border-radius: 5px;
 
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.8rem;
-    
-    .cardOrganization {
-        width: 16rem;
-        height: 11rem;
-        padding: 1.1rem;
-        border-radius: 5px;
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        
-        text-align: center;
-        cursor: pointer;
-        background-color: var(--nextui-colors-backgroundHighlight);
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
-        .organizationIcon {
-            width: 14rem;
-            height: 6rem;
-            padding: .6rem;
-            border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--nextui-colors-backgroundHighlight);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    .organizationIcon {
+      width: 14rem;
+      height: 6rem;
+      padding: 0.6rem;
+      border-radius: 4px;
 
-            img {
-                width: 100%;
-            }
-        }
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-        p {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--nextui-colors-tone7);
-            letter-spacing: 0;
-        }
-
-        &:hover {
-            transform: scale(1.03);
-            opacity: .9;
-        }
+      img {
+        width: 100%;
+      }
     }
+
+    p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--nextui-colors-accents7);
+      letter-spacing: 0;
+    }
+
+    &:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+  }
 }
 
 .groupsModal {
-    background-color: var(--nextui-colors-background);
+  background-color: var(--nextui-colors-background);
 
-    .groupsModalHeader {
-        p {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--nextui-colors-tone8);
-        }
+  .groupsModalHeader {
+    p {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--nextui-colors-accents8);
     }
+  }
 
-    .groupsWrapper {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        gap: 1rem;
-        
-        .cardGroup {
-            min-width: 8.5rem;
-            height: 5.5rem;
-            padding: 18px;
-            border-radius: 5px;
-            
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18;
+  .groupsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1rem;
 
-            cursor: pointer;
-            background-color: var(--nextui-colors-backgroundHighlight);
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    
-            div {
-                width: 100%;
-                height: .9rem;
-                border-radius: 3px;
-            }
-            
-            p {
-                font-weight: 600;
-                font-size: 1.1rem;
-                color: var(--nextui-colors-tone7);
-            }
+    .cardGroup {
+      min-width: 8.5rem;
+      height: 5.5rem;
+      padding: 18px;
+      border-radius: 5px;
 
-            &:hover {
-                transform: scale(1.03);
-                opacity: .9;
-            }
-        }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18;
+
+      cursor: pointer;
+      background-color: var(--nextui-colors-backgroundHighlight);
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+      div {
+        width: 100%;
+        height: 0.9rem;
+        border-radius: 3px;
+      }
+
+      p {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--nextui-colors-accents7);
+      }
+
+      &:hover {
+        transform: scale(1.03);
+        opacity: 0.9;
+      }
     }
+  }
 }
