@@ -158,7 +158,6 @@
                 display: flex;
                 flex-direction: row;
                 margin-block-start: 25px;
-                margin-block-end: 25px;
                 gap: 2.5rem;
                 .gestao{
                     div{
@@ -308,4 +307,12 @@
                     }
             }
         }
+        .tabelaUsuarios{
+            width: 100%;
+            background-color: red;
+                .tableUsers{
+
+                }
+        }
+        
 }

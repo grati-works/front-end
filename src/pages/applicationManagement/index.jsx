@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { Bookmark, Document, Lock } from 'react-iconly';
 import { Input } from '../../components/Input';
+import { UserCard } from '../../components/UserCard';
+
 
 import styles from './gerenciamento.module.scss';
 
@@ -87,7 +89,6 @@ export default function Manage() {
           <table className={styles.tableUsers}>
         <thead>
           <tr>
-            <th className={styles.positionTitle}>POSIÇÃO</th>
             <th>USUÁRIO</th>
             <th>EMAIL</th>
             <th>GRUPO</th>
@@ -95,7 +96,8 @@ export default function Manage() {
           </tr>
         </thead>
         <tbody>
-          
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" />
+
          </tbody>
       </table>
       </div>
