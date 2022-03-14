@@ -26,6 +26,10 @@
     height: 5rem;
     margin-right: 3rem;
 
+    .mobileMenu {
+      display: none;
+    }
+
     a {
       display: inline-block;
       position: relative;
@@ -47,6 +51,61 @@
       &.active {
         color: var(--nextui-colors-accents9);
         font-weight: bold;
+      }
+    }
+
+    @media (max-width: 860px) {
+      margin: 0;
+      max-width: 0;
+
+      .mobileMenu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .4rem;
+        margin-top: 2rem;
+
+        background-color: transparent;
+
+        span {
+          height: 1px;
+          width: 1rem;
+          background-color: var(--nextui-colors-accents7);
+        }
+      }
+
+      .mobileMenuNavbarOpen {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+
+        a {
+          padding: 0 2rem;
+          margin: 0;
+          margin-left: -7.2rem;
+          width: 100vw;
+          background-color: var(--nextui-colors-accents1);
+
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: var(--nextui-colors-accents2);
+          }
+
+          &:last-of-type {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            z-index: -1;
+          }
+        }
+
+        a + a {
+          border-top: 1px solid var(--nextui-colors-accents4);
+        }
+      }
+
+      .mobileMenuNavbarClosed {
+        display: none;
       }
     }
   }

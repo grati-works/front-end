@@ -49,28 +49,15 @@
     h2 {
       color: var(--nextui-colors-accents8);
 
-      // width: 159px;
-      // height: 58px;
-
-      font-family: Inter;
-      font-style: normal;
       font-weight: bold;
       font-size: 48px;
       line-height: 58px;
       text-align: center;
 
-      // color: #2D3142;
     }
 
     .plansSectionContainer2 {
-      margin-block-start: 10px;
-
-      width: 810px;
-      height: 22px;
-
-      font-family: Inter;
-      font-style: normal;
-      font-weight: normal;
+      padding: 0 4rem;
       font-size: 18px;
       line-height: 22px;
       text-align: center;
@@ -111,8 +98,10 @@
 
     .planList {
       display: flex;
+      flex-wrap: wrap;
       gap: 1.5rem;
-      margin-block-start: 30px;
+      align-items: center;
+      justify-content: center;
 
       .plan {
         background-color: var(--nextui-colors-backgroundHighlight);
@@ -162,34 +151,21 @@
 
   .aboutSectionContainer {
     width: 100%;
-    text-align: center;
     margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     h2 {
-      position: absolute;
-      left: 1160px;
-      top: 1261px;
-      width: 236px;
-      height: 58px;
-
-      font-family: Inter;
-      font-style: normal;
       font-weight: bold;
       font-size: 48px;
-      line-height: 58px;
 
       color: #2d3142;
     }
     p {
-      text-align: center;
-      margin-inline-start: 785px;
+      max-width: 90vw;
+      padding: 0 4rem;
 
-      width: 980px;
-      height: 154px;
-
-      font-family: Inter;
-      font-style: normal;
-      font-weight: normal;
       font-size: 18px;
       line-height: 22px;
       text-align: justify;
