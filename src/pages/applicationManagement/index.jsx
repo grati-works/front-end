@@ -1,5 +1,7 @@
 import Head from 'next/head';
+import { useRef } from 'react'
 import { Bookmark, Document, Lock } from 'react-iconly';
+import { Card, Divider, Button, Tooltip } from '@nextui-org/react';
 import { Input } from '../../components/Input';
 import { UserCard } from '../../components/UserCard';
 
@@ -77,7 +79,14 @@ export default function Manage() {
               <button>Cadastro manual</button>
               <div className={styles.documenttCsv}>
                   <img src="/images/info.png" alt="" />
-                  <nav>Importar arquivo csv</nav>
+                  {/* <Button className={styles.attachment} auto onClick={() => {
+                      const inputFile = useRef(null);
+            inputFile.current.value = '';
+            inputFile.current.click();
+            setAttached(false)
+          }}>
+              Importar arquivo csv
+          </Button> */}
               </div>
               </div>
           </div>
@@ -96,7 +105,7 @@ export default function Manage() {
           </tr>
         </thead>
         <tbody>
-        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" />
+        {/* <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" /> */}
 
          </tbody>
       </table>
