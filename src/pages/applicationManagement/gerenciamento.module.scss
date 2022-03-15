@@ -1,307 +1,324 @@
-.editions {
+.editions{
     display: flex;
     flex-direction: row;
     padding: 10rem;
     gap: 2rem;
-    .editionsPage {
-      flex: 5;
-      font-size: 2rem;
-      font-weight: bolder;
-  
-      .appearance {
-        background-color: white;
-        border-radius: 7px;
-        margin-block-start: 15px;
-        margin-block-end: 15px;
-        display: flex;
-        font-size: 1.5rem;
-        font-weight: 200;
-        flex-direction: row;
-        padding-block-start: 20px;
-        padding-block-end: 20px;
-        padding-inline-start: 20px;
-        padding-inline-end: 20px;
-        gap: 1.5rem;
-        .darkMode {
-          text-align: center;
-          flex: 3;
-          display: flex;
-          flex-direction: column;
-          button {
-            border-radius: 5px;
-            height: 150px;
-            background-color: #4b5066;
-            margin-block-end: 5px;
-            &:focus {
-              border: 5px solid #6874e8;
+        .editionsPage{
+            flex: 5;
+            font-size: 2rem;
+            font-weight: bolder;
+
+            .appearance{
+                background-color: white;
+                border-radius: 7px;
+                margin-block-start: 15px;
+                margin-block-end: 15px;
+                display: flex;
+                font-size: 1.5rem;
+                font-weight: 200;
+                flex-direction: row;
+                padding-block-start: 20px;
+                padding-block-end: 20px;
+                padding-inline-start: 20px;
+                padding-inline-end: 20px;
+                gap: 1.5rem;
+                    .darkMode{
+                        text-align: center;
+                        flex: 3;
+                        display: flex;
+                        flex-direction: column;
+                        button{
+                            border-radius: 5px;
+                            height: 150px;
+                            background-color: #4B5066;
+                            margin-block-end: 5px;
+                            &:focus{
+                                border: 5px solid #6874E8;
+                            }
+                        }
+                    }
+                    .clearMode{
+                        text-align: center;
+                        flex: 3;
+                        display: flex;
+                        flex-direction: column;
+                        button{
+                            border-radius: 5px;
+                            height: 150px;
+                            background-color: #F6F7F8;
+                            margin-block-end: 5px;
+                            &:focus{
+                                border: 5px solid #6874E8;
+                            }
+                            
+                        }
+                    }
+                    .automatic{
+                        text-align: center;
+                        flex: 3;
+                        display: flex;
+                        flex-direction: column;
+                        button{
+                            border-radius: 5px;
+                            height: 150px;
+                            background-image: linear-gradient(100deg, #4B5066 50%,#F6F7F8 50%);
+                            margin-block-end: 5px;
+                            &:focus{
+                                border: 5px solid #6874E8;
+                            }
+                        }
+                    }
             }
-          }
-        }
-        .clearMode {
-          text-align: center;
-          flex: 3;
-          display: flex;
-          flex-direction: column;
-          button {
-            border-radius: 5px;
-            height: 150px;
-            background-color: #f6f7f8;
-            margin-block-end: 5px;
-            &:focus {
-              border: 5px solid #6874e8;
+            .colorScheme{
+                background-color: white;
+                border-radius: 7px;
+                display: flex;
+                flex-direction: row;
+                margin-block-start: 25px;
+                margin-block-end: 25px;
+                padding: 20px;
+                gap: 3.5rem;
+                padding-inline-start: 50px;
+                padding-inline-end: 50px;
+                .red{
+                    background-color: red;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .yellow{
+                    background-color: yellow;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .green{
+                    background-color: green;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .blue{
+                    background-color: blue;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .purple{
+                    background-color: purple;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .pink{
+                    background-color: pink;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .black{
+                    background-color: black;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
+                .gray{
+                    background-color: gray;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    &:focus{
+                        border: 5px solid #6874E8;
+                    }
+                }
             }
-          }
-        }
-        .automatic {
-          text-align: center;
-          flex: 3;
-          display: flex;
-          flex-direction: column;
-          button {
-            border-radius: 5px;
-            height: 150px;
-            background-image: linear-gradient(100deg, #4b5066 50%, #f6f7f8 50%);
-            margin-block-end: 5px;
-            &:focus {
-              border: 5px solid #6874e8;
+
+            .manageGroups{
+                display: flex;
+                flex-direction: row;
+                margin-block-start: 25px;
+                gap: 2.5rem;
+                .gestao{
+                    div{
+                        background-color: red;
+                        width: 150px;
+                        height: 15px;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+                .squadTerno{
+                    div{
+                        background-color: black;
+                        width: 150px;
+                        height: 15px;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+                .squadTurtle{
+                    div{
+                        background-color: green;
+                        width: 150px;
+                        height: 15px;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
+                .createGroup{
+                    div{
+                        margin-bottom: 5px;
+                        font-size: 2rem;
+                        font-weight: 600;
+                    }
+                    padding: 25px;
+                    background-color: white;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-weight: 500;
+                    font-size: 1.5rem;
+                }
             }
-          }
+
+            
         }
-      }
-      .colorScheme {
-        background-color: white;
-        border-radius: 7px;
-        display: flex;
-        flex-direction: row;
-        margin-block-start: 25px;
-        margin-block-end: 25px;
-        padding: 20px;
-        gap: 3.5rem;
-        padding-inline-start: 50px;
-        padding-inline-end: 50px;
-        .red {
-          background-color: red;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-        .yellow {
-          background-color: yellow;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-        .green {
-          background-color: green;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-        .blue {
-          background-color: blue;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-        .purple {
-          background-color: purple;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-        .pink {
-          background-color: pink;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-        .black {
-          background-color: black;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-        .gray {
-          background-color: gray;
-          height: 50px;
-          width: 50px;
-          border-radius: 50%;
-          &:focus {
-            border: 5px solid #6874e8;
-          }
-        }
-      }
-  
-      .manageGroups {
-        display: flex;
-        flex-direction: row;
-        margin-block-start: 25px;
-        gap: 2.5rem;
-        .gestao {
-          div {
-            background-color: red;
-            width: 150px;
-            height: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-          }
-          padding: 25px;
-          background-color: white;
-          border-radius: 5px;
-          text-align: center;
-          font-weight: 500;
-          font-size: 1.5rem;
-        }
-        .squadTerno {
-          div {
-            background-color: black;
-            width: 150px;
-            height: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-          }
-          padding: 25px;
-          background-color: white;
-          border-radius: 5px;
-          text-align: center;
-          font-weight: 500;
-          font-size: 1.5rem;
-        }
-        .squadTurtle {
-          div {
-            background-color: green;
-            width: 150px;
-            height: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-          }
-          padding: 25px;
-          background-color: white;
-          border-radius: 5px;
-          text-align: center;
-          font-weight: 500;
-          font-size: 1.5rem;
-        }
-        .createGroup {
-          div {
-            margin-bottom: 5px;
+        .boxGood{
+            flex: 5;
             font-size: 2rem;
             font-weight: 600;
-          }
-          padding: 25px;
-          background-color: white;
-          border-radius: 5px;
-          text-align: center;
-          font-weight: 500;
-          font-size: 1.5rem;
+            .registerUser{
+                margin-block-start: 15px;
+                margin-block-end: 15px;
+                width: 350px;
+                display: flex;
+                flex-direction: column;
+                    Input{
+                    border-radius: 7px;
+                    }
+            }
+            .addCsv{
+                background-color: white;
+                width: 350px;
+                display: flex;
+                flex-direction: row;
+                    .left{
+                        width: 60px;
+                        border-right: 1.5px solid rgb(218, 218, 218);
+                        text-align: center;
+                            img{  
+                                width: 30px;
+                                width: 30px;
+                                position: relative;
+                                margin-top: 20px;
+                            }
+                    }
+                    .right{
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 1rem;
+                        font-weight: lighter;
+                        max-width: 100%;
+                        margin: 20px;
+                        .boxGrape{
+                            align-items: center;
+                            margin-top: 10px;
+                                button{
+                                    padding-block-start: 15px;
+                                    padding-block-end: 15px;
+                                    color: white;
+                                    border-radius: 5px;
+                                    font-weight: 800;
+                                    height: 50px;
+                                    width: 250px;
+                                    margin-bottom: 10px;
+                                }
+                                .documenttCsv{
+                                    border: 1px solid rgb(218, 218, 218);
+                                    width: 250px;
+                                    height: 50px;
+                                    border-radius: 7px;
+                                    display: flex;
+                                    flex-direction: row;
+                                        img{
+                                            width: 30px;
+                                            height: 30px;
+                                            margin-inline-start: 7px;
+                                            margin-inline-end: 7px;
+                                            margin-block-start: 8px;
+                                            margin-block-end: 8px;
+                                        }
+                                        
+                                }
+                            }
+                    }
+            }
         }
-      }
-    }
-    .boxGood {
-      flex: 5;
-      font-size: 2rem;
-      font-weight: 600;
-      .registerUser {
-        margin-block-start: 15px;
-        margin-block-end: 15px;
-        width: 350px;
-        display: flex;
-        flex-direction: column;
-        Input {
-          border-radius: 7px;
+        
+}
+
+.tabelaUsuarios{
+    padding: 10rem;
+    width: 100%;
+    font-weight: 100;
+        h1{
+            font-weight: 600;
         }
-      }
-  
-      .addCsv {
-        background-color: white;
-        width: 350px;
-        display: flex;
-        flex-direction: row;
-  
-        .right {
-          display: flex;
-          flex-direction: column;
-          font-size: 1rem;
-          font-weight: lighter;
-          max-width: 100%;
-          margin: 20px;
-          width: 100%;
-  
-          .manualRegister {
-              width: 100%;
-              height: 50px;
-              border-radius: 5px;
-              margin-top: 12px;
-          }
-  
-          .importCsv {
+        .tableUsers{
             width: 100%;
-            align-items: center;
-            margin-top: 10px;
-  
-            display: flex;
-            flex-direction: row;
-  
-            .importCsvIcon {
-              width: 50px;
-              height: 50px;
-              background-color: var(--nextui-colors-background);
-              border-radius: 5px 0 0 5px;
-  
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              padding: 10px;
-  
-              span, img {
-                width: 30px;
-                height: 30px;
-              }
+            height: 100%;
+            margin-block-start: 20px;
+            margin-block-end: 20px;
+            thead {
+                color: white;
+                th {
+                    color: var(--nextui-colors-accents5);
+                    font-size: 1.5rem;
+                    text-align: left;
+                    padding-bottom: 1rem;
+            
+                    &.positionTitle {
+                      width: 5rem;
+                    }
             }
-  
-            .importCsvButton {
-              width: 100%;
-              height: 50px;
-              background-color: var(--nextui-colors-background);
-              border-radius: 0 5px 5px 0;
-            }
-          }
         }
-  
-        .left {
-          width: 75px;
-          border-right: 1.5px solid rgb(218, 218, 218);
-          text-align: center;
-          padding-top: .5rem;
-        }
-      }
-    }
-    .tabelaUsuarios {
-      width: 100%;
-      background-color: red;
-      .tableUsers {
-      }
-    }
-  }
-  
+}
+}

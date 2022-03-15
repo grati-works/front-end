@@ -77,7 +77,6 @@ export default function Manage() {
               <div className={styles.boxGrape}>
                 <Button className={styles.manualRegister}>Cadastro manual</Button>
                 <div className={styles.importCsv}>
-                    <Button color="background" className={styles.importCsvIcon} icon={<img src="/images/info.png" alt="" />} auto />
                     <Button color="background" className={styles.importCsvButton} onClick={() => {
                       const inputFile = useRef(null);
                         inputFile.current.value = '';
@@ -93,7 +92,7 @@ export default function Manage() {
       </div>
       </div>
       <div className={styles.tabelaUsuarios}>
-          <h1>Gerenciamento de grupos</h1>
+          <h1>Gerenciamento de usuários - Geral</h1>
           <table className={styles.tableUsers}>
         <thead>
           <tr>
@@ -104,7 +103,10 @@ export default function Manage() {
           </tr>
         </thead>
         <tbody>
-        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" />
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/3.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/4.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
 
          </tbody>
       </table>
