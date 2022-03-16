@@ -296,11 +296,13 @@
 }
 
 .tabelaUsuarios{
-    padding: 10rem;
+    padding-inline-start: 10rem;
+    padding-inline-end: 10rem;
     width: 100%;
     font-weight: 100;
         h1{
-            font-weight: 600;
+            font-weight: 100;
+            color: #4B5066;
         }
         .tableUsers{
             width: 100%;

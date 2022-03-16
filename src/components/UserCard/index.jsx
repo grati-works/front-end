@@ -23,8 +23,8 @@ export function UserCard({ avatar = "https://mdbcdn.b-cdn.net/img/new/avatars/2.
           </div>
         </td>
         <td className={styles.acoes}>
-            <button className={styles.editor}><img src="/images/iconPencil.png" alt="editor" /></button>
-            <button className={styles.trash}><img src="/images/trashIcon.png" alt="delete" /></button>
+            <button className={styles.editor}><img src="/images/iconPencil.jpg" alt="editor" /></button>
+            <button className={styles.trash}><img src="/images/trashIcon.jpg" alt="delete" /></button>
         </td>
 
     </tr>

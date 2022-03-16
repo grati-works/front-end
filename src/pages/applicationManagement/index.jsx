@@ -104,9 +104,9 @@ export default function Manage() {
         </thead>
         <tbody>
         <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
-        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
-        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/3.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
-        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/4.webp" name="Luciano Monteiro" user="@lu.monteiro" email="lu.monteiro@gmail.com" group="Equad space V"/>
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" name="Túlio Nogueira" user="@tu.nogueira" email="lu.monteiro@gmail.com" group="Equad space V"/>
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/3.webp" name="Raul Ramos" user="@raulzinho" email="lu.monteiro@gmail.com" group="Equad space V"/>
+        <UserCard avatar="https://mdbcdn.b-cdn.net/img/new/avatars/4.webp" name="Sasha Souza" user="@sashinha" email="lu.monteiro@gmail.com" group="Equad space V"/>
 
          </tbody>
       </table>
