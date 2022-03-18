@@ -35,7 +35,7 @@ export default function HomeUser() {
                   <div className={styles.top5}>
                     <TicketStar set="light" className={styles.icon} />
                     <p>Top 5 ranking</p>
-                    <a href="#">&rarr;</a>
+                    <a href="/ranking">&rarr;</a>
                   </div>
                   <div className={styles.positions}>
                     <UserRankingCard size="sm" position="1" avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" status="up" level="12" gratis="37" experience="1600" />
