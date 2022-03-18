@@ -60,7 +60,11 @@
     margin-top: 24px;
     border-radius: 5px;
     font-weight: bold;
-
+    a{
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    }
     &.secondaryButton {
       background: var(--nextui-colors-background);
       color: var(--nextui-colors-accents8);

@@ -1,13 +1,20 @@
 import Head from 'next/head';
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Bookmark, User } from 'react-iconly';
 import { Input } from '../../components/Input';
 import { UserCard } from '../../components/UserCard';
+import { Modal } from '@nextui-org/react';
 import { Button } from '../../components/Button';
 
 import styles from './gerenciamento.module.scss';
 
 export default function Manage() {
+  const [visible, setVisible] = useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => {
+      setVisible(false);
+      console.log('closed');
+  };
   return (
     <>
       <Head> 
@@ -111,6 +118,29 @@ export default function Manage() {
          </tbody>
       </table>
       </div>
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={visible}
+        onClose={closeHandler}
+        className={styles.groupsModal}
+        width="530px"
+        scroll
+      >
+          <Modal.Header className={styles.groupsModalHeader}>
+              <p>Grupos inscritos na organização - Senai</p>
+          </Modal.Header>
+          <Modal.Body className={styles.groupsWrapper}>
+              <div className={styles.cardGroup}>
+                <div style={{ backgroundColor: '#DD473B' }} />
+                <p>Gestão</p>
+              </div>
+              <div className={styles.cardGroup}>
+                <div style={{ backgroundColor: '#5CB531' }} />
+                <p>Turtle Squad</p>
+              </div>
+          </Modal.Body>
+      </Modal>
     </>
   )
 }

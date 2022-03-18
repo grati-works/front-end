@@ -30,7 +30,7 @@ export default function SignIn() {
           <span>não possui uma conta?</span>
           <div className={styles.divider}></div>
         </div>
-        <Button className={styles.secondaryButton}>Cadastrar-se</Button>
+        <Button className={styles.secondaryButton}><a href="/auth/register">Cadastrar-se</a></Button>
       </div>
     </div>
   )
