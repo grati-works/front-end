@@ -40,10 +40,10 @@ export function Header({ isLogged = false, privatePage = '' }) {
               <ActiveLink activeClassname={styles.active} href='/'>
                 <a>Início</a>
               </ActiveLink>
-              <ActiveLink activeClassname={styles.active} href='/about'>
+              <ActiveLink activeClassname={styles.active} href='#about'>
                 <a>Sobre nós</a>
               </ActiveLink>
-              <ActiveLink activeClassname={styles.active} href='/plans'>
+              <ActiveLink activeClassname={styles.active} href='#plans'>
                 <a>Nossos Planos</a>
               </ActiveLink>
               <ActiveLink activeClassname={styles.active} href='/faq'>

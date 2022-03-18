@@ -28,7 +28,7 @@ export default function Home() {
         <img src="/images/mockups.png" alt="Aplicativos mobile" /> 
         </div>
 
-        <div className={styles.aboutSectionContainer}>
+        <div id='about' className={styles.aboutSectionContainer}>
           <h2>Sobre nós</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Dolor sem odio ut viverra mi quam. Vitae fames porttitor arcu tempor vulputate proin. 
@@ -52,7 +52,7 @@ export default function Home() {
             <button>Planos Anuais</button>
           </div>
           <div className={styles.planList}>
-            <div className={styles.plan}>
+            <div id='plans' className={styles.plan}>
               <h3>Plano Mensal</h3>
               <p>All the basics for starting a new business</p>
               <div className={styles.planPrice}>

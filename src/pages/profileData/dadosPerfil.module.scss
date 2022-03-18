@@ -1,0 +1,70 @@
+.frame{
+    display: flex;
+    flex-direction: row;
+    padding: 10rem;
+    .editProfile{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .imgPerfil{
+            position: relative;
+            .imgPerfilOn{
+                width: 15rem;
+                height: 15rem;
+            }
+            .cam{
+                width: 3rem;
+                height: 3rem;
+                cursor: pointer;
+                float: right;
+                z-index: 1;
+            }
+        }
+        .editInfo{
+            display: flex;
+            flex-direction: row;
+            .dados{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+                align-items: center;
+                .datePassword{
+                    display: flex;
+                    flex-direction: row;
+                    border-bottom: 1px solid rgb(195, 195, 195);
+                    gap: 20px;
+                        button{
+                            font-size: 1.5rem;
+                            background-color: transparent;
+                            color: gray;
+                                &:focus{
+                                    border-bottom: 2px solid #6874E8;
+                                    border-radius: 0px;
+                                }
+                        }
+                }
+                Input{
+                    width: 400px;
+                }
+                button{
+                    background-color: #6874E8;
+                    color: white;
+                    height: 4rem;
+                    width: 100%;
+                    border-radius: 5px;
+                        &:hover{
+                            filter: brightness(1.5);
+                        }
+                }
+            }
+        }
+    }
+    .messageList{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+    }
+}
