@@ -1,5 +1,7 @@
 import styles from './styles.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../../hooks/useAuth';
+import { useRouter } from 'next/router';
 
 import { ActiveLink } from '../ActiveLink';
 import { Button } from '../Button';
@@ -8,9 +10,12 @@ import { Avatar, Input } from '@nextui-org/react';
 import { Notification, Search } from 'react-iconly';
 import Link from 'next/link';
 
-export function Header({ isLogged = false, privatePage = '' }) {
+export function Header({ user, privatePage = '' }) {
+  const { push, asPath } = useRouter();
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
+
+  //const user = useAuth().user ? useAuth().user : typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : {};
 
   function toggleSearchBar() {
     setSearchBarIsOpen(!searchBarIsOpen);
@@ -19,6 +24,11 @@ export function Header({ isLogged = false, privatePage = '' }) {
   function toggleNavbar() {
     setNavbarIsOpen(!navbarIsOpen);
   }
+  
+  useEffect(() => {
+    if(asPath.includes("auth") && user) push('/home');
+    else if(privatePage !== '' && !user) push('/auth/signin')
+  }, [])
 
   return (
     <header className={styles.headerContainer}>
@@ -34,7 +44,7 @@ export function Header({ isLogged = false, privatePage = '' }) {
           </button>
           {privatePage !== '' ? (
             <>
-              <Link className={styles.active}>{privatePage}</Link>
+              <p className={styles.active}>{privatePage}</p>
             </>
           ) : (
             <div className={navbarIsOpen ? styles.mobileMenuNavbarOpen : styles.mobileMenuNavbarClosed}>
@@ -53,7 +63,7 @@ export function Header({ isLogged = false, privatePage = '' }) {
             </div>
           )}
         </nav>
-        {isLogged == false ? (
+        {!user ? (
           <div className={styles.notLogged}>
             <ThemeSwitcher style={styles.icon} />
             <Link href='/auth/signin'>
@@ -66,8 +76,8 @@ export function Header({ isLogged = false, privatePage = '' }) {
             <Search set='light' onClick={toggleSearchBar} className={styles.icon} />
             <ThemeSwitcher style={styles.icon} />
             <Notification set='light' className={styles.icon} />
-            <p>Túlio Nogueira</p>
-            <Avatar src='https://mdbcdn.b-cdn.net/img/new/avatars/2.webp' size='lg' />
+            <p>{user.name}</p>
+            <Avatar src={`http://localhost:3333/avatars/${user.profile_picture}`} size='lg' />
           </div>
         )}
       </div>

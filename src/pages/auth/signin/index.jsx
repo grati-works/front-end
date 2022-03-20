@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
 import styles from './login.module.scss';
 import { Input } from '../../../components/Input';
@@ -7,15 +7,15 @@ import { Button } from '../../../components/Button';
 import Link from 'next/link';
 
 import { validateEmail, validatePassword } from '../../../utils/validator';
-import { useRouter } from 'next/router';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../../../hooks/useAuth';
+import { useRouter } from 'next/router';
 
 export default function SignIn() {
-  const router = useRouter();
-  const { signIn, user } = useAuth();
+  const { signIn } = useAuth();
+  const { push } = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,19 +38,16 @@ export default function SignIn() {
       const signedWithSuccess = await signIn(email, password);
 
       if(signedWithSuccess === true) {
-        router.push('/home');
+        push('/home');
       }
 
     } catch(error) {
+      console.log(error)
       toast.error(error.response.data.message)
     } finally {
       setIsSubmitting(false)
     }
   }
-
-  useEffect(() => {
-    if(localStorage.getItem('token') !== undefined) router.push('/home')
-  }, [])
 
   return (
     <div className={styles.containerLogin}>

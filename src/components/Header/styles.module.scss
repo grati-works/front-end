@@ -30,13 +30,16 @@
       display: none;
     }
 
-    a {
+    a, p:first-of-type {
       display: inline-block;
       position: relative;
       padding: 0 0.5rem;
       height: 5rem;
       line-height: 5rem;
       color: var(--nextui-colors-accents7);
+    }
+
+    a {
 
       transition: color 0.2s;
 

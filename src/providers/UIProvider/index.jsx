@@ -2,8 +2,12 @@ import { Header } from '../../components/Header';
 import { NavBar } from '../../components/NavBar';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
+import {useAuth} from '../../hooks/useAuth';
+import { useState, useEffect } from 'react';
 
 export function UIProvider({ children }) {
+    var { user } = useAuth();
+
     var { asPath } = useRouter();
     asPath = asPath.split('/')[1];
 
@@ -20,7 +24,7 @@ export function UIProvider({ children }) {
 
     return (
         <div className={styles.container}>
-            <Header privatePage={isPrivateRoute ? privateRoutes[asPath] : ""} isLogged={isPrivateRoute} />
+            <Header privatePage={isPrivateRoute ? privateRoutes[asPath] : ""} user={user} />
             <div className={styles.contentContainer}>
                 {isPrivateRoute && <NavBar /> }
                 <div className={styles[isPrivateRoute ? "contentNavbarWidth" : "contentFullWidth"]}>
