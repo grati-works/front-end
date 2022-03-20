@@ -4,6 +4,7 @@ import { Input } from '../../../components/Input';
 import { Lock } from 'react-iconly';
 import { Button } from '../../../components/Button';
 import { Checkbox } from '@nextui-org/react';
+import Link from 'next/link';
 
 export default function accountActivation() {
     return (
@@ -25,7 +26,7 @@ export default function accountActivation() {
             <Input Icon={Lock} placeholder="Confirmação de senha" required password />
           </div>
           <Checkbox size="sm" className={styles.checkbox}>
-            Li e aceito a <a href="#">politica de privacidade e proteção</a> de dados e os <a href="#">termos de uso</a>.
+            Li e aceito a <Link href="#">politica de privacidade e proteção</Link> de dados e os <Link href="#">termos de uso</Link>.
           </Checkbox>
           <Button>Autenticar</Button>
         </div>

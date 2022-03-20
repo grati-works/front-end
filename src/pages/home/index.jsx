@@ -4,6 +4,7 @@ import { GratiCard } from '../../components/GratiCard';
 import { TextEditor } from '../../components/TextEditor';
 import { UserRankingCard } from '../../components/UserRankingCard';
 import { Wallet, Calendar, TicketStar } from 'react-iconly';
+import Link from 'next/link';
 
 export default function HomeUser() {
   return (
@@ -35,7 +36,7 @@ export default function HomeUser() {
                   <div className={styles.top5}>
                     <TicketStar set="light" className={styles.icon} />
                     <p>Top 5 ranking</p>
-                    <a href="/ranking">&rarr;</a>
+                    <Link href="/ranking">&rarr;</Link>
                   </div>
                   <div className={styles.positions}>
                     <UserRankingCard size="sm" position="1" avatar="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" name="Luciano Monteiro" status="up" level="12" gratis="37" experience="1600" />

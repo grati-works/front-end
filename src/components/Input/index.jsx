@@ -1,24 +1,28 @@
 import styles from './styles.module.scss';
 import { Input as NextInput } from '@nextui-org/react';
 
-export function Input({ Icon = null, password = false, ...rest  }) {
+export function Input({ Icon = null, password = false, error, color = "primary", ...rest }) {
   const inputDefaultProps = {
     className: styles.input,
-    color: "backgroundHighlight",
-    width: "100%",
+    width: '100%',
     underlined: true,
-    color: "primary",
-    ...rest
-  }
+    color,
+    ...rest,
+  };
 
   return (
-    Icon !== null ?
-      <div className={styles.inputContainer}>
-        <div className={styles.inputIconContainer}>
-          <Icon />
+    <div className={styles.inputWrapper}>
+      {error && <span className={styles.error}>{error}</span>}
+      {
+        Icon !== null ?
+        <div className={styles.inputContainer}>
+          <div className={styles.inputIconContainer}>
+            <Icon />
+          </div>
+          {password === true ? <NextInput.Password {...inputDefaultProps} /> : <NextInput {...inputDefaultProps} />}
         </div>
-        { password === true ? <NextInput.Password {...inputDefaultProps} /> : <NextInput {...inputDefaultProps} />}
-      </div> :
-      password === true ? <NextInput.Password {...inputDefaultProps} /> : <NextInput {...inputDefaultProps} />
-  )
+        : password === true ? <NextInput.Password {...inputDefaultProps} /> : <NextInput {...inputDefaultProps} />
+      }
+    </div>
+  );
 }

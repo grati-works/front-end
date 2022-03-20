@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from './landingPage.module.scss';
 import { Button } from '../components/Button';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -22,8 +23,8 @@ export default function Home() {
           <h1>Adote <span>feedbacks</span> em sua organização</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci dui sed amet elementum, nunc augue mauris gravida ultrices.</p>
           <div className={styles.adquireButtons}>
-            <a href=""><img src="/images/app_store.png" alt="appStore" /></a>
-            <a href=""><img src="/images/google_play.png" alt="googlePlay" /></a>
+            <Link href=""><img src="/images/app_store.png" alt="appStore" /></Link>
+            <Link href=""><img src="/images/google_play.png" alt="googlePlay" /></Link>
           </div>
         <img src="/images/mockups.png" alt="Aplicativos mobile" /> 
         </div>

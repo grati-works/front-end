@@ -1,6 +1,8 @@
 import { NextUIProvider, createTheme } from '@nextui-org/react';
 import { UIProvider } from '../providers/UIProvider';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { AuthContextProvider } from '../contexts/AuthContext';
+import NextNProgress from "nextjs-progressbar";
 import '../styles/global.scss';
 import '../styles/attachment.css'
 
@@ -63,22 +65,30 @@ function MyApp({ Component, pageProps }) {
   });
 
   return (
-    <NextThemesProvider
-      defaultTheme='light'
-      disableTransitionOnChange
-      storageKey='theme'
-      attribute='class'
-      value={{
-        light: lightTheme,
-        dark: darkTheme,
-      }}
-    >
-      <NextUIProvider>
-        <UIProvider>
-          <Component {...pageProps} />
-        </UIProvider>
-      </NextUIProvider>
-    </NextThemesProvider>
+    <AuthContextProvider>
+      <NextThemesProvider
+        defaultTheme='light'
+        disableTransitionOnChange
+        storageKey='theme'
+        attribute='class'
+        value={{
+          light: lightTheme,
+          dark: darkTheme,
+        }}
+      >
+        <NextUIProvider>
+          <UIProvider>
+            <NextNProgress
+              color={defaultColors.primary}
+              startPosition={0.3}
+              stopDelayMs={200}
+              height={3}
+            />
+            <Component {...pageProps} />
+          </UIProvider>
+        </NextUIProvider>
+      </NextThemesProvider>
+    </AuthContextProvider>
   );
 }
 

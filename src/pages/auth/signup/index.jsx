@@ -4,6 +4,7 @@ import { Input } from '../../../components/Input';
 import { User, Lock, Message, Discovery } from 'react-iconly';
 import { Button } from '../../../components/Button';
 import { Checkbox } from '@nextui-org/react';
+import Link from 'next/link';
 
 export default function SignUp() {
   return (
@@ -28,7 +29,7 @@ export default function SignUp() {
         </div>
         <Button>Cadastrar</Button>
         <Checkbox size="sm" className={styles.checkbox}>
-          Li e aceito a <a href="#">politica de privacidade e proteção</a> de dados e os <a href="#">termos de uso</a>.
+          Li e aceito a <Link href="#">politica de privacidade e proteção</Link> de dados e os <Link href="#">termos de uso</Link>.
         </Checkbox>
         <div className={styles.registerSection}>
           <div className={styles.divider}></div>

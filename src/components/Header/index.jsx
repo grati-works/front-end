@@ -6,6 +6,7 @@ import { Button } from '../Button';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import { Avatar, Input } from '@nextui-org/react';
 import { Notification, Search } from 'react-iconly';
+import Link from 'next/link';
 
 export function Header({ isLogged = false, privatePage = '' }) {
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
@@ -33,17 +34,17 @@ export function Header({ isLogged = false, privatePage = '' }) {
           </button>
           {privatePage !== '' ? (
             <>
-              <a className={styles.active}>{privatePage}</a>
+              <Link className={styles.active}>{privatePage}</Link>
             </>
           ) : (
             <div className={navbarIsOpen ? styles.mobileMenuNavbarOpen : styles.mobileMenuNavbarClosed}>
               <ActiveLink activeClassname={styles.active} href='/'>
                 <a>Início</a>
               </ActiveLink>
-              <ActiveLink activeClassname={styles.active} href='#about'>
+              <ActiveLink activeClassname={styles.active} href='/about'>
                 <a>Sobre nós</a>
               </ActiveLink>
-              <ActiveLink activeClassname={styles.active} href='#plans'>
+              <ActiveLink activeClassname={styles.active} href='/plans'>
                 <a>Nossos Planos</a>
               </ActiveLink>
               <ActiveLink activeClassname={styles.active} href='/faq'>
@@ -55,19 +56,19 @@ export function Header({ isLogged = false, privatePage = '' }) {
         {isLogged == false ? (
           <div className={styles.notLogged}>
             <ThemeSwitcher style={styles.icon} />
-            <a href='/auth/signin'>
+            <Link href='/auth/signin'>
               <Button>Fazer login</Button>
-            </a>
+            </Link>
           </div>
         ) : (
-          <a className={styles.userContainer} href='#'>
+          <div className={styles.userContainer}>
             {searchBarIsOpen && <Input clearable shadow={false} size='md' placeholder='Insira o termo a ser pesquisado' type='search' />}
             <Search set='light' onClick={toggleSearchBar} className={styles.icon} />
             <ThemeSwitcher style={styles.icon} />
             <Notification set='light' className={styles.icon} />
             <p>Túlio Nogueira</p>
             <Avatar src='https://mdbcdn.b-cdn.net/img/new/avatars/2.webp' size='lg' />
-          </a>
+          </div>
         )}
       </div>
     </header>

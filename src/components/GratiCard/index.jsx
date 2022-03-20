@@ -3,6 +3,7 @@ import { Card, Avatar } from '@nextui-org/react';
 import { Delete } from 'react-iconly';
 import { Emoji } from 'emoji-mart';
 import styles from './styles.module.scss';
+import Link from 'next/link';
 
 export function GratiCard({ deleteFunction }) {
     const [reactions, setReactions] = useState([
@@ -50,7 +51,7 @@ export function GratiCard({ deleteFunction }) {
                     </div>
                 </div>
                 <div className={styles.gratiInfo}>
-                    <p>Há 4h por <a href="#">Túlio N.</a></p>
+                    <p>Há 4h por <Link href="#">Túlio N.</Link></p>
                     <Emoji emoji={{ id: 'mage' }} set='twitter' size={24} />
                     <div className={styles.divider}/>
                     <Delete onClick={() => deleteFunction(1)} />
