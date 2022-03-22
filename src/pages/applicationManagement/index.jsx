@@ -9,6 +9,7 @@ import { Button } from '../../components/Button';
 import styles from './gerenciamento.module.scss';
 
 export default function Manage() {
+  const inputFile = useRef(null);
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
@@ -84,8 +85,7 @@ export default function Manage() {
               <div className={styles.boxGrape}>
                 <Button className={styles.manualRegister}>Cadastro manual</Button>
                 <div className={styles.importCsv}>
-                    <Button color="background" className={styles.importCsvButton} onClick={() => {
-                      const inputFile = useRef(null);
+                    <Button className={styles.importCsvButton} auto onClick={() => {
                         inputFile.current.value = '';
                         inputFile.current.click();
                         setAttached(false)
