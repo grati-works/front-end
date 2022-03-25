@@ -12,6 +12,12 @@ export default function DateProfile() {
   const [selectedGrati, setSelectedGrati] = useState(null);
   const [currentSection, setCurrentSection] = useState("data");
 
+  const [visibleInfo, setVisibleInfo] = useState(false);
+  const handlerInfo = () => setVisibleInfo(true);
+  const closeHandlerInfo = () => {
+      setVisibleInfo(false);
+  };
+
   function handleOpenDeleteModal(id) {
     setSelectedGrati(id);
     setModalIsVisible(!selectedGrati)
@@ -40,7 +46,7 @@ export default function DateProfile() {
                               <Input Icon={User} placeholder="Nome"/>
                               <Input Icon={Paper} placeholder="Usuário"/>
                               <Input Icon={Edit} placeholder="E-mail"/>
-                              <Input Icon={Wallet} placeholder="Editar informações corporativas &oplus;"/>
+                              <Input onClick={handlerInfo} readonly Icon={Wallet} placeholder="Editar informações corporativas &oplus;"/>
                               <button>Salvar alterações</button>
                             </>
                           ) : (
@@ -64,6 +70,46 @@ export default function DateProfile() {
             <GratiCard deleteFunction={handleOpenDeleteModal} />
             </div>
         </div>
+        <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={visibleInfo}
+        onClose={closeHandlerInfo}
+        className={styles.groupsModal}
+        width="530px"
+        scroll
+      >
+          <Modal.Body className={styles.groupsWrapper}>
+            <div className={styles.user}>
+              <div className={styles.imgUser}>
+              <Avatar src='https://mdbcdn.b-cdn.net/img/new/avatars/8.webp' className={styles.imgPerfilOn} />
+              </div>
+              <h1>Túlio Nogueira Moraes</h1>
+              <div className={styles.profession}>
+                Cargo/Posição
+                <span>Product Owner</span>
+              </div>
+            </div>
+            <div className={styles.infoMe}>
+              <div className={styles.InfoAbout}>
+              Sobre mim
+              <div className={styles.whoYou}><span>+</span> Quem é você e o que faz?</div>
+              <button>
+                {/* <img src='/images/imgGitHub.png' alt='imgGitHub' /> */}
+                Github
+              </button>
+              </div>
+              <div className={styles.skills}>
+                Skills &#9999;
+                <div className={styles.editSkills}>
+                  <div className={styles.haveExp}></div>
+                  <div className={styles.studi}></div>
+                  <div className={styles.haveExp}></div>
+                </div>
+                </div>              
+            </div>
+          </Modal.Body>
+      </Modal>
     </>
   );
 }
