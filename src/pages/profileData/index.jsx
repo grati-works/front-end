@@ -76,7 +76,7 @@ export default function DateProfile() {
         open={visibleInfo}
         onClose={closeHandlerInfo}
         className={styles.groupsModal}
-        width="530px"
+        width="730px"
         scroll
       >
           <Modal.Body className={styles.groupsWrapper}>
@@ -102,9 +102,33 @@ export default function DateProfile() {
               <div className={styles.skills}>
                 Skills &#9999;
                 <div className={styles.editSkills}>
-                  <div className={styles.haveExp}></div>
-                  <div className={styles.studi}></div>
-                  <div className={styles.haveExp}></div>
+                  <div className={styles.haveExp}>
+                    Tenho experiência
+                    <div>+</div>
+                  </div>
+                  <div className={styles.studi}>
+                    Estou estudando
+                    <div>+</div>
+                  </div>
+                  <div className={styles.haveExp}>
+                    Tenho interesse
+                    <div>+</div>
+                  </div>
+                </div>
+                <div className={styles.formation}>
+                  Formação
+                <div className={styles.haveExp}>
+                    Concluída
+                    <div>+</div>
+                  </div>
+                  <div className={styles.haveExp}>
+                    Em andamento
+                    <div>+</div>
+                  </div>
+                  <div className={styles.haveExp}>
+                    Tenho interesse
+                    <div>+</div>
+                  </div>
                 </div>
                 </div>              
             </div>

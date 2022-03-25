@@ -108,4 +108,35 @@
             }
         }
     }
+
+}
+.groupsModal{
+    border-radius: 5px;
+        .groupsWrapper{
+            display: flex;
+            flex-direction: row;
+                .user{
+                    background-color: white;
+                    border-radius: 5px;
+                    padding: 2rem;
+                    text-align: center;
+                        .imgUser{
+                            margin: 10px;
+                            margin-inline-start: 50%;
+                            margin-inline-end: 50%;
+                            border-radius: 50%;
+                            width: 100px;
+                            height: 100px;
+                            padding: 1%;
+                            border: 5px solid #6874E8;
+                                .imgPerfilOn{
+                                    border: 5px solid white;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 95px;
+                                    height: 95px;
+                                }
+                        }
+                }
+        }
 }
