@@ -5,7 +5,7 @@ import { Emoji } from 'emoji-mart';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 
-export function GratiCard({ deleteFunction }) {
+export function GratiCard({ content, deleteFunction }) {
     const [reactions, setReactions] = useState([
         {
             emoji: 'brain',
@@ -38,6 +38,18 @@ export function GratiCard({ deleteFunction }) {
         <Card className={styles.gratiCardContainer} shadow={false}>
             <Card.Header className={styles.gratiCardHeader}>
                 <div className={styles.userInfo}>
+                    <Avatar.Group count={`${content.receivers.length}`}>
+                        {content.receivers.slice(0, 3).map(({ user }) => (
+                            <Avatar
+                                key={user.id}
+                                pointer
+                                src={user.profile_picture}
+                                text={user.name}
+                                stacked
+                                size="lg"
+                            />
+                        ))}
+                    </Avatar.Group>
                     <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/10.webp" size="lg" />
                     <div className={styles.texts}>
                         <p className={styles.userInfoText}>
@@ -58,7 +70,7 @@ export function GratiCard({ deleteFunction }) {
                 </div>
             </Card.Header>
             <Card.Body>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hendrerit eget aenean ipsum convallis laoreet ultricies. Fermentum, nibh quis in tellus amet arcu egestas massa. Amet et consectetur purus sagittis mauris, nunc est aliquam.</p>
+                <p>{content.message}</p>
             </Card.Body>
             <Card.Footer className={styles.gratiCardFooter}>
                 <div className={styles.reactionsContainer}>

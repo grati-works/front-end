@@ -10,9 +10,7 @@ export function AuthContextProvider({ children }) {
 
     async function signIn(email, password) {
       const response = await api.post('/sessions', { email, password });
-      const result = response.data;
-
-      const { token, refresh_token, user } = result.data;
+      const { token, refresh_token, user } = response.data;
       
       if(token) {  
         setUser(user);
@@ -30,9 +28,7 @@ export function AuthContextProvider({ children }) {
 
     async function refreshUser(refreshToken) {
       const response = await api.post('/refresh-token', { token: refreshToken });
-      const result = response.data;
-
-      const { token, refresh_token, user } = result.data;
+      const { token, refresh_token, user } = response.data;
 
       if(token) {
         setUser(user);

@@ -28,6 +28,7 @@ export function Header({ user, privatePage = '' }) {
   useEffect(() => {
     // if(asPath.includes("auth") && user) push('/home');
     // else if(privatePage !== '' && !user) push('/auth/signin')
+    console.log(user)
   }, [])
 
   return (
@@ -77,7 +78,7 @@ export function Header({ user, privatePage = '' }) {
             <ThemeSwitcher style={styles.icon} />
             <Notification set='light' className={styles.icon} />
             <p>{user.name}</p>
-            <Avatar src={`http://localhost:3333/avatars/${user.profile_picture}`} size='lg' />
+            <Avatar src={user.profile_picture} size='lg' />
           </div>
         )}
       </div>
