@@ -1,22 +1,28 @@
 import Head from 'next/head';
 import { useRef, useState } from 'react'
-import { Bookmark, User } from 'react-iconly';
+import { Bookmark, Chat, Folder, Paper, Scan, Send, ShieldDone, User } from 'react-iconly';
 import { Input } from '../../components/Input';
 import { UserCard } from '../../components/UserCard';
 import { Modal } from '@nextui-org/react';
 import { Button } from '../../components/Button';
+import { Checkbox } from '@nextui-org/react';
 
 import styles from './gerenciamento.module.scss';
 
 export default function Manage() {
   const inputFile = useRef(null);
-  const [visible, setVisible] = useState(false);
-  const handler = () => setVisible(true);
-  const closeHandler = () => {
-      setVisible(false);
-      console.log('closed');
+  const [visibleInfo, setVisibleInfo] = useState(false);
+  const handlerInfo = () => setVisibleInfo(true);
+  const closeHandlerInfo = () => {
+      setVisibleInfo(false);
   };
-  
+
+  const [visibleGroup, setVisibleGroup] = useState(false);
+  const handlerGroup = () => setVisibleGroup(true);
+  const closeHandlerGroup = () => {
+      setVisibleInfo(false);
+  };
+
   return (
     <>
       <Head> 
@@ -53,19 +59,19 @@ export default function Manage() {
           </div>
           Gerenciamento de grupos
           <div className={styles.manageGroups}>
-              <div className={styles.gestao}>
+              <div className={styles.gestao} onClick={handlerGroup}>
                   <div></div>
                   Gestão
               </div>
-              <div className={styles.squadTerno}>
-                  <div></div>
-                  Squad Terno
+              <div className={styles.squadTerno} onClick={handlerGroup}>
+              <div></div>
+              Squad Terno
               </div>
-              <div className={styles.squadTurtle}>
-                  <div></div>
-                  Squad Turtle
+              <div className={styles.squadTurtle} onClick={handlerGroup}>
+              <div></div>
+              Squad Turtle
               </div>
-              <div className={styles.createGroup}>
+              <div className={styles.createGroup} >
               <div>+</div>
               <nobr>Criar grupo</nobr>
               </div>
@@ -73,7 +79,7 @@ export default function Manage() {
           </div>
       </div>
       <div className={styles.boxGood}>
-          Dados
+      Dados
       <div className={styles.registerUser}>
           <Input Icon={Bookmark} placeholder="Nome da organização" />
       </div>
@@ -86,7 +92,7 @@ export default function Manage() {
               <div className={styles.boxGrape}>
                 <Button className={styles.manualRegister}>Cadastro manual</Button>
                 <div className={styles.importCsv}>
-                    <div className={styles.infoUpload} onClick={handler}>
+                    <div className={styles.infoUpload} onClick={handlerInfo}>
                         <img src="/images/info.png" alt="" />
                     </div>
                     <Button backgroundColor className={styles.importCsvButton} auto onClick={() => {
@@ -125,8 +131,8 @@ export default function Manage() {
       <Modal
         closeButton
         aria-labelledby="modal-title"
-        open={visible}
-        onClose={closeHandler}
+        open={visibleInfo}
+        onClose={closeHandlerInfo}
         className={styles.groupsModal}
         width="530px"
         scroll
@@ -135,9 +141,38 @@ export default function Manage() {
               <p>Informações sobre upload de arquivos csv</p>
           </Modal.Header>
           <Modal.Body className={styles.groupsWrapper}>
-              <p>Teste</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                 Suscipit sit risus orci a. Ultricies neque aliquet
+                 mattis ipsum posuere tincidunt in. Sed eleifend.</p>
+                 <a href="">Clique aqui para baixar o template.</a>
           </Modal.Body>
       </Modal>
+
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={visibleGroup}
+        onClose={closeHandlerGroup}
+        className={styles.groupsModal}
+        width="530px"
+        scroll
+      >
+          <Modal.Header className={styles.groupsModalHeader}>
+              <p>Opções - Squad Terno</p>
+          </Modal.Header>
+          <Modal.Body className={styles.groupsWrapper}>
+          <Input Icon={Folder} placeholder="Nome da organização" />
+          <Checkbox>Gerenciar mensagens</Checkbox>
+          <Checkbox>Gerenciar grupos</Checkbox>
+          <Checkbox>Gerenciar usuários</Checkbox>
+          <h2>Meta</h2>
+          <Input Icon={Paper} placeholder="Nome" />
+          <Input Icon={ShieldDone} placeholder="Meta" />
+          <div className={styles.calendar}></div>
+          </Modal.Body>
+      </Modal>
+
+      
     </>
   )
 }
