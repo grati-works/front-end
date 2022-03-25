@@ -16,6 +16,7 @@ export default function Manage() {
       setVisible(false);
       console.log('closed');
   };
+  
   return (
     <>
       <Head> 
@@ -85,7 +86,10 @@ export default function Manage() {
               <div className={styles.boxGrape}>
                 <Button className={styles.manualRegister}>Cadastro manual</Button>
                 <div className={styles.importCsv}>
-                    <Button className={styles.importCsvButton} auto onClick={() => {
+                    <div className={styles.infoUpload} onClick={handler}>
+                        <img src="/images/info.png" alt="" />
+                    </div>
+                    <Button backgroundColor className={styles.importCsvButton} auto onClick={() => {
                         inputFile.current.value = '';
                         inputFile.current.click();
                         setAttached(false)
@@ -128,17 +132,10 @@ export default function Manage() {
         scroll
       >
           <Modal.Header className={styles.groupsModalHeader}>
-              <p>Grupos inscritos na organização - Senai</p>
+              <p>Informações sobre upload de arquivos csv</p>
           </Modal.Header>
           <Modal.Body className={styles.groupsWrapper}>
-              <div className={styles.cardGroup}>
-                <div style={{ backgroundColor: '#DD473B' }} />
-                <p>Gestão</p>
-              </div>
-              <div className={styles.cardGroup}>
-                <div style={{ backgroundColor: '#5CB531' }} />
-                <p>Turtle Squad</p>
-              </div>
+              <p>Teste</p>
           </Modal.Body>
       </Modal>
     </>
