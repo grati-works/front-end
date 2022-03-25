@@ -56,12 +56,12 @@ export default function Manage() {
                   Gestão
               </div>
               <div className={styles.squadTerno}>
-              <div></div>
-              Squad Terno
+                  <div></div>
+                  Squad Terno
               </div>
               <div className={styles.squadTurtle}>
-              <div></div>
-              Squad Turtle
+                  <div></div>
+                  Squad Turtle
               </div>
               <div className={styles.createGroup}>
               <div>+</div>
@@ -71,7 +71,7 @@ export default function Manage() {
           </div>
       </div>
       <div className={styles.boxGood}>
-      Dados
+          Dados
       <div className={styles.registerUser}>
           <Input Icon={Bookmark} placeholder="Nome da organização" />
       </div>
