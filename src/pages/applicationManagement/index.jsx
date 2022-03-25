@@ -9,12 +9,14 @@ import { Button } from '../../components/Button';
 import styles from './gerenciamento.module.scss';
 
 export default function Manage() {
+  const inputFile = useRef(null);
   const [visible, setVisible] = useState(false);
   const handler = () => setVisible(true);
   const closeHandler = () => {
       setVisible(false);
       console.log('closed');
   };
+  
   return (
     <>
       <Head> 
@@ -84,8 +86,10 @@ export default function Manage() {
               <div className={styles.boxGrape}>
                 <Button className={styles.manualRegister}>Cadastro manual</Button>
                 <div className={styles.importCsv}>
-                    <Button color="background" className={styles.importCsvButton} onClick={() => {
-                      const inputFile = useRef(null);
+                    <div className={styles.infoUpload} onClick={handler}>
+                        <img src="/images/info.png" alt="" />
+                    </div>
+                    <Button backgroundColor className={styles.importCsvButton} auto onClick={() => {
                         inputFile.current.value = '';
                         inputFile.current.click();
                         setAttached(false)
@@ -128,17 +132,10 @@ export default function Manage() {
         scroll
       >
           <Modal.Header className={styles.groupsModalHeader}>
-              <p>Grupos inscritos na organização - Senai</p>
+              <p>Informações sobre upload de arquivos csv</p>
           </Modal.Header>
           <Modal.Body className={styles.groupsWrapper}>
-              <div className={styles.cardGroup}>
-                <div style={{ backgroundColor: '#DD473B' }} />
-                <p>Gestão</p>
-              </div>
-              <div className={styles.cardGroup}>
-                <div style={{ backgroundColor: '#5CB531' }} />
-                <p>Turtle Squad</p>
-              </div>
+              <p>Teste</p>
           </Modal.Body>
       </Modal>
     </>

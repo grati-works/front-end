@@ -11,10 +11,10 @@
     }
 
     &.position {
+      height: 6rem;
       display: flex;
       justify-content: center;
       align-items: center;
-
       border-right: 4px solid var(--nextui-colors-background);
       border-radius: 5px 0px 0px 5px;
     }

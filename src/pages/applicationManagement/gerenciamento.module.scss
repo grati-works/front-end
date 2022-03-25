@@ -271,22 +271,29 @@
                                     width: 250px;
                                     margin-bottom: 10px;
                                 }
-                                .documenttCsv{
-                                    border: 1px solid rgb(218, 218, 218);
+                                .importCsv{
+                                    border: 1px solid #8E92A4;
                                     width: 250px;
                                     height: 50px;
                                     border-radius: 7px;
                                     display: flex;
                                     flex-direction: row;
-                                        img{
+                                        .infoUpload{
                                             width: 30px;
                                             height: 30px;
-                                            margin-inline-start: 7px;
-                                            margin-inline-end: 7px;
-                                            margin-block-start: 8px;
-                                            margin-block-end: 8px;
+                                            margin: 7px;
+                                            margin: auto;
+                                            margin-inline-start: 10px;
+                                            margin-inline-end: 10px;
                                         }
-                                        
+                                        .importCsvButton{
+                                            background-color: transparent;
+                                            color: #8E92A4;
+                                            font-weight: 200;
+                                            border-left: 1px solid #8E92A4;
+                                            border-top-left-radius: 0px;
+                                            border-bottom-left-radius: 0px;
+                                        }
                                 }
                             }
                     }

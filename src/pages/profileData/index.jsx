@@ -10,6 +10,7 @@ import { Button } from '../../components/Button';
 export default function DateProfile() {
   const [isVisible, setModalIsVisible] = useState(false);
   const [selectedGrati, setSelectedGrati] = useState(null);
+  const [currentSection, setCurrentSection] = useState("data");
 
   function handleOpenDeleteModal(id) {
     setSelectedGrati(id);
@@ -30,14 +31,27 @@ export default function DateProfile() {
                 <div className={styles.editInfo}>
                     <div className={styles.dados}>
                         <div className={styles.datePassword}>
-                            <button>Dados</button>
-                            <button>Trocar senha</button>
+                            <button onClick={() => setCurrentSection("data")}>Dados</button>
+                            <button onClick={() => setCurrentSection("switchPassword")}>Trocar senha</button>
                         </div>
-                        <Input Icon={User} placeholder="Nome"/>
-                        <Input Icon={Paper} placeholder="Usuário"/>
-                        <Input Icon={Edit} placeholder="E-mail"/>
-                        <Input Icon={Wallet} placeholder="Editar informações corporativas &oplus;"/>
-                        <button>Salvar alterações</button>
+                        {
+                          currentSection === "data" ? (
+                            <>
+                              <Input Icon={User} placeholder="Nome"/>
+                              <Input Icon={Paper} placeholder="Usuário"/>
+                              <Input Icon={Edit} placeholder="E-mail"/>
+                              <Input Icon={Wallet} placeholder="Editar informações corporativas &oplus;"/>
+                              <button>Salvar alterações</button>
+                            </>
+                          ) : (
+                            <>
+                              <Input Icon={Lock} placeholder="Senha atual"/>
+                              <Input Icon={Lock} placeholder="Senha"/>
+                              <Input Icon={Lock} placeholder="Repetir senha"/>
+                              <button>Salvar alterações</button>
+                            </>
+                          )
+                        }
                     </div>
                 </div>
             </div>
