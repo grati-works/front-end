@@ -71,7 +71,7 @@ export default function Manage() {
               <div></div>
               Squad Turtle
               </div>
-              <div className={styles.createGroup} >
+              <div className={styles.createGroup} onClick={handlerGroup}>
               <div>+</div>
               <nobr>Criar grupo</nobr>
               </div>
@@ -158,7 +158,7 @@ export default function Manage() {
         scroll
       >
           <Modal.Header className={styles.groupsModalHeader}>
-              <p>Opções - Squad Terno</p>
+              <p>Opções -<span>Squad Terno</span></p>
           </Modal.Header>
           <Modal.Body className={styles.groupsWrapper}>
           <Input Icon={Folder} placeholder="Nome da organização" />

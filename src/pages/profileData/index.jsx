@@ -23,6 +23,19 @@ export default function DateProfile() {
     setModalIsVisible(!selectedGrati)
   }
 
+  const message = {
+    message: "TESTE",
+    receivers: [
+      {
+        user: {
+          id: 1,
+          name: "Caua",
+          profile_picture: "http://localhost:3333/avatars/teste.png"
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <Head>
@@ -66,8 +79,8 @@ export default function DateProfile() {
               <h3 className={`${styles.cardFilter} ${styles.filterActive}`}>Enviados</h3>
               <h3 className={styles.cardFilter}>Recebidos</h3>
             </div>
-            <GratiCard deleteFunction={handleOpenDeleteModal} />
-            <GratiCard deleteFunction={handleOpenDeleteModal} />
+            <GratiCard content={message} deleteFunction={handleOpenDeleteModal} />
+            <GratiCard content={message} deleteFunction={handleOpenDeleteModal} />
             </div>
         </div>
         <Modal
@@ -76,7 +89,7 @@ export default function DateProfile() {
         open={visibleInfo}
         onClose={closeHandlerInfo}
         className={styles.groupsModal}
-        width="730px"
+        width="1200px"
         scroll
       >
           <Modal.Body className={styles.groupsWrapper}>
@@ -84,7 +97,7 @@ export default function DateProfile() {
               <div className={styles.imgUser}>
               <Avatar src='https://mdbcdn.b-cdn.net/img/new/avatars/8.webp' className={styles.imgPerfilOn} />
               </div>
-              <h1>Túlio Nogueira Moraes</h1>
+              <h1>Túlio Nogueira <br /> Moraes</h1>
               <div className={styles.profession}>
                 Cargo/Posição
                 <span>Product Owner</span>
@@ -92,15 +105,15 @@ export default function DateProfile() {
             </div>
             <div className={styles.infoMe}>
               <div className={styles.InfoAbout}>
-              Sobre mim
-              <div className={styles.whoYou}><span>+</span> Quem é você e o que faz?</div>
+              Sobre mim <span className={styles.span}>&#9998;</span>
+              <div className={styles.whoYou}><span className={styles.spam}>+</span><span>Quem é você e o que faz?</span></div>
               <button>
-                {/* <img src='/images/imgGitHub.png' alt='imgGitHub' /> */}
+                <img src='/images/imgGitHub.png' alt='imgGitHub' />
                 Github
               </button>
               </div>
               <div className={styles.skills}>
-                Skills &#9999;
+                Skills <span className={styles.span}>&#9998;</span>
                 <div className={styles.editSkills}>
                   <div className={styles.haveExp}>
                     Tenho experiência
@@ -110,13 +123,10 @@ export default function DateProfile() {
                     Estou estudando
                     <div>+</div>
                   </div>
-                  <div className={styles.haveExp}>
-                    Tenho interesse
-                    <div>+</div>
-                  </div>
+                </div>
                 </div>
                 <div className={styles.formation}>
-                  Formação
+                  Formação <span className={styles.span}>&#9998;</span>
                 <div className={styles.haveExp}>
                     Concluída
                     <div>+</div>
@@ -130,7 +140,7 @@ export default function DateProfile() {
                     <div>+</div>
                   </div>
                 </div>
-                </div>              
+                              
             </div>
           </Modal.Body>
       </Modal>

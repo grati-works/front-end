@@ -10,6 +10,19 @@ export default function Profile() {
   const [isVisible, setModalIsVisible] = useState(false);
   const [selectedGrati, setSelectedGrati] = useState(null);
 
+  const message = {
+    message: "TESTE",
+    receivers: [
+      {
+        user: {
+          id: 1,
+          name: "Caua",
+          profile_picture: "http://localhost:3333/avatars/teste.png"
+        }
+      }
+    ]
+  }
+
   function handleOpenDeleteModal(id) {
     setSelectedGrati(id);
     setModalIsVisible(!selectedGrati)
@@ -96,8 +109,8 @@ export default function Profile() {
               <h3 className={`${styles.cardFilter} ${styles.filterActive}`}>Enviados</h3>
               <h3 className={styles.cardFilter}>Recebidos</h3>
             </div>
-            <GratiCard deleteFunction={handleOpenDeleteModal} />
-            <GratiCard deleteFunction={handleOpenDeleteModal} />
+            <GratiCard content={message} deleteFunction={handleOpenDeleteModal} />
+            <GratiCard content={message} deleteFunction={handleOpenDeleteModal} />
           </div>
         </div>
       </div>
