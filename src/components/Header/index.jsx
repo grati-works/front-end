@@ -15,8 +15,6 @@ export function Header({ user, privatePage = '' }) {
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
 
-  //const user = useAuth().user ? useAuth().user : typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : {};
-
   function toggleSearchBar() {
     setSearchBarIsOpen(!searchBarIsOpen);
   }
@@ -28,7 +26,6 @@ export function Header({ user, privatePage = '' }) {
   useEffect(() => {
     // if(asPath.includes("auth") && user) push('/home');
     // else if(privatePage !== '' && !user) push('/auth/signin')
-    console.log(user)
   }, [])
 
   return (

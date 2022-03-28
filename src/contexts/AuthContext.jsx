@@ -1,60 +1,71 @@
+import { parseCookies, setCookie } from "nookies";
 import { createContext, useEffect, useState } from "react";
+import Router from "next/router";
 
-import { toast } from 'react-toastify';
-import { api } from '../services/api';
+import { toast } from "react-toastify";
+import { api } from "../services/api";
+import { toastProps } from "../utils/toast";
 
 export const AuthContext = createContext({});
 
 export function AuthContextProvider({ children }) {
-    const [user, setUser] = useState();
+  const [user, setUser] = useState();
+  const isAuthenticated = !!user;
 
-    async function signIn(email, password) {
-      const response = await api.post('/sessions', { email, password });
-      const { token, refresh_token, user } = response.data;
-      
-      if(token) {  
+  useEffect(() => {
+    const { "grati.token": token } = parseCookies();
+
+    if (token) {
+      api.get("user").then((response) => {
+        const user = response.data;
+
         setUser(user);
-
-        localStorage.setItem('token', token);
-        localStorage.setItem('refresh_token', refresh_token);
-        localStorage.setItem('user', JSON.stringify(user));
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-        return true;
-      }
-
-      return false;
+      });
     }
+  }, []);
 
-    async function refreshUser(refreshToken) {
-      const response = await api.post('/refresh-token', { token: refreshToken });
+  async function signIn(email, password) {
+    try {
+      const response = await api.post("sessions", {
+        email,
+        password,
+      });
+
       const { token, refresh_token, user } = response.data;
 
-      if(token) {
-        setUser(user);
+      setCookie(undefined, "grati.token", token, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: "/",
+      });
+      setCookie(undefined, "grati.refreshToken", refresh_token, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: "/",
+      });
 
-        localStorage.setItem('token', token);
-        localStorage.setItem('refresh_token', refresh_token);
-        localStorage.setItem('user', JSON.stringify(user));
-        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setUser(user);
 
-        return user;
-      }
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      return undefined;
+      Router.push("/organizations");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message, toastProps);
     }
+  }
 
-    async function signOut() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('refresh_token');
-      localStorage.removeItem('user');
-      
-      setUser(undefined);
-    }
+  async function signOut() {
+    destroyCookie(undefined, "grati.token");
+    destroyCookie(undefined, "grati.refreshToken");
 
-    return (
-        <AuthContext.Provider value={{ user, signIn, signOut, refreshUser }}>
-            {children}
-        </AuthContext.Provider>
-    )
+    authChannel.postMessage("signOut");
+
+    Router.push("/");
+    setUser(undefined);
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, isAuthenticated, signIn, signOut }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

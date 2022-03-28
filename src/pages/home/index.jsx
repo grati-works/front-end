@@ -7,14 +7,21 @@ import { Wallet, Calendar, TicketStar } from "react-iconly";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
+import { toastProps } from "../../utils/toast";
 
 export default function HomeUser() {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     async function loadMessages() {
-      const response = await api.get("/message/1");
-      setMessages(response.data);
-      console.log(response.data);
+      try {
+        const response = await api.get("/message/1");
+        setMessages(response.data);
+        console.log(response.data);
+      } catch(error) {
+        console.log(error)
+        toast.error(error.message, toastProps)
+      }
     }
 
     loadMessages();

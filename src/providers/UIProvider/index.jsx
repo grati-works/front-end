@@ -3,7 +3,6 @@ import { NavBar } from '../../components/NavBar';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
 import {useAuth} from '../../hooks/useAuth';
-import { useState, useEffect } from 'react';
 
 export function UIProvider({ children }) {
     var { user } = useAuth();

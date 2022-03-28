@@ -4,20 +4,16 @@ import { Delete } from 'react-iconly';
 import { Emoji } from 'emoji-mart';
 import styles from './styles.module.scss';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export function GratiCard({ content, deleteFunction }) {
-    const [reactions, setReactions] = useState([
-        {
-            emoji: 'brain',
-            reacted: true,
-            amount: 7
-        },
-        {
-            emoji: 'mage',
-            reacted: false,
-            amount: 2
-        },
-    ]);
+    useEffect(() => {
+        console.log(content)
+    }, [])
+    const [reactions, setReactions] = useState({
+        mage: 3,
+        brain: 7
+    });
 
     function toggleReaction(id) {
         const newReactions = reactions.map(reaction => {
@@ -38,7 +34,7 @@ export function GratiCard({ content, deleteFunction }) {
         <Card className={styles.gratiCardContainer} shadow={false}>
             <Card.Header className={styles.gratiCardHeader}>
                 <div className={styles.userInfo}>
-                    <Avatar.Group count={`${content.receivers.length}`}>
+                    <Avatar.Group count={content.receivers.length > 3 && content.receivers.length - 3}>
                         {content.receivers.slice(0, 3).map(({ user }) => (
                             <Avatar
                                 key={user.id}
@@ -50,11 +46,17 @@ export function GratiCard({ content, deleteFunction }) {
                             />
                         ))}
                     </Avatar.Group>
-                    <Avatar src="https://mdbcdn.b-cdn.net/img/new/avatars/10.webp" size="lg" />
                     <div className={styles.texts}>
                         <p className={styles.userInfoText}>
-                            Eduarda Camargo
-                            <span>(Desenvolvedora Back-end)</span>
+                            {
+                                content.receivers.slice(0, 3).map(({ user }, currentIndex) => (<Link href={`/users/${user.id}`}>{`${user.name}${content.receivers[currentIndex + 1] !== undefined ? `, ` : ''}`}</Link>))
+                            }
+                            {
+                                content.receivers.length > 3 && ` + ${content.receivers.length - 3}`
+                            }
+                            <span>{
+                                    content.receivers.length === 1 ? content.receivers[0].responsibility : ''
+                                }</span>
                         </p>
                         <p className={styles.gratiInfoText}>
                             foi gratificada por
@@ -63,8 +65,9 @@ export function GratiCard({ content, deleteFunction }) {
                     </div>
                 </div>
                 <div className={styles.gratiInfo}>
-                    <p>Há 4h por <Link href="#">Túlio N.</Link></p>
-                    <Emoji emoji={{ id: 'mage' }} set='twitter' size={24} />
+                    <p>Há 4h por <Link href={`/users/${content.sender.user.id}`}>{content.sender.user.name}</Link></p>
+                    <Avatar size="sm" src={content.sender.user.profile_picture} />
+                    <Emoji emoji={{ id: content.emoji }} set='twitter' size={24} />
                     <div className={styles.divider}/>
                     <Delete onClick={() => deleteFunction(1)} />
                 </div>
@@ -75,14 +78,15 @@ export function GratiCard({ content, deleteFunction }) {
             <Card.Footer className={styles.gratiCardFooter}>
                 <div className={styles.reactionsContainer}>
                     {
-                        reactions.map(reaction => (
+                        // ${reaction.reacted && styles.reacted}
+                        Object.keys(content.reactions).map((reaction, index) => (
                             <span
-                                className={`${styles.reaction} ${reaction.reacted && styles.reacted}`}
-                                onClick={() => toggleReaction(reaction.emoji)}
-                                key={reaction.emoji}
+                                className={`${styles.reaction} `}
+                                onClick={() => toggleReaction(reaction)}
+                                key={reaction}
                             >
-                                <Emoji emoji={{ id: reaction.emoji }} set='twitter' size={16} />
-                                {reaction.amount}
+                                <Emoji emoji={{ id: reaction }} set='twitter' size={16} />
+                                {Object.values(content.reactions)[index]}
                             </span>
                         ))
                     }
