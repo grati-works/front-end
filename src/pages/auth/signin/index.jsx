@@ -9,7 +9,7 @@ import { AuthRoutesProvider } from '../../../providers/AuthRoutesProvider';
 
 import { validateEmail, validatePassword } from '../../../utils/validator';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../../../hooks/useAuth';
 import { useRouter } from 'next/router';
@@ -59,7 +59,7 @@ export default function SignIn() {
         <meta property='og:url' content='https://grati.works/auth/signin' />
         <meta property='og:type' content='website' />
       </Head>
-      <AuthRoutesProvider pageName='Login'>
+      <AuthRoutesProvider pageName='Login' submitFunction={handleSubmit}>
         <div className={styles.inputs}>
           <Input
             Icon={User}
@@ -94,7 +94,7 @@ export default function SignIn() {
             }}
           />
         </div>
-        <Button onClick={handleSubmit} isLoading={isSubmitting} className={styles.button}>
+        <Button isLoading={isSubmitting} className={styles.button}>
           Autenticar
         </Button>
         <Link href='/auth/recoverPassword'>Esqueci minha senha</Link>

@@ -20,7 +20,7 @@ export function AuthContextProvider({ children }) {
         const user = response.data;
 
         setUser(user);
-      });
+      }).catch((error) => {});
     }
   }, []);
 
@@ -54,20 +54,23 @@ export function AuthContextProvider({ children }) {
   }
 
   async function signUp(name, username, email, password) {
-    console.log("AAAAA")
+    console.log({ name, username, email, password });
     try {
-      await api.post('user', {
-        name,
-        username,
-        email,
-        password,
-      }).then(response => {
-        Router.push('/auth/signin');
-        toast.success('Usuário cadastrado com sucesso!', toastProps);
-      }).catch(error => {
-        toast.error(error.message, toastProps);
-      })
-    } catch(error) {
+      await api
+        .post("user", {
+          name,
+          username,
+          email,
+          password,
+        })
+        .then((response) => {
+          Router.push("/auth/signin");
+          toast.success("Usuário cadastrado com sucesso!", toastProps);
+        })
+        .catch((error) => {
+          toast.error(error.message, toastProps);
+        });
+    } catch (error) {
       toast.error(error.message, toastProps);
     }
   }
@@ -83,7 +86,9 @@ export function AuthContextProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn, signUp, signOut }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, signIn, signUp, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -11,6 +11,10 @@ export default function SignIn() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  function handleSubmit() {
+    console.log("SUBMIT Recover password")
+  }
+
   return (
     <div className={styles.containerLogin}>
       <Head>

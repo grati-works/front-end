@@ -50,11 +50,12 @@ export default function Home() {
           <p className={styles.plansSectionContainer2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sem odio ut viverra mi quam.</p>
           <div className={styles.planFilter}>
             <button className={styles.active}>Planos Mensais</button>
+            <button>Planos Semestrais</button>
             <button>Planos Anuais</button>
           </div>
           <div className={styles.planList}>
             <div id='plans' className={styles.plan}>
-              <h3>Plano Mensal</h3>
+              <h3>Pequeno porte</h3>
               <p>All the basics for starting a new business</p>
               <div className={styles.planPrice}>
                 R$XX
@@ -63,7 +64,7 @@ export default function Home() {
               <Button>Adquirir plano</Button>
             </div>
             <div className={styles.plan}>
-              <h3>Plano Trimestral</h3>
+              <h3>Médio porte</h3>
               <p>All the basics for starting a new business</p>
               <div className={styles.planPrice}>
                 R$XX
@@ -72,7 +73,7 @@ export default function Home() {
               <Button>Adquirir plano</Button>
             </div>
             <div className={styles.plan}>
-              <h3>Plano Semestral</h3>
+              <h3>Grande porte</h3>
               <p>All the basics for starting a new business</p>
               <div className={styles.planPrice}>
                 R$XX
