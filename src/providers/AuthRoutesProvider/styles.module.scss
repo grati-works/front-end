@@ -1,0 +1,59 @@
+.authUIWrapper {
+  width: 100%;
+  height: calc(100vh - 5rem);
+  display: flex;
+
+  .illustrationWrapper {
+    position: fixed;
+    width: 55vw;
+    height: calc(100vh - 5rem);
+
+    background-color: var(--nextui-colors-primary);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .illustration {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .content {
+    width: 45vw;
+    position: absolute;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 4rem;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    min-height: calc(100vh - 8rem);
+
+    & > img {
+      width: 8rem;
+      height: auto;
+    }
+
+    h1 {
+      color: var(--nextui-colors-accents8);
+      margin-top: 33px;
+      font-size: 2rem;
+    }
+
+    a {
+      color: var(--nextui-colors-primary);
+      text-decoration: underline;
+      margin-left: auto;
+      margin-top: 4px;
+    }
+
+    form {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.registerSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+
+  .divider {
+    height: 1px;
+    display: flex;
+    flex: 1;
+    background-color: var(--nextui-colors-accents5);
+  }
+
+  span {
+    font-size: 0.9rem;
+    margin: 0 12px;
+  }
+}
+
+.button {
+  width: 100%;
+  height: 4rem;
+  margin-top: 18px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &.secondaryButton {
+    background: var(--nextui-colors-background);
+    color: var(--nextui-colors-accents8);
+    border: 1.6px solid var(--nextui-colors-accents5);
+  }
+}
+

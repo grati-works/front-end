@@ -3,8 +3,11 @@ import { UIProvider } from '../providers/UIProvider';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { AuthContextProvider } from '../contexts/AuthContext';
 import NextNProgress from "nextjs-progressbar";
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.scss';
-import '../styles/attachment.css'
+import '../styles/attachment.css';
 
 function MyApp({ Component, pageProps }) {
   const defaultColors = {
@@ -78,6 +81,7 @@ function MyApp({ Component, pageProps }) {
       >
         <NextUIProvider>
           <UIProvider>
+            <ToastContainer />
             <NextNProgress
               color={defaultColors.primary}
               startPosition={0.3}

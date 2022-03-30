@@ -53,6 +53,25 @@ export function AuthContextProvider({ children }) {
     }
   }
 
+  async function signUp(name, username, email, password) {
+    console.log("AAAAA")
+    try {
+      await api.post('user', {
+        name,
+        username,
+        email,
+        password,
+      }).then(response => {
+        Router.push('/auth/signin');
+        toast.success('Usuário cadastrado com sucesso!', toastProps);
+      }).catch(error => {
+        toast.error(error.message, toastProps);
+      })
+    } catch(error) {
+      toast.error(error.message, toastProps);
+    }
+  }
+
   async function signOut() {
     destroyCookie(undefined, "grati.token");
     destroyCookie(undefined, "grati.refreshToken");
@@ -64,7 +83,7 @@ export function AuthContextProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );

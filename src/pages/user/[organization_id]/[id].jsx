@@ -3,8 +3,8 @@ import Head from 'next/head';
 
 import styles from './profile.module.scss';
 import { Avatar, Card, Modal } from '@nextui-org/react';
-import { GratiCard } from '../../components/GratiCard';
-import { Button } from '../../components/Button';
+import { GratiCard } from '../../../components/GratiCard';
+import { Button } from '../../../components/Button';
 
 export default function Profile() {
   const [isVisible, setModalIsVisible] = useState(false);

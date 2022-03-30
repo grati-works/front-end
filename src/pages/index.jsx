@@ -26,7 +26,7 @@ export default function Home() {
             <Link href=""><img src="/images/app_store.png" alt="appStore" /></Link>
             <Link href=""><img src="/images/google_play.png" alt="googlePlay" /></Link>
           </div>
-        <img src="/images/mockups.png" alt="Aplicativos mobile" /> 
+        <img src="/images/mockups.png" alt="Aplicativos mobile" className={styles.mockups} /> 
         </div>
 
         <div id='about' className={styles.aboutSectionContainer}>
