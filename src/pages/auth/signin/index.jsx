@@ -24,6 +24,7 @@ export default function SignIn() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit() {
+    console.log("AAAAA")
     const emailError = validateEmail(email);
     const passwordError = validatePassword(password);
 
@@ -94,7 +95,7 @@ export default function SignIn() {
             }}
           />
         </div>
-        <Button isLoading={isSubmitting} className={styles.button}>
+        <Button isLoading={isSubmitting} className={styles.button} type="submit">
           Autenticar
         </Button>
         <Link href='/auth/recoverPassword'>Esqueci minha senha</Link>

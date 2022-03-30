@@ -13,11 +13,11 @@ import { toastProps } from "../../utils/toast";
 export default function HomeUser() {
   const [messages, setMessages] = useState([]);
   useEffect(() => {
+    console.log("AAA")
     async function loadMessages() {
       try {
         const response = await api.get("/message/1");
-        setMessages(response.data);
-        console.log(response.data);
+        setMessages(response.data.feedbacks);
       } catch(error) {
         console.log(error)
         toast.error(error.message, toastProps)
@@ -38,7 +38,7 @@ export default function HomeUser() {
             <TextEditor />
             <div className={styles.feed}>
               {messages.map((message) => (
-                <GratiCard content={message} />
+                <GratiCard content={message} key={message.id} />
               ))}
             </div>
           </div>

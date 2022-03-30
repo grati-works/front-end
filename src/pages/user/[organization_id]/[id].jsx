@@ -20,6 +20,16 @@ export default function Profile() {
           profile_picture: "http://localhost:3333/avatars/teste.png"
         }
       }
+    ],
+    sender: {
+      user: {
+        id: 1,
+        name: "Caua",
+        profile_picture: "http://localhost:3333/avatars/teste.png"
+      }
+    },
+    reactions: [
+      
     ]
   }
 
