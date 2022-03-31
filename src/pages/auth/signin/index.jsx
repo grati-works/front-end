@@ -60,7 +60,7 @@ export default function SignIn() {
         <meta property='og:url' content='https://grati.works/auth/signin' />
         <meta property='og:type' content='website' />
       </Head>
-      <AuthRoutesProvider pageName='Login' submitFunction={handleSubmit}>
+      <AuthRoutesProvider pageName='Login'>
         <div className={styles.inputs}>
           <Input
             Icon={User}
@@ -95,7 +95,7 @@ export default function SignIn() {
             }}
           />
         </div>
-        <Button isLoading={isSubmitting} className={styles.button} type="submit">
+        <Button isLoading={isSubmitting} className={styles.button} type="button" onClick={handleSubmit}>
           Autenticar
         </Button>
         <Link href='/auth/recoverPassword'>Esqueci minha senha</Link>

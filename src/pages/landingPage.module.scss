@@ -57,7 +57,6 @@
       font-size: 48px;
       line-height: 58px;
       text-align: center;
-
     }
 
     .plansSectionContainer2 {
@@ -66,7 +65,7 @@
       line-height: 22px;
       text-align: center;
 
-      color: #4b5066;
+      color: var(--nextui-colors-accents7);
     }
 
     .planFilter {
@@ -114,14 +113,16 @@
         padding: 1.75rem 1.5rem;
         text-align: start;
 
+        max-width: 24rem;
+
         h3 {
           font-size: 1.4rem;
 
           font-style: normal;
-          font-weight: normal;
+          font-weight: 600;
           line-height: 21px;
 
-          color: #263238;
+          color: var(--nextui-colors-accents8);
         }
 
         p {
@@ -132,14 +133,14 @@
           font-size: 14px;
           line-height: 16px;
 
-          color: #263238;
+          color: var(--nextui-colors-accents7);
         }
 
         .planPrice {
           font-size: 2.5rem;
           font-weight: 700;
           margin-bottom: 2rem;
-          color: #263238;
+          color: var(--nextui-colors-accents7);
 
           span {
             font-size: 1rem;
@@ -165,7 +166,7 @@
       font-weight: bold;
       font-size: 48px;
 
-      color: #2d3142;
+      color: var(--nextui-colors-accents8);
     }
     p {
       max-width: 90vw;
@@ -175,7 +176,7 @@
       line-height: 22px;
       text-align: justify;
 
-      color: #4b5066;
+      color: var(--nextui-colors-accents7);
     }
   }
 }

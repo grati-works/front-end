@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-export function AuthRoutesProvider({ children, pageName, submitFunction }) {
+export function AuthRoutesProvider({ children, pageName }) {
   return (
     <div className={styles.authUIWrapper}>
       <div className={styles.illustrationWrapper}>
@@ -9,7 +9,7 @@ export function AuthRoutesProvider({ children, pageName, submitFunction }) {
       <div className={styles.content}> 
         <img src='/images/logo_dark.svg' alt='Logo Grati' />
         <h1>{pageName}</h1>
-        <form onSubmit={submitFunction}>
+        <form>
           {children}
         </form>
       </div>

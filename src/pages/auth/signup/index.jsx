@@ -62,7 +62,7 @@ export default function SignUp() {
         <meta property="og:url" content="https://grati.works/auth/signup" />
         <meta property="og:type" content="website" />
       </Head>
-      <AuthRoutesProvider pageName="Cadastro" submitFunction={handleSubmit}>
+      <AuthRoutesProvider pageName="Cadastro">
         <div className={styles.inputs}>
           <Input
             Icon={Message}
@@ -117,7 +117,7 @@ export default function SignUp() {
           Li e aceito a <Link href="#">politica de privacidade e proteção</Link>{" "}
           de dados e os <Link href="#">termos de uso</Link>.
         </Checkbox>
-        <Button className={styles.button}>Cadastrar</Button>
+        <Button className={styles.button} onClick={handleSubmit}>Cadastrar</Button>
         <div className={styles.registerSection}>
           <div className={styles.divider}></div>
           <span>já possui uma conta?</span>

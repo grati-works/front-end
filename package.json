@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^1.0.5-beta.5",
+    "@stripe/stripe-js": "^1.26.0",
     "axios": "^0.26.1",
     "emoji-mart": "^3.0.1",
     "next": "^12.1.2",
@@ -25,6 +26,8 @@
     "sass": "^1.49.9",
     "slate": "^0.76.0",
     "slate-react": "^0.76.0",
+    "stripe": "^8.214.0",
+    "yarn": "^1.22.18",
     "yup": "^0.32.11"
   },
   "devDependencies": {
