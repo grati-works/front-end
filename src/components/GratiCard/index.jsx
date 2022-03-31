@@ -6,36 +6,41 @@ import styles from './styles.module.scss';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-export function GratiCard({ content, deleteFunction }) {
+export function GratiCard({ content, deleteFunction, reactedMessages }) {
+    const [message, setMessage] = useState(content);
+
     useEffect(() => {
-        console.log(content)
+        if(!message) setMessage(content);
     }, [])
-    const [reactions, setReactions] = useState({
-        mage: 3,
-        brain: 7
-    });
-
+    
     function toggleReaction(id) {
-        const newReactions = reactions.map(reaction => {
-            if (reaction.emoji === id) {
-                return {
-                    ...reaction,
-                    reacted: !reaction.reacted,
-                    amount: reaction.reacted ? reaction.amount - 1 : reaction.amount + 1
+        if(message.reactions[id] > 1) {
+            setMessage({
+                ...message,
+                reactions: {
+                    ...message.reactions,
+                    [id]: message.reactions[id] - 1
                 }
-            }
-            return reaction;
-        });
+            })
 
-        setReactions(newReactions);
+            setReactions(reactions.filter(reaction => reaction.emoji !== id))
+        } else {
+            setMessage({
+                ...message,
+                reactions: {
+                    ...message.reactions,
+                    [id]: message.reactions[id] + 1
+                }
+            })
+        }
     }
 
     return (
         <Card className={styles.gratiCardContainer} shadow={false}>
             <Card.Header className={styles.gratiCardHeader}>
                 <div className={styles.userInfo}>
-                    <Avatar.Group count={content.receivers.length > 3 && content.receivers.length - 3}>
-                        {content.receivers.slice(0, 3).map(({ user }) => (
+                    <Avatar.Group count={message.receivers.length > 3 && message.receivers.length - 3}>
+                        {message.receivers.slice(0, 3).map(({ user }) => (
                             <Avatar
                                 key={user.id}
                                 pointer
@@ -49,13 +54,13 @@ export function GratiCard({ content, deleteFunction }) {
                     <div className={styles.texts}>
                         <p className={styles.userInfoText}>
                             {
-                                content.receivers.slice(0, 3).map(({ user }, currentIndex) => (<Link href={`/users/${user.id}`}>{`${user.name}${content.receivers[currentIndex + 1] !== undefined ? `, ` : ''}`}</Link>))
+                                message.receivers.slice(0, 3).map(({ user }, currentIndex) => (<Link href={`/users/${user.id}`}>{`${user.name}${message.receivers[currentIndex + 1] !== undefined ? `, ` : ''}`}</Link>))
                             }
                             {
-                                content.receivers.length > 3 && ` + ${content.receivers.length - 3}`
+                                message.receivers.length > 3 && ` + ${message.receivers.length - 3}`
                             }
                             <span>{
-                                    content.receivers.length === 1 ? content.receivers[0].responsibility : ''
+                                    message.receivers.length === 1 ? message.receivers[0].responsibility : ''
                                 }</span>
                         </p>
                         <p className={styles.gratiInfoText}>
@@ -65,28 +70,28 @@ export function GratiCard({ content, deleteFunction }) {
                     </div>
                 </div>
                 <div className={styles.gratiInfo}>
-                    <p>Há 4h por <Link href={`/users/${content.sender.user.id}`}>{content.sender.user.name}</Link></p>
-                    <Avatar size="sm" src={content.sender.user.profile_picture} />
-                    <Emoji emoji={{ id: content.emoji }} set='twitter' size={24} />
+                    <p>Há 4h por <Link href={`/users/${message.sender.user.id}`}>{message.sender.user.name}</Link></p>
+                    <Avatar size="sm" src={message.sender.user.profile_picture} />
+                    <Emoji emoji={{ id: message.emoji }} set='twitter' size={24} />
                     <div className={styles.divider}/>
                     <Delete onClick={() => deleteFunction(1)} />
                 </div>
             </Card.Header>
             <Card.Body>
-                <p>{content.message}</p>
+                <p>{message.message}</p>
             </Card.Body>
             <Card.Footer className={styles.gratiCardFooter}>
                 <div className={styles.reactionsContainer}>
                     {
                         // ${reaction.reacted && styles.reacted}
-                        Object.keys(content.reactions).map((reaction, index) => (
+                        Object.keys(message.reactions).map((reaction, index) => (
                             <span
-                                className={`${styles.reaction} `}
+                                className={`${styles.reaction} ${reactedMessages.filter(reacted => reacted.emoji === reaction) ? styles.reacted : ''} `}
                                 onClick={() => toggleReaction(reaction)}
                                 key={reaction}
                             >
                                 <Emoji emoji={{ id: reaction }} set='twitter' size={16} />
-                                {Object.values(content.reactions)[index]}
+                                {Object.values(message.reactions)[index]}
                             </span>
                         ))
                     }

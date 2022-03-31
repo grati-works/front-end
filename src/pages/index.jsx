@@ -11,12 +11,15 @@ import { useState } from "react";
 export default function Home({ products }) {
   const { user } = useAuth();
   const [planDuration, setPlanDuration] = useState("monthly");
+  const [isLoading, setIsLoading] = useState({});
 
   async function handleSubscribe(price_id) {
     if (!user) {
       Router.push("/auth/signin");
       return;
     }
+
+    setIsLoading({ [`${price_id}`]: true });
 
     try {
       const response = await api.post("payment", {
@@ -142,7 +145,7 @@ export default function Home({ products }) {
                   {product.amount}
                   <span>/mês</span>
                 </div>
-                <Button onClick={() => handleSubscribe(product.priceId)}>
+                <Button onClick={() => handleSubscribe(product.priceId)} isLoading={isLoading[product.priceId]}>
                   Adquirir plano
                 </Button>
               </div>
