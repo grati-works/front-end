@@ -3,7 +3,7 @@ import packageJson from '../../package.json';
 import { loadStripe } from '@stripe/stripe-js';
 import { toast } from 'react-toastify';
 
-if(!process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || !process.env.STRIPE_API_KEY) {
+if(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
     toast.error('Informações do Stripe não configuradas corretamente');
 }
 
