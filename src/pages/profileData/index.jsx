@@ -12,10 +12,18 @@ export default function DateProfile() {
   const [selectedGrati, setSelectedGrati] = useState(null);
   const [currentSection, setCurrentSection] = useState("data");
 
+  //Modal de visualização das informações corporativas
   const [visibleInfo, setVisibleInfo] = useState(false);
   const handlerInfo = () => setVisibleInfo(true);
   const closeHandlerInfo = () => {
       setVisibleInfo(false);
+  };
+
+  //Modal de alteração das informações corporativas
+  const [editInfo, setEditInfo] = useState(false);
+  const handlerEditInfo = () => setEditInfo(true);
+  const closeHandlerEditInfo = () => {
+      setEditInfo(false);
   };
 
   function handleOpenDeleteModal(id) {
@@ -115,7 +123,7 @@ export default function DateProfile() {
             </div>
             <div className={styles.infoMe}>
               <div className={styles.InfoAbout}>
-              Sobre mim <span className={styles.span}>&#9998;</span>
+              Sobre mim <span className={styles.span} onClick={handlerEditInfo}>&#9998;</span>
               <div className={styles.whoYou}><span className={styles.spam}> + </span><span> Quem é você e o que faz? </span></div>
               <button>
                 <img src='/images/imgGitHub.png' alt='imgGitHub' />
@@ -123,7 +131,7 @@ export default function DateProfile() {
               </button>
               </div>
               <div className={styles.skills}>
-                Skills <span className={styles.span}>&#9998;</span>
+                Skills <span className={styles.span} onClick={handlerEditInfo}>&#9998;</span>
                 <div className={styles.editSkills}>
                   <div className={styles.haveExp}>
                     Tenho experiência
@@ -136,7 +144,7 @@ export default function DateProfile() {
                 </div>
                 </div>
                 <div className={styles.formation}>
-                  Formação <span className={styles.span}>&#9998;</span>
+                  Formação <span className={styles.span} onClick={handlerEditInfo}>&#9998;</span>
                   <div className={styles.editFormation}>
                 <div className={styles.finish}>
                     Concluída
@@ -154,6 +162,19 @@ export default function DateProfile() {
                 </div>
 
             </div>
+          </Modal.Body>
+      </Modal>
+
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={editInfo}
+        onClose={closeHandlerEditInfo}
+        className={styles.groupsModalInfoCorporative}
+        width="1200px"
+        scroll
+      >
+          <Modal.Body className={styles.groupsWrapper}>
           </Modal.Body>
       </Modal>
     </>
