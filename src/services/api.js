@@ -7,7 +7,7 @@ let isRefreshing = false;
 let failedRequestQueue = [];
 
 export const api = axios.create({
-  baseURL: "http://10.107.144.26:3333",
+  baseURL: "http://localhost:3333",
   headers: {
     Authorization: `Bearer ${cookies["grati.token"]}`,
   },
@@ -21,10 +21,9 @@ api.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          if (error.response.data.code === "token.expired") {
+          if (error.response.data.code === "token.invalid") {
             cookies = parseCookies();
-
-            const { "grati.refreshToken": token } = cookies;
+            const token = cookies['grati.refreshToken'];
             const originalConfig = error.config;
 
             if (!isRefreshing) {
@@ -33,7 +32,7 @@ api.interceptors.response.use(
               api
                 .post("refresh", { token })
                 .then((response) => {
-                  const { token } = response.data;
+                  const { token, refresh_token } = response.data;
 
                   setCookie(undefined, "grati.token", token, {
                     maxAge: 60 * 60 * 24 * 30, // 30 days
@@ -42,7 +41,7 @@ api.interceptors.response.use(
                   setCookie(
                     undefined,
                     "grati.refreshToken",
-                    response.data.refresh_token,
+                    refresh_token,
                     {
                       maxAge: 60 * 60 * 24 * 30, // 30 days
                       path: "/",

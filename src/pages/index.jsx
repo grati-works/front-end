@@ -2,7 +2,8 @@ import Head from "next/head";
 import styles from "./landingPage.module.scss";
 import { Button } from "../components/Button";
 import Link from "next/link";
-import { stripe, getStripeJs } from "../services/stripe";
+import { stripe } from "../services/stripe";
+import { getStripeJs } from "../services/stripe-js";
 import { useAuth } from "../hooks/useAuth";
 import Router from "next/router";
 import { api } from "../services/api";
@@ -138,7 +139,7 @@ export default function Home({ products }) {
           </div>
           <div className={styles.planList}>
             {products[planDuration].map((product) => (
-              <div id="plans" className={styles.plan}>
+              <div id="plans" className={styles.plan} key={product.priceId}>
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
                 <div className={styles.planPrice}>
