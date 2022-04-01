@@ -54,7 +54,7 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
                     <div className={styles.texts}>
                         <p className={styles.userInfoText}>
                             {
-                                message.receivers.slice(0, 3).map(({ user }, currentIndex) => (<Link href={`/users/${user.id}`}>{`${user.name}${message.receivers[currentIndex + 1] !== undefined ? `, ` : ''}`}</Link>))
+                                message.receivers.slice(0, 3).map(({ user }, currentIndex) => (<Link key={currentIndex} href={`/users/${user.id}`}>{`${user.name}${message.receivers[currentIndex + 1] !== undefined ? `, ` : ''}`}</Link>))
                             }
                             {
                                 message.receivers.length > 3 && ` + ${message.receivers.length - 3}`

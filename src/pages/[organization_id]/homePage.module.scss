@@ -14,6 +14,11 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
+      .emptyMessages {
+        margin-top: 2rem;
+        text-align: center;
+      }
     }
   }
 
@@ -93,7 +98,7 @@
 
         p,
         a {
-          font-size: 2rem;
+          font-size: 1.2rem;
           font-weight: bold;
         }
 
@@ -110,7 +115,6 @@
         margin: 0 1.5rem;
       }
       .date {
-        border-top: 2px solid #8c8d92;
         .boxDate {
           margin: 30px;
           span {
@@ -119,5 +123,29 @@
         }
       }
     }
+  }
+}
+
+.deleteModal {
+  h4 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--nextui-colors-accents8);
+  }
+
+  p {
+    color: var(--nextui-colors-accents6);
+    text-align: center;
+  }
+
+  .deleteModalHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: -0.8rem;
+  }
+
+  .deleteModalFooter {
+    display: flex;
   }
 }

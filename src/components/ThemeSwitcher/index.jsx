@@ -7,7 +7,6 @@ export function ThemeSwitcher({ style }) {
     useEffect(() => {
         const theme = localStorage.getItem('theme') || 'light';
         setTheme(theme);
-        console.log(theme);
     }, []);
 
     function toggleTheme() {
@@ -15,7 +14,6 @@ export function ThemeSwitcher({ style }) {
         const theme =  savedTheme === 'light' ? 'dark' : 'light';
         setTheme(theme);
         localStorage.setItem('theme', theme);
-        console.log(theme)
     }
 
     return theme === 'light' ? 

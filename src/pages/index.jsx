@@ -81,10 +81,10 @@ export default function Home({ products }) {
           </p>
           <div className={styles.adquireButtons}>
             <Link href="">
-              <img src="/images/app_store.png" alt="appStore" />
+              <img src="/images/app_store.svg" alt="appStore" />
             </Link>
             <Link href="">
-              <img src="/images/google_play.png" alt="googlePlay" />
+              <img src="/images/google_play.svg" alt="googlePlay" />
             </Link>
           </div>
           <img
