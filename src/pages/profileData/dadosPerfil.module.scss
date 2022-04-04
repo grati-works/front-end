@@ -393,4 +393,186 @@
                     }
                 }
         }
-} 
+}
+.groupsModalInfoCorporative{
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 2rem;
+    .editGrape{
+        display: flex;
+        flex-direction: column;
+            .aboutMe{
+                border-radius: 5px;
+                background-color: white;
+                width: 100%;
+                .bar{
+                    background-color: #EDEDED;
+                    padding: 1rem;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 1rem;
+                        button{
+                            width: 40px;
+                            height: 40px;
+                            background-color: white;
+                            border-radius: 5px;
+                            color: #6874E8;
+                            font-weight: 600;
+                        }
+                }
+                input{
+                    border: 0px;
+                    width: 100%;
+                    padding: 2rem;
+                    height: 250px;
+                }
+            }
+    }
+    .gitHub{
+        width: 100%;
+        background-color: white;
+        padding-block-start: 5px;
+        padding-block-end: 5px;
+        button {
+            margin-inline-start: 5px;
+            background-color: var(--nextui-colors-gray100);
+            color: var(--nextui-colors-gray800);
+            border-radius: 5px;
+            padding: 8px 12px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            transition: filter 0.2s ease-in-out;
+
+            img {
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+            &:hover {
+                filter: brightness(0.9);
+              }
+          }
+    }
+    .linkedin{
+        width: 100%;
+        background-color: white;
+        padding-block-start: 5px;
+        padding-block-end: 5px;
+        button {
+            margin-inline-start: 5px;
+            background-color: var(--nextui-colors-gray100);
+            color: var(--nextui-colors-gray800);
+            border-radius: 5px;
+            padding: 8px 12px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            transition: filter 0.2s ease-in-out;
+
+            img {
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+            &:hover {
+                filter: brightness(0.9);
+              }
+          }
+    }
+    .dribbble{
+        width: 100%;
+        background-color: white;
+        padding-block-start: 5px;
+        padding-block-end: 5px;
+        button {
+            margin-inline-start: 5px;
+            background-color: var(--nextui-colors-gray100);
+            color: var(--nextui-colors-gray800);
+            border-radius: 5px;
+            padding: 8px 12px;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            transition: filter 0.2s ease-in-out;
+
+            img {
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+            &:hover {
+                filter: brightness(0.9);
+              }
+          }
+    }
+    .boxButons{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 1rem;
+            .butonCancel{
+                background-color: transparent;
+                border: 1px solid #807e7e;
+                padding-inline-start: 2rem;
+                padding-inline-end: 2rem;
+                padding-block-start: 1rem;
+                padding-block-end: 1rem;
+                text-align: center;
+                font-size: 1.5rem;
+                border-radius: 5px;
+            }
+            .butonSave{
+                background-color: #6874E8;
+                color: white;
+                padding-inline-start: 2rem;
+                padding-inline-end: 2rem;
+                padding-block-start: 1rem;
+                padding-block-end: 1rem;
+                text-align: center;
+                font-size: 1.5rem;
+                border-radius: 5px;
+            }
+    }
+}
+.groupsModalInfoCorporative{
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 2rem;
+    .groupsWrapper{
+        display: flex;
+        flex-direction: column;
+            .cox{
+                border-radius: 5px;
+                background-color: white;
+                width: 100%;
+                .bar{
+                    background-color: #EDEDED;
+                    padding: 1rem;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 1rem;
+                        button{
+                            width: 40px;
+                            height: 40px;
+                            background-color: white;
+                            border-radius: 5px;
+                            color: #6874E8;
+                            font-weight: 600;
+                        }
+                }
+                input{
+                    border: 0px;
+                    width: 100%;
+                    padding: 2rem;
+                    height: 250px;
+                }
+            }
+    }
+    
+}
