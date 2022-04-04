@@ -51,7 +51,7 @@ export default function HomeUser(props) {
         const rankingResponse = await api.get(
           `organization/${organization_id}/ranking?start_date=${threeMonthsAgoDate}&end_date=${nowDate}`
         );
-        setRanking(rankingResponse.data);
+        setRanking(rankingResponse.data.ranking);
 
         const accumulatedPointsResponse = await api.get(
           `profile/${organization_id}/${user.id}/accumulatedPoints`

@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { ChevronUp, ChevronDown } from 'react-iconly';
 import { Avatar } from '@nextui-org/react';
 
-export function UserRankingCard({ position, avatar = "https://mdbcdn.b-cdn.net/img/new/avatars/2.webp", name, level, points, experience, size = "lg" }) {
+export function UserRankingCard({ position, avatar = "https://mdbcdn.b-cdn.net/img/new/avatars/2.webp", name, level, received_feedbacks, points, size = "lg" }) {
   return size == "lg" ? (
     <tr className={styles.cardContainer}>
       <td className={styles.position}>{position}</td>
@@ -18,8 +18,8 @@ export function UserRankingCard({ position, avatar = "https://mdbcdn.b-cdn.net/i
           </div>
         </div>
       </td>
-      <td className={styles.grati}><span>{points}</span> recebidos</td>
-      <td className={styles.experience}><span>{experience}</span> xp</td>
+      <td className={styles.grati}><span>{received_feedbacks}</span> recebidos</td>
+      <td className={styles.experience}><span>{points}</span> xp</td>
     </tr>
   ) : (
     <div className={styles.cardContainerSmall}>

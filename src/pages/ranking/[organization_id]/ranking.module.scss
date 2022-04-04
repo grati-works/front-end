@@ -2,6 +2,11 @@
   margin-left: 5rem;
   padding: 3rem 7rem;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
   .rankingTable {
     width: 100%;
     border-collapse: collapse;

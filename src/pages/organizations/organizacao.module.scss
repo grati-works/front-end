@@ -48,6 +48,11 @@
       opacity: 0.9;
     }
   }
+
+  .selectedOrganization {
+    border: 3px solid var(--nextui-colors-primary);
+    border-radius: 8px
+  }
 }
 
 .groupsModal {
@@ -99,6 +104,12 @@
         transform: scale(1.03);
         opacity: 0.9;
       }
+    }
+
+
+    .cardGroupSelected {
+      border: 3px solid var(--nextui-colors-primary);
+      border-radius: 8px
     }
   }
 }

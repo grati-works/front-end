@@ -37,6 +37,12 @@ export default function HomeUser(props) {
       try {
         const { organization_id, group_id } = router.query;
         if (!organization_id || !user || !group_id) return;
+        if(organization_id == 0 || group_id == 0) {
+          router.push('/organizations')
+          if(organization_id == 0) toast.warn('Você não selecionou nenhuma organização', toastProps);
+          if(group_id == 0) toast.warn('Você não selecionou nenhum grupo', toastProps);
+          return;
+        }
 
         const nowDate = dayjs().format("YYYY-MM-DD");
         const threeMonthsAgoDate = dayjs()
@@ -46,7 +52,7 @@ export default function HomeUser(props) {
         const rankingResponse = await api.get(
           `organization/${organization_id}/ranking?start_date=${threeMonthsAgoDate}&end_date=${nowDate}`
         );
-        setRanking(rankingResponse.data);
+        setRanking(rankingResponse.data.ranking);
 
         const accumulatedPointsResponse = await api.get(
           `profile/${organization_id}/${user.id}/accumulatedPoints`
