@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import { Input } from '../../components/Input';
+import { Input } from '../../../components/Input';
 import styles from './dadosPerfil.module.scss';
-import { Avatar, Card, Modal } from '@nextui-org/react';
-import { GratiCard } from '../../components/GratiCard';
-import { User, Lock, Edit, People, Paper, Danger, Wallet } from 'react-iconly';
-import { Button } from '../../components/Button';
+import { Avatar, Modal } from '@nextui-org/react';
+import { GratiCard } from '../../../components/GratiCard';
+import { Button } from '../../../components/Button';
+import { User, Lock, Edit, Paper, Wallet } from 'react-iconly';
 
 export default function DateProfile() {
   const [isVisible, setModalIsVisible] = useState(false);
@@ -75,8 +75,8 @@ export default function DateProfile() {
                 <div className={styles.editInfo}>
                     <div className={styles.dados}>
                         <div className={styles.datePassword}>
-                            <button onClick={() => setCurrentSection("data")}>Dados</button>
-                            <button onClick={() => setCurrentSection("switchPassword")}>Trocar senha</button>
+                            <button onClick={() => setCurrentSection("data")} className={currentSection == 'data' ? styles.selectedTitle : ''}>Dados</button>
+                            <button onClick={() => setCurrentSection("switchPassword")}  className={currentSection == 'switchPassword' ? styles.selectedTitle : ''}>Trocar senha</button>
                         </div>
                         {
                           currentSection === "data" ? (
@@ -84,15 +84,15 @@ export default function DateProfile() {
                               <Input Icon={User} placeholder="Nome"/>
                               <Input Icon={Paper} placeholder="Usuário"/>
                               <Input Icon={Edit} placeholder="E-mail"/>
-                              <Input onClick={handlerInfo} readonly Icon={Wallet} placeholder="Editar informações corporativas &oplus;"/>
-                              <button>Salvar alterações</button>
+                              <Input onClick={handlerInfo} readonly Icon={Wallet} placeholder="Editar informações corporativas &oplus;" style={{ cursor: 'pointer' }} />
+                              <Button>Salvar alterações</Button>
                             </>
                           ) : (
                             <>
                               <Input Icon={Lock} placeholder="Senha atual"/>
                               <Input Icon={Lock} placeholder="Senha"/>
                               <Input Icon={Lock} placeholder="Repetir senha"/>
-                              <button>Salvar alterações</button>
+                              <Button>Salvar alterações</Button>
                             </>
                           )
                         }

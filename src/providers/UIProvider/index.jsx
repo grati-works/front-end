@@ -13,7 +13,7 @@ export function UIProvider({ children }) {
     const privateRoutes = {
         "organizations": "Organizações Inscritas",
         "home": "Início",
-        "profile": "Perfil",
+        "user": "Perfil",
         "ranking": "Ranking",
         "applicationManagement": "Gerenciamento"
     };

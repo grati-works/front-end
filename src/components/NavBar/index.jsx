@@ -20,7 +20,7 @@ export function NavBar() {
                 <ActiveLink activeClassname={styles.active} href={`/home/${selectedOrganizationid}${selectedGroupdId ? `/group/${selectedGroupdId}` : ''}`} tooltip="Início">
                     <a><Home set="light" /></a>
                 </ActiveLink>
-                <ActiveLink activeClassname={styles.active} href="/profile" tooltip="Perfil">
+                <ActiveLink activeClassname={styles.active} href="/user/me" tooltip="Perfil">
                     <a><User set="light" /></a>
                 </ActiveLink>
                 <ActiveLink activeClassname={styles.active} href={`/ranking/${selectedOrganizationid}`} tooltip="Ranking">
