@@ -6,7 +6,7 @@ import { Tooltip } from '@nextui-org/react';
 export function ActiveLink({ children, activeClassname, tooltip, placement = "right", ...rest }) {
     const { asPath } = useRouter();
 
-    const className = asPath === rest.href ? activeClassname : '';
+    const className = asPath.split('/')[1] === rest.href.split('/')[1] ? activeClassname : '';
 
     return (
         <>

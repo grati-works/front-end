@@ -16,11 +16,14 @@ export function AuthContextProvider({ children }) {
     const { "grati.token": token } = parseCookies();
 
     if (token) {
-      api.get("user").then((response) => {
-        const user = response.data;
+      api
+        .get("user")
+        .then((response) => {
+          const user = response.data;
 
-        setUser(user);
-      }).catch((error) => {});
+          setUser(user);
+        })
+        .catch((error) => {});
     }
   }, []);
 
@@ -48,8 +51,11 @@ export function AuthContextProvider({ children }) {
 
       Router.push("/organizations");
     } catch (error) {
-      console.log(error);
-      toast.error(error.message, toastProps);
+      if (error.response?.data?.code.includes("auth.not_activated")) {
+        toast.error("Usuário não ativado", toastProps);
+      } else {
+        toast.error(error.message, toastProps);
+      }
     }
   }
 

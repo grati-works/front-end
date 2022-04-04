@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../homePage.module.scss";
+import styles from "./homePage.module.scss";
 import { GratiCard } from "../../../components/GratiCard";
 import { TextEditor } from "../../../components/TextEditor";
 import { UserRankingCard } from "../../../components/UserRankingCard";
@@ -35,8 +35,13 @@ export default function HomeUser(props) {
   useEffect(() => {
     async function loadMessages() {
       try {
-        const { organization_id, group_id } = router.query;
-        if (!organization_id || !user || !group_id) return;
+        const { organization_id } = router.query;
+        if (!organization_id || !user ) return;
+        if(organization_id == 0) {
+          router.push('/organizations')
+          toast.warn('Você não selecionou nenhuma organização', toastProps);
+          return;
+        }
 
         const nowDate = dayjs().format("YYYY-MM-DD");
         const threeMonthsAgoDate = dayjs()
@@ -53,7 +58,7 @@ export default function HomeUser(props) {
         );
         setAccumulatedPoints(accumulatedPointsResponse.data);
 
-        const messagesResponse = await api.get(`message/${organization_id}/${group_id}`);
+        const messagesResponse = await api.get(`message/${organization_id}`);
         if (messagesResponse.data.feedbacks.length === 0) {
           setMessages("vazio");
         } else {

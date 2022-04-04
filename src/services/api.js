@@ -82,9 +82,10 @@ api.interceptors.response.use(
             });
           }
       }
+
+      return Promise.reject(error);
     } else {
       console.log(error);
-      toast.error('Não foi possível se conectar com o servidor')
     }
   }
 );

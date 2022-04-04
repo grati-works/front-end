@@ -1,20 +1,20 @@
 import Head from "next/head";
-import styles from "./homePage.module.scss";
-import { GratiCard } from "../../components/GratiCard";
-import { TextEditor } from "../../components/TextEditor";
-import { UserRankingCard } from "../../components/UserRankingCard";
+import styles from "../homePage.module.scss";
+import { GratiCard } from "../../../../components/GratiCard";
+import { TextEditor } from "../../../../components/TextEditor";
+import { UserRankingCard } from "../../../../components/UserRankingCard";
 import { Wallet, Calendar, TicketStar } from "react-iconly";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { api } from "../../../../services/api";
 import { toast } from "react-toastify";
-import { toastProps } from "../../utils/toast";
+import { toastProps } from "../../../../utils/toast";
 import { useRouter } from "next/router";
-import { Skeleton } from "../../components/Skeleton";
+import { Skeleton } from "../../../../components/Skeleton";
 import { Image, Modal } from "@nextui-org/react";
-import { dayjs, months } from "../../services/dayjs";
-import { useAuth } from "../../hooks/useAuth";
-import { Button } from "../../components/Button";
+import { dayjs, months } from "../../../../services/dayjs";
+import { useAuth } from "../../../../hooks/useAuth";
+import { Button } from "../../../../components/Button";
 
 export default function HomeUser(props) {
   const [messages, setMessages] = useState([]);
@@ -35,8 +35,8 @@ export default function HomeUser(props) {
   useEffect(() => {
     async function loadMessages() {
       try {
-        const { organization_id } = router.query;
-        if (!organization_id || !user ) return;
+        const { organization_id, group_id } = router.query;
+        if (!organization_id || !user || !group_id) return;
 
         const nowDate = dayjs().format("YYYY-MM-DD");
         const threeMonthsAgoDate = dayjs()
@@ -53,7 +53,7 @@ export default function HomeUser(props) {
         );
         setAccumulatedPoints(accumulatedPointsResponse.data);
 
-        const messagesResponse = await api.get(`message/${organization_id}`);
+        const messagesResponse = await api.get(`message/${organization_id}/${group_id}`);
         if (messagesResponse.data.feedbacks.length === 0) {
           setMessages("vazio");
         } else {

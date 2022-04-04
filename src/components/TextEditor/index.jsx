@@ -77,7 +77,7 @@ export function TextEditor() {
     if (file) {
       fileReader.readAsDataURL(file)
     } else {
-      setImagePreview('../images/more-icon.png');
+      setImagePreview('/images/more-icon.png');
     }
 
     fileReader.onloadend = () => setImagePreview(fileReader.result);
