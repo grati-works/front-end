@@ -241,7 +241,7 @@ export default function DateProfile() {
                 <input type="text" placeholder='1200 caractéres'/>
               </div>
               <div className={styles.boxButons}>
-              <button className={styles.butonCancel}>Cancelar</button>
+              <button className={styles.butonCancel} >Cancelar</button>
               <button className={styles.butonSave}>salvar alterações</button>
               </div>
           </Modal.Body>

@@ -154,6 +154,26 @@ export default function Home({ products }) {
           </div>
         </div>
       </main>
+        <div className={styles.footer}>
+          <div className={styles.super}>
+            <div className={styles.img}>
+            <img src="/images/logo_dark.svg" alt="logo-footer" className={styles.logo_footer}/>
+            </div>
+            <div className={styles.menu}>
+                  <p>Início</p>
+                  <p>Sobre nós</p>
+                  <p>Planos</p>
+                  <p>Login</p>
+            </div>
+            <div className={styles.void}></div>
+          </div>
+
+          <div className={styles.footer_social_content}>
+                  <p>Grati - 2022. Todos os Direitos Reservados</p>
+                  <p className={styles.subli}>Política de privacidade</p>
+                  <p className={styles.subli}>Termos de serviço</p>
+            </div>
+        </div>
     </>
   );
 }
