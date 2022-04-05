@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { Heart, ChevronDown } from 'react-iconly';
 import { Picker } from 'emoji-mart'
 import ReactGiphySearchbox from 'react-giphy-searchbox'
+import Image from 'next/image';
 
 export function TextEditor() {
   const emojiPickerTexts = {
@@ -125,7 +126,7 @@ export function TextEditor() {
           </Button.Group>
         }>
           <button className={styles.privacy}>
-            <img src="/icons/privacy.svg" alt="Privacidade" />
+            <Image src="/icons/privacy.svg" alt="Privacidade" width={33} height={33} />
           </button>
         </Tooltip>
       </Card.Header>
@@ -189,7 +190,7 @@ export function TextEditor() {
             />
           }>
             <Button className={styles.attachment} auto>
-              <img src="/icons/emoji.svg" alt="" />
+              <Image src="/icons/emoji.svg" alt="Ícone de emoji" width={22} height={22} />
             </Button>
           </Tooltip>
           <Button className={styles.attachment} auto onClick={() => {
@@ -197,7 +198,7 @@ export function TextEditor() {
             inputFile.current.click();
             setAttached(false)
           }}>
-            <img src="/icons/image.svg" alt="" />
+            <Image src="/icons/image.svg" alt="Ícone de imagem" width={22} height={22} />
           </Button>
           <Tooltip placement="right" trigger="click" content={
             <ReactGiphySearchbox
@@ -212,7 +213,7 @@ export function TextEditor() {
             />
           }>
             <Button className={styles.attachment} auto>
-              <img src="/icons/gif.svg" alt="" />
+              <Image src="/icons/gif.svg" alt="Ícone de GIF" width={26} height={26} />
             </Button>
           </Tooltip>
         </div>

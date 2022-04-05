@@ -9,6 +9,7 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { Avatar, Input, Tooltip } from "@nextui-org/react";
 import { Notification, Search } from "react-iconly";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Header({ user, privatePage = "" }) {
   const { push, asPath } = useRouter();
@@ -31,7 +32,7 @@ export function Header({ user, privatePage = "" }) {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.logoContainer}>
-        <img src="/images/logo.svg" alt="grati" />
+        <Image src="/images/logo.svg" alt="grati" height="50%" width="50%"/>
       </div>
       <div className={styles.headerContent}>
         <nav>
