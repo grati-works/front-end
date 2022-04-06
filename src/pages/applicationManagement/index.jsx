@@ -8,6 +8,7 @@ import { Button } from '../../components/Button';
 import { Checkbox } from '@nextui-org/react';
 
 import styles from './gerenciamento.module.scss';
+import { CalendarComponent } from '../../components/Calendar';
 
 export default function Manage() {
   const inputFile = useRef(null);
@@ -167,8 +168,10 @@ export default function Manage() {
           <Checkbox>Gerenciar usuários</Checkbox>
           <h2>Meta</h2>
           <Input Icon={Paper} placeholder="Nome" />
-          <Input Icon={ShieldDone} placeholder="Meta" />
-          <div className={styles.calendar}></div>
+          <Input Icon={ShieldDone} placeholder="Pontos" />
+          <div className={styles.calendar}>
+              <CalendarComponent className={styles.CalendarComponent}/>
+          </div>
           </Modal.Body>
       </Modal>
 
