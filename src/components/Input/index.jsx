@@ -1,12 +1,13 @@
 import styles from './styles.module.scss';
 import { Input as NextInput } from '@nextui-org/react';
 
-export function Input({ Icon = null, password = false, error, color = "primary", ...rest }) {
+export function Input({ Icon = null, password = false, error, color = "primary", underlined = true, shadow = true, ...rest }) {
   const inputDefaultProps = {
     className: styles.input,
     width: '100%',
-    underlined: true,
+    underlined,
     color,
+    shadow,
     ...rest,
   };
 

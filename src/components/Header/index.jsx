@@ -6,10 +6,9 @@ import { useRouter } from "next/router";
 import { ActiveLink } from "../ActiveLink";
 import { Button } from "../Button";
 import { ThemeSwitcher } from "../ThemeSwitcher";
-import { Avatar, Input, Tooltip } from "@nextui-org/react";
+import { Avatar, Input, Tooltip, Image } from "@nextui-org/react";
 import { Notification, Search } from "react-iconly";
 import Link from "next/link";
-import Image from "next/image";
 
 export function Header({ user, privatePage = "" }) {
   const { push, asPath } = useRouter();

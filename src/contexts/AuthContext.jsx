@@ -10,6 +10,7 @@ export const AuthContext = createContext({});
 
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState();
+  const [profile, setProfile] = useState();
   const isAuthenticated = !!user;
 
   useEffect(() => {
@@ -22,6 +23,18 @@ export function AuthContextProvider({ children }) {
           const user = response.data;
 
           setUser(user);
+
+          const { "grati.organization_id": organization_id } = parseCookies();
+          if (organization_id) {
+            api
+              .get(`profile/${organization_id}/${user.id}`)
+              .then((response) => {
+                const organization = response.data;
+
+                setProfile(organization);
+              })
+              .catch((error) => console.log('AA', error));
+          }
         })
         .catch((error) => {});
     }
@@ -93,7 +106,7 @@ export function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, signIn, signUp, signOut }}
+      value={{ user, profile, isAuthenticated, signIn, signUp, signOut }}
     >
       {children}
     </AuthContext.Provider>

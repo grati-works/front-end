@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { Card, Divider, Button, Tooltip, Input } from '@nextui-org/react';
+import { Card, Divider, Button, Tooltip, Input, Image } from '@nextui-org/react';
 import styles from './styles.module.scss';
 import { Heart, ChevronDown } from 'react-iconly';
 import { Picker } from 'emoji-mart'
 import ReactGiphySearchbox from 'react-giphy-searchbox'
-import Image from 'next/image';
 
 export function TextEditor() {
   const emojiPickerTexts = {

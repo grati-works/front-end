@@ -3,13 +3,14 @@ import { useAuth } from "../../../hooks/useAuth";
 import Head from "next/head";
 import { Input } from "../../../components/Input";
 import styles from "./dadosPerfil.module.scss";
-import { Avatar, Modal } from "@nextui-org/react";
+import { Avatar, Modal, Image } from "@nextui-org/react";
 import { GratiCard } from "../../../components/GratiCard";
 import { Button } from "../../../components/Button";
-import { User, Lock, Edit, Paper, Wallet } from "react-iconly";
+import { User, Lock, Edit, Paper, Wallet, EditSquare } from "react-iconly";
 import { parseCookies } from "nookies";
 import { api } from "../../../services/api";
 import { Skeleton } from "../../../components/Skeleton";
+import Router from "next/router";
 
 export default function DateProfile() {
   const [isVisible, setModalIsVisible] = useState(false);
@@ -20,14 +21,20 @@ export default function DateProfile() {
     received_feedbacks: [],
   });
 
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [responsibility, setResponsibility] = useState("");
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [selectedMessagesSection, setSelectedMessagesSection] = useState('sended_feedbacks')
+  const [selectedMessagesSection, setSelectedMessagesSection] =
+    useState("sended_feedbacks");
+  const vinculed_accounts = {
+    github: "/images/imgGitHub.png",
+    linkedin: "/images/imgLinkedin.png",
+  };
 
   //Modal de visualização das informações corporativas
   const [visibleInfo, setVisibleInfo] = useState(false);
@@ -56,24 +63,30 @@ export default function DateProfile() {
   }
 
   useEffect(() => {
+    async function loadMessages(user) {
+      const { "grati.organization_id": organization_id } = parseCookies();
+      const response = await api.get(`profile/${organization_id}/${user.id}`);
+
+      let { sended_feedbacks, received_feedbacks } = response.data;
+      if (sended_feedbacks.length === 0) sended_feedbacks = "vazio";
+      if (received_feedbacks.length === 0) received_feedbacks = "vazio";
+      setMessages({ received_feedbacks, sended_feedbacks });
+    }
+
     if (user) {
+      console.log(user);
       setName(user.name);
       setUsername(user.username);
       setEmail(user.email);
 
-      async function loadMessages() {
-        const { "grati.organization_id": organization_id } = parseCookies();
-        const response = await api.get(`profile/${organization_id}/${user.id}`);
-
-        let { sended_feedbacks, received_feedbacks } = response.data;
-        if(sended_feedbacks.length === 0) sended_feedbacks = 'vazio';
-        if(received_feedbacks.length === 0) received_feedbacks = 'vazio';
-        setMessages({ sended_feedbacks, received_feedbacks });
-      }
-
-      loadMessages();
+      loadMessages(user);
     }
-  }, []);
+
+    if (profile) {
+      console.log(profile);
+      setResponsibility(profile.responsibility);
+    }
+  }, [user, profile]);
 
   return (
     <>
@@ -174,10 +187,26 @@ export default function DateProfile() {
         </div>
         <div className={styles.messageList}>
           <div className={styles.commentHeader}>
-            <h3 className={`${styles.cardFilter} ${styles.filterActive}`}>
+            <h3
+              className={`${styles.cardFilter} ${
+                selectedMessagesSection == "sended_feedbacks"
+                  ? styles.filterActive
+                  : ""
+              }`}
+              onClick={() => setSelectedMessagesSection("sended_feedbacks")}
+            >
               Enviados
             </h3>
-            <h3 className={styles.cardFilter}>Recebidos</h3>
+            <h3
+              className={`${styles.cardFilter} ${
+                selectedMessagesSection == "received_feedbacks"
+                  ? styles.filterActive
+                  : ""
+              }`}
+              onClick={() => setSelectedMessagesSection("received_feedbacks")}
+            >
+              Recebidos
+            </h3>
           </div>
           {messages[selectedMessagesSection] == "vazio" ? (
             <div className={styles.emptyMessages}>
@@ -187,6 +216,7 @@ export default function DateProfile() {
                 showSkeleton
                 maxDelay={10000}
                 width={200}
+                height={200}
               />
               <h2>Nenhuma mensagem por aqui...</h2>
               <p>
@@ -222,67 +252,71 @@ export default function DateProfile() {
           <div className={styles.user}>
             <div className={styles.imgUser}>
               <Avatar
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                src={user?.profile_picture}
                 className={styles.imgPerfilOn}
               />
             </div>
-            <h1>
-              Túlio Nogueira <br /> Moraes
-            </h1>
-            <div className={styles.profession}>
-              Cargo/Posição
-              <span>Product Owner</span>
-            </div>
+            <h1>{user?.name}</h1>
+            <Input
+              className={styles.profession}
+              labelPlaceholder="Cargo/Posição"
+              value={responsibility}
+              onChange={(event) => setResponsibility(event.target.value)}
+              underlined={false}
+              shadow={false}
+            />
           </div>
           <div className={styles.infoMe}>
-            <div className={styles.InfoAbout} onClick={handlerEditInfo}>
-              Sobre mim{" "}
-              <span className={styles.span} onClick={handlerEditInfo}>
-                &#9998;
-              </span>
-              <div className={styles.whoYou}>
-                <span className={styles.spam}> + </span>
-                <span> Quem é você e o que faz? </span>
+            <div className={styles.InfoAbout}>
+              <div className={styles.title}>
+                Sobre mim
+                <EditSquare
+                  set="light"
+                  className={styles.editIcon}
+                  onClick={handlerEditInfo}
+                />
               </div>
-              <button>
-                <img src="/images/imgGitHub.png" alt="imgGitHub" />
-                Github
-              </button>
+              {!profile?.description ? (
+                <p className={styles.whoYou} onClick={handlerEditInfo}>
+                  <span> + </span>
+                  Quem é você e o que faz?
+                </p>
+              ) : (
+                <p>{profile?.description}</p>
+              )}
+              {profile?.vinculed_accounts.map((vinculed_account) => (
+                <Button
+                  icon={
+                    <img
+                      src={vinculed_accounts[vinculed_account.provider]}
+                      alt={`Ícone de ${vinculed_account.provider}`}
+                    />
+                  }
+                  key={vinculed_account.provider}
+                  onClick={() => Router.push(vinculed_account.account)}
+                >
+                  {vinculed_account.provider}
+                </Button>
+              ))}
             </div>
             <div className={styles.skills}>
-              Skills{" "}
-              <span className={styles.span} onClick={handlerEditStudyInfo}>
-                &#9998;
-              </span>
-              <div className={styles.editSkills}>
-                <div className={styles.haveExp} onClick={handlerEditStudyInfo}>
-                  Tenho experiência
-                  <div>+</div>
-                </div>
-                <div className={styles.studi} onClick={handlerEditStudyInfo}>
-                  Estou estudando
-                  <div>+</div>
-                </div>
+              <div className={styles.title}>
+                Skills
+                <EditSquare
+                  set="light"
+                  className={styles.editIcon}
+                  onClick={handlerEditStudyInfo}
+                />
               </div>
             </div>
             <div className={styles.formation}>
-              Formação{" "}
-              <span className={styles.span} onClick={handlerEditStudyInfo}>
-                &#9998;
-              </span>
-              <div className={styles.editFormation}>
-                <div className={styles.finish} onClick={handlerEditStudyInfo}>
-                  Concluída
-                  <div>+</div>
-                </div>
-                <div className={styles.progress} onClick={handlerEditStudyInfo}>
-                  Em andamento
-                  <div>+</div>
-                </div>
-                <div className={styles.interest} onClick={handlerEditStudyInfo}>
-                  Tenho interesse
-                  <div>+</div>
-                </div>
+            <div className={styles.title}>
+                Formação
+                <EditSquare
+                  set="light"
+                  className={styles.editIcon}
+                  onClick={handlerEditStudyInfo}
+                />
               </div>
             </div>
           </div>
@@ -326,8 +360,8 @@ export default function DateProfile() {
             </button>
           </div>
           <div className={styles.boxButons}>
-            <button className={styles.butonCancel}>Cancelar</button>
-            <button className={styles.butonSave}>salvar alterações</button>
+            <Button color="error">Cancelar</Button>
+            <Button>Salvar alterações</Button>
           </div>
         </Modal.Body>
       </Modal>
@@ -358,8 +392,8 @@ export default function DateProfile() {
             <input type="text" placeholder="1200 caractéres" />
           </div>
           <div className={styles.boxButons}>
-            <button className={styles.butonCancel}>Cancelar</button>
-            <button className={styles.butonSave}>salvar alterações</button>
+            <Button color="error">Cancelar</Button>
+            <Button>Salvar alterações</Button>
           </div>
         </Modal.Body>
       </Modal>

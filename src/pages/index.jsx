@@ -8,7 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 import Router from "next/router";
 import { api } from "../services/api";
 import { useState } from "react";
-import Image from "next/image";
+import { Image } from '@nextui-org/react';
 
 export default function Home({ products }) {
   const { user } = useAuth();
