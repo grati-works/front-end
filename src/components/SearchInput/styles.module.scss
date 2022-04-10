@@ -1,0 +1,39 @@
+.searchBoxWrapper {
+  position: relative;
+  display: flex;
+
+  .input {
+    font-size: 1rem;
+    
+    label {
+      border-radius: 5px;
+    }
+
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  .suggestionsWrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    z-index: 1;
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      color: var(--nextui-colors-accents8);
+      font-size: 1rem;
+    }
+  }
+}

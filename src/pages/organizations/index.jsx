@@ -56,7 +56,7 @@ export default function Organizacao() {
         setOrganizations(organizations.data);
       } catch (error) {
         console.log(error);
-        toast.error('Não foi possível carregar as organizações de usuário', toastProps);
+        toast.error('Não foi possível carregar as organizações de usuário');
       }
     }
 

@@ -9,6 +9,7 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 import { Avatar, Input, Tooltip, Image } from "@nextui-org/react";
 import { Notification, Search } from "react-iconly";
 import Link from "next/link";
+import {SearchInput} from '../SearchInput';
 
 export function Header({ user, privatePage = "" }) {
   const { push, asPath } = useRouter();
@@ -77,13 +78,7 @@ export function Header({ user, privatePage = "" }) {
         ) : (
           <div className={styles.userContainer}>
             {searchBarIsOpen && (
-              <Input
-                clearable
-                shadow={false}
-                size="md"
-                placeholder="Insira o termo a ser pesquisado"
-                type="search"
-              />
+              <SearchInput />
             )}
             <Search
               set="light"
