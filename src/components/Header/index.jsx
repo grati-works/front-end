@@ -90,7 +90,8 @@ export function Header({ user, privatePage = "" }) {
               placement="bottom"
               content={
                 <div className={styles.userTooltip}>
-                  <p>TODO: Implementar esse menu</p>
+                  <Avatar pointer size="lg" src={user.profile_picture} />
+                  @<span>regi.freitas</span>te enviou um grati hoje às 13:30
                 </div>
               }
               trigger="click"

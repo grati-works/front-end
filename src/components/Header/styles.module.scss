@@ -146,8 +146,16 @@
   span {
     cursor: pointer;
   }
+ 
 }
-
+.userTooltip{
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  span{
+    font-weight: bold;
+  }
+}
 .icon {
   height: 1.4rem;
   width: 1.4rem;
