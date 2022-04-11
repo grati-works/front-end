@@ -5,9 +5,11 @@ import { Emoji } from 'emoji-mart';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { useAuth } from '../../hooks/useAuth';
 
 export function GratiCard({ content, deleteFunction, reactedMessages }) {
     const [message, setMessage] = useState(content);
+    const { user } = useAuth();
 
     useEffect(() => {
         if(!message) setMessage(content);
@@ -74,7 +76,10 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
                     <Avatar size="sm" src={message.sender.user.profile_picture} />
                     <Emoji emoji={{ id: message.emoji }} set='twitter' size={24} />
                     <div className={styles.divider}/>
-                    <Delete onClick={() => deleteFunction(1)} />
+                    {
+                        message.sender.user.id === user.id &&
+                        <Delete onClick={deleteFunction} />
+                    }
                 </div>
             </Card.Header>
             <Card.Body>

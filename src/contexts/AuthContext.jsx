@@ -33,7 +33,7 @@ export function AuthContextProvider({ children }) {
 
                 setProfile(organization);
               })
-              .catch((error) => console.log('AA', error));
+              .catch((error) => console.log(error));
           }
         })
         .catch((error) => {});
@@ -73,7 +73,6 @@ export function AuthContextProvider({ children }) {
   }
 
   async function signUp(name, username, email, password) {
-    console.log({ name, username, email, password });
     try {
       await api
         .post("user", {

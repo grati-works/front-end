@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import Head from "next/head";
 import { Input } from "../../../components/Input";
@@ -11,6 +11,8 @@ import { parseCookies } from "nookies";
 import { api } from "../../../services/api";
 import { Skeleton } from "../../../components/Skeleton";
 import Router from "next/router";
+import { toast } from "react-toastify";
+import { DeleteMessageModal } from "../../../components/Modal/DeleteMessage";
 
 export default function DateProfile() {
   const [isVisible, setModalIsVisible] = useState(false);
@@ -31,6 +33,10 @@ export default function DateProfile() {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [selectedMessagesSection, setSelectedMessagesSection] =
     useState("sended_feedbacks");
+  const inputFile = useRef(null);
+  const [attached, setAttached] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
+
   const vinculed_accounts = {
     github: "/images/imgGitHub.png",
     linkedin: "/images/imgLinkedin.png",
@@ -57,9 +63,84 @@ export default function DateProfile() {
     setEditStudyInfo(false);
   };
 
+  //Modal de exclusao de mensagem
+  const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false);
   function handleOpenDeleteModal(id) {
     setSelectedGrati(id);
-    setModalIsVisible(!selectedGrati);
+    setDeleteModalIsVisible(!selectedGrati);
+  }
+
+  function handleDeleteMessage() {
+    api.delete(`/message/${selectedGrati}`).then(() => {
+      setMessages((messages) => ({
+        ...messages,
+        [selectedMessagesSection]: messages[selectedMessagesSection].filter(
+          (message) => message.id !== selectedGrati
+        ),
+      }));
+      setDeleteModalIsVisible(false);
+      toast.success("Mensagem excluida com sucesso!");
+    });
+  }
+
+  function updateData() {
+    api
+      .put("user", {
+        name,
+        username,
+      })
+      .then(() => {
+        toast.success("Dados atualizados com sucesso!");
+        closeHandlerEditInfo();
+      });
+
+    if (imagePreview !== user.profile_picture) {
+      // put imagePreview in formData
+      const formData = new FormData();
+      formData.append("avatar", inputFile.current.files[0]);
+
+      api
+        .patch("user/avatar", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          toast.success("Imagem atualizada com sucesso!");
+        });
+    }
+  }
+
+  function updatePassword() {
+    if (password === "") {
+      return toast.error("Por favor, preencha o campo de senha atual!");
+    } else if (newPassword === "") {
+      return toast.error("Por favor, preencha o campo de nova senha!");
+    } else if (confirmNewPassword === "") {
+      return toast.error(
+        "Por favor, preencha o campo de confirmação de senha!"
+      );
+    } else if (newPassword !== confirmNewPassword) {
+      return toast.error("As senhas não conferem!");
+    } else {
+      api
+        .put("user", {
+          password,
+          new_password: newPassword,
+        })
+        .then(() => {
+          toast.success("Senha atualizada com sucesso!");
+          closeHandlerEditInfo();
+        })
+        .catch((error) => {
+          console.log(error);
+          switch (error.response.data.code) {
+            case "user.password.incorrect":
+              toast.error("Senha atual incorreta!");
+              break;
+          }
+        });
+    }
   }
 
   useEffect(() => {
@@ -74,19 +155,31 @@ export default function DateProfile() {
     }
 
     if (user) {
-      console.log(user);
       setName(user.name);
       setUsername(user.username);
       setEmail(user.email);
 
       loadMessages(user);
+      setImagePreview(user.profile_picture);
     }
 
     if (profile) {
-      console.log(profile);
       setResponsibility(profile.responsibility);
     }
   }, [user, profile]);
+
+  useEffect(() => {
+    const file = inputFile.current.files[0];
+    const fileReader = new FileReader();
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    } else {
+      setImagePreview("/images/more-icon.png");
+    }
+
+    fileReader.onloadend = () => setImagePreview(fileReader.result);
+  }, [attached]);
 
   return (
     <>
@@ -96,14 +189,23 @@ export default function DateProfile() {
       <div className={styles.frame}>
         <div className={styles.editProfile}>
           <div className={styles.imgPerfil}>
-            <Avatar
-              src={user?.profile_picture}
-              className={styles.imgPerfilOn}
+            <input
+              type="file"
+              id="file"
+              ref={inputFile}
+              onChange={() => setAttached(true)}
+              style={{ display: "none" }}
             />
+            <Avatar src={imagePreview} className={styles.imgPerfilOn} />
             <img
               className={styles.cam}
               src="/images/camImg.jpg"
               alt="imgCamera"
+              onClick={() => {
+                inputFile.current.value = "";
+                inputFile.current.click();
+                setAttached(false);
+              }}
             />
           </div>
           <div className={styles.editInfo}>
@@ -146,7 +248,7 @@ export default function DateProfile() {
                     Icon={Edit}
                     placeholder="E-mail"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    disabled
                   />
                   <Input
                     onClick={handlerInfo}
@@ -155,7 +257,7 @@ export default function DateProfile() {
                     placeholder="Editar informações corporativas &oplus;"
                     style={{ cursor: "pointer" }}
                   />
-                  <Button>Salvar alterações</Button>
+                  <Button onClick={updateData}>Salvar alterações</Button>
                 </>
               ) : (
                 <>
@@ -179,7 +281,7 @@ export default function DateProfile() {
                       setConfirmNewPassword(event.target.value)
                     }
                   />
-                  <Button>Salvar alterações</Button>
+                  <Button onClick={updatePassword}>Salvar alterações</Button>
                 </>
               )}
             </div>
@@ -228,10 +330,10 @@ export default function DateProfile() {
               <GratiCard
                 content={message}
                 key={message.id}
-                reactedMessages={reactions.filter(
+                reactedMessages={message.reactions.filter(
                   (reaction) => reaction.feedback_id === message.id
                 )}
-                deleteFunction={handleOpenDeleteModal}
+                deleteFunction={() => handleOpenDeleteModal(message.id)}
               />
             ))
           ) : (
@@ -310,7 +412,7 @@ export default function DateProfile() {
               </div>
             </div>
             <div className={styles.formation}>
-            <div className={styles.title}>
+              <div className={styles.title}>
                 Formação
                 <EditSquare
                   set="light"
@@ -397,6 +499,12 @@ export default function DateProfile() {
           </div>
         </Modal.Body>
       </Modal>
+
+      <DeleteMessageModal
+        isVisible={deleteModalIsVisible}
+        closeFunction={handleOpenDeleteModal}
+        deleteFunction={handleDeleteMessage}
+      />
     </>
   );
 }

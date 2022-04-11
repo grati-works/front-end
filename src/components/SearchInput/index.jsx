@@ -11,7 +11,6 @@ export function SearchInput() {
   async function updateSuggestions(query) {
     const { 'grati.organization_id': organization_id } = parseCookies();
     const suggestions = await api.get(`/search/suggest/${organization_id}?q=${query}`);
-    console.log(suggestions.data);
     setSuggestions(suggestions.data);
   }
 

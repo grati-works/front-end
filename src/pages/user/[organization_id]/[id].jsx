@@ -5,6 +5,7 @@ import styles from './profile.module.scss';
 import { Avatar, Card, Modal } from '@nextui-org/react';
 import { GratiCard } from '../../../components/GratiCard';
 import { Button } from '../../../components/Button';
+import { DeleteMessageModal } from '../../../components/Modal/DeleteMessage';
 
 export default function Profile() {
   const [isVisible, setModalIsVisible] = useState(false);
@@ -36,6 +37,19 @@ export default function Profile() {
   function handleOpenDeleteModal(id) {
     setSelectedGrati(id);
     setModalIsVisible(!selectedGrati)
+  }
+
+  function handleDeleteMessage() {
+    api.delete(`/message/${selectedGrati}`).then(() => {
+      setMessages((messages) => ({
+        ...messages,
+        [selectedMessagesSection]: messages[selectedMessagesSection].filter(
+          (message) => message.id !== selectedGrati
+        ),
+      }));
+      setDeleteModalIsVisible(false);
+      toast.success("Mensagem excluida com sucesso!");
+    });
   }
 
   return (
@@ -125,26 +139,7 @@ export default function Profile() {
         </div>
       </div>
       
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        open={isVisible}
-        onClose={handleOpenDeleteModal}
-        className={styles.deleteModal}
-        width="500px"
-      >
-        <Modal.Header className={styles.deleteModalHeader}>
-          <img src="/icons/close.svg" alt="Ícone de exclusão" />
-          <h4>Deletar Grati</h4>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Tem certeza que deseja deletar essa mensagem?</p>
-        </Modal.Body>
-        <Modal.Footer className={styles.deleteModalFooter}>
-          <Button bordered auto onClick={handleOpenDeleteModal}>Cancelar</Button>
-          <Button color="error" auto>Sim, deletar</Button>
-        </Modal.Footer>
-      </Modal>
+      <DeleteMessageModal isVisible={isVisible} closeFunction={handleOpenDeleteModal} deleteFunction={handleDeleteMessage}/>
     </>
   );
 }
