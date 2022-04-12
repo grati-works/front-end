@@ -14,7 +14,6 @@ import { Skeleton } from "../../../../components/Skeleton";
 import { Image, Modal } from "@nextui-org/react";
 import { dayjs, months } from "../../../../services/dayjs";
 import { useAuth } from "../../../../hooks/useAuth";
-import { Button } from "../../../../components/Button";
 import { DeleteMessageModal } from "../../../../components/Modal/DeleteMessage";
 
 export default function HomeUser(props) {
@@ -24,6 +23,7 @@ export default function HomeUser(props) {
   const [isVisible, setModalIsVisible] = useState(false);
   const [selectedGrati, setSelectedGrati] = useState(null);
   const [accumulatedPoints, setAccumulatedPoints] = useState(null);
+  const [objective, setObjective] = useState(null);
 
   const router = useRouter();
   const { user } = useAuth();
@@ -36,58 +36,64 @@ export default function HomeUser(props) {
   function handleDeleteMessage() {
     api.delete(`/message/${selectedGrati}`).then(() => {
       setMessages((messages) => ({
-        ...messages,
-        [selectedMessagesSection]: messages[selectedMessagesSection].filter(
+        ...messages.filter(
           (message) => message.id !== selectedGrati
         ),
       }));
-      setDeleteModalIsVisible(false);
+      setModalIsVisible(false);
       toast.success("Mensagem excluida com sucesso!");
     });
   }
 
-  useEffect(() => {
-    async function loadMessages() {
-      try {
-        const { organization_id, group_id } = router.query;
-        if (!organization_id || !user || !group_id) return;
-        if(organization_id == 0 || group_id == 0) {
-          router.push('/organizations')
-          if(organization_id == 0) toast.warn('Você não selecionou nenhuma organização', toastProps);
-          if(group_id == 0) toast.warn('Você não selecionou nenhum grupo', toastProps);
-          return;
-        }
-
-        const nowDate = dayjs().format("YYYY-MM-DD");
-        const threeMonthsAgoDate = dayjs()
-          .subtract(3, "month")
-          .format("YYYY-MM-DD");
-
-        const rankingResponse = await api.get(
-          `organization/${organization_id}/ranking?start_date=${threeMonthsAgoDate}&end_date=${nowDate}`
-        );
-        setRanking(rankingResponse.data.ranking);
-
-        const accumulatedPointsResponse = await api.get(
-          `profile/${organization_id}/${user.id}/accumulatedPoints`
-        );
-        setAccumulatedPoints(accumulatedPointsResponse.data);
-
-        const messagesResponse = await api.get(`message/${organization_id}/${group_id}`);
-        if (messagesResponse.data.feedbacks.length === 0) {
-          setMessages("vazio");
-        } else {
-          setMessages(messagesResponse.data.feedbacks);
-          setReactions(messagesResponse.data.reacted_feedbacks);
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error(error.message, toastProps);
+  async function loadMessages() {
+    try {
+      const { organization_id, group_id } = router.query;
+      if (!organization_id || !user || !group_id) return;
+      if(organization_id == 0 || group_id == 0) {
+        router.push('/organizations')
+        if(organization_id == 0) toast.warn('Você não selecionou nenhuma organização', toastProps);
+        if(group_id == 0) toast.warn('Você não selecionou nenhum grupo', toastProps);
+        return;
       }
-    }
 
+      const nowDate = dayjs().format("YYYY-MM-DD");
+      const threeMonthsAgoDate = dayjs()
+        .subtract(3, "month")
+        .format("YYYY-MM-DD");
+
+      const rankingResponse = await api.get(
+        `organization/${organization_id}/ranking?start_date=${threeMonthsAgoDate}&end_date=${nowDate}`
+      );
+      setRanking(rankingResponse.data.ranking);
+
+      const accumulatedPointsResponse = await api.get(
+        `profile/${organization_id}/${user.id}/accumulatedPoints`
+      );
+      setAccumulatedPoints(accumulatedPointsResponse.data);
+
+      const objectiveResponse = await api.get(`objective/${group_id}`);
+      setObjective(objectiveResponse.data[0]);
+
+      const messagesResponse = await api.get(`message/${organization_id}/${group_id}`);
+      if (messagesResponse.data.feedbacks.length === 0) {
+        setMessages("vazio");
+      } else {
+        setMessages(messagesResponse.data.feedbacks);
+        setReactions(messagesResponse.data.reacted_feedbacks);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message, toastProps);
+    }
+  }
+
+  function handleSendMessage() {
+    setMessages([]);
     loadMessages();
-  }, [router.query]);
+  }
+
+  useEffect(() => loadMessages(), [router.query]);
+  useEffect(() => loadMessages(), []);
 
   return (
     <>
@@ -97,7 +103,7 @@ export default function HomeUser(props) {
       <>
         <div className={styles.homeWrapper}>
           <div className={styles.navigation}>
-            <TextEditor />
+            <TextEditor onSend={handleSendMessage} />
             <div className={styles.feed}>
               {messages == "vazio" ? (
                 <div className={styles.emptyMessages}>
@@ -138,10 +144,14 @@ export default function HomeUser(props) {
             ) : (
               <Skeleton width="100%" height="5rem" />
             )}
-            <div className={styles.experience}>
-              <Calendar set="light" className={styles.icon} />
-              <p>Uma meta de 5300 xp está agendada para 16/02.</p>
-            </div>
+            {objective !== null ? (
+              <div className={styles.experience}>
+                <Calendar set="light" className={styles.icon} />
+                <p>Uma meta "{objective.name}" de {objective.goal} xp está agendada para {dayjs(objective.expires_in).format('DD/MM')}.</p>
+              </div>
+            ) : (
+              <Skeleton width="100%" height="5rem" />
+            )}
             <div className={styles.ranking}>
               <div className={styles.top5}>
                 <TicketStar set="light" className={styles.icon} />
@@ -178,7 +188,7 @@ export default function HomeUser(props) {
         </div>
       </>
 
-      <DeleteMessageModal isVisible={isVisible} closeFunction={handleOpenDeleteModal} deleteFunction={handleDeleteMessage}/>
+      <DeleteMessageModal isVisible={isVisible} cancelFunction={handleOpenDeleteModal} deleteFunction={handleDeleteMessage}/>
     </>
   );
 }

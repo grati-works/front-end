@@ -36,36 +36,38 @@ export function Header({ user, privatePage = "" }) {
       </div>
       <div className={styles.headerContent}>
         <nav>
-          <button className={styles.mobileMenu} onClick={toggleNavbar}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
           {privatePage !== "" ? (
             <>
               <p className={styles.active}>{privatePage}</p>
             </>
           ) : (
-            <div
-              className={
-                navbarIsOpen
-                  ? styles.mobileMenuNavbarOpen
-                  : styles.mobileMenuNavbarClosed
-              }
-            >
-              <ActiveLink activeClassname={styles.active} href="/">
-                <a>Início</a>
-              </ActiveLink>
-              <ActiveLink activeClassname={styles.active} href="/about">
-                <a>Sobre nós</a>
-              </ActiveLink>
-              <ActiveLink activeClassname={styles.active} href="/plans">
-                <a>Nossos Planos</a>
-              </ActiveLink>
-              <ActiveLink activeClassname={styles.active} href="/faq">
-                <a>FAQ</a>
-              </ActiveLink>
-            </div>
+            <>
+              <button className={styles.mobileMenu} onClick={toggleNavbar}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <div
+                className={
+                  navbarIsOpen
+                    ? styles.mobileMenuNavbarOpen
+                    : styles.mobileMenuNavbarClosed
+                }
+              >
+                <ActiveLink activeClassname={styles.active} href="/">
+                  <a>Início</a>
+                </ActiveLink>
+                <ActiveLink activeClassname={styles.active} href="/about">
+                  <a>Sobre nós</a>
+                </ActiveLink>
+                <ActiveLink activeClassname={styles.active} href="/plans">
+                  <a>Nossos Planos</a>
+                </ActiveLink>
+                <ActiveLink activeClassname={styles.active} href="/faq">
+                  <a>FAQ</a>
+                </ActiveLink>
+              </div>
+            </>
           )}
         </nav>
         {!user ? (

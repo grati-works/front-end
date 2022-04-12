@@ -12,10 +12,11 @@ import { Heart, ChevronDown } from "react-iconly";
 import { Picker } from "emoji-mart";
 import ReactGiphySearchbox from "react-giphy-searchbox";
 import { Emoji } from "emoji-mart";
-import { parseCookies } from "nookies";
 import { useRouter } from "next/router";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
-export function TextEditor() {
+export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
   const emojiPickerTexts = {
     search: "Pesquisa",
     clear: "Limpar", // Accessible label on "clear" button
@@ -59,9 +60,10 @@ export function TextEditor() {
     receivers_usernames: [],
     tags: [],
   });
+  const [tooltipVisible, setTooltipVisible] = useState(false);
 
   const { asPath } = useRouter();
-  const [ organization_id, _, group_id ] = asPath.split("/").splice(2, 4);
+  const [organization_id, _, group_id] = asPath.split("/").splice(2, 4);
 
   function handleDeleteUser(id) {
     const newUsers = data.receivers_usernames.filter(
@@ -77,6 +79,7 @@ export function TextEditor() {
 
   function handleAddTag(name) {
     setData({ ...data, tags: [...data.tags, name] });
+    setTooltipVisible(false);
   }
 
   function handleAddUser(name) {
@@ -92,14 +95,47 @@ export function TextEditor() {
   }
 
   async function sendMessage() {
-    console.log({
+    if(message == "" || data.receivers_usernames.length < 1 || data.tags.length < 1) {
+      toast.error("Por favor, preencha todos os campos! É necessário inserir no mínimo a mensagem, os destinatários e tags");
+      return;
+    }
+
+    onSubmit();
+
+    let group = selectedPrivacy === "group" ? group_id : selectedPrivacy;
+
+    let sentData = {
       ...data,
       message,
       emoji: selectedEmoji,
-      groups: {
-        group_id,
-      },
+      groups: [group],
       organization_id,
+    };
+    console.log(sentData)
+
+    const formData = new FormData();
+    if(inputFile.current.files.length === 1 && attached !== false) formData.append("attachment", inputFile.current.files[0]);
+    else sentData["attachment_gif"] = gifPreview;
+    
+    formData.append("data", JSON.stringify(sentData));
+
+    api.post(`message/${organization_id}`, formData).then((response) => {
+      toast.success('Mensagem enviada com sucesso!');
+      setAttached(false);
+      setImagePreview(null);
+      setGifPreview(null);
+      setSelectedPrivacy("public")
+      setNewTagText("");
+      setNewUserText("");
+      setMessage("");
+      setSelectedEmoji("");
+      setData({
+        receivers_usernames: [],
+        tags: [],
+      });
+      onSend();
+    }).catch(error => {
+      console.log(error)
     });
   }
 
@@ -135,8 +171,8 @@ export function TextEditor() {
             placeholder="Insira os usuários"
             value={newUserText}
             onChange={(input) => setNewUserText(input.target.value)}
-            onKeyPress={(event) => {
-              if (event.key === "Enter") {
+            onKeyDown={(event) => {
+              if (event.key === "Tab" || event.key === "Enter") {
                 handleAddUser(newUserText);
                 setNewUserText("");
               }
@@ -207,14 +243,15 @@ export function TextEditor() {
           <Tooltip
             placement="bottom"
             trigger="click"
+            visible={tooltipVisible}
             content={
               <Input
                 className={styles.tagInput}
                 placeholder="Insira a tag"
                 value={newTagText}
                 onChange={(input) => setNewTagText(input.target.value)}
-                onKeyPress={(event) => {
-                  if (event.key === "Enter") {
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === "Tab") {
                     handleAddTag(newTagText);
                     setNewTagText("");
                   }
@@ -222,7 +259,7 @@ export function TextEditor() {
               />
             }
           >
-            <button className={styles.tag}>
+            <button className={styles.tag} onClick={() => setTooltipVisible(true)}>
               <ChevronDown className={styles.addIcon} />
             </button>
           </Tooltip>
@@ -289,47 +326,52 @@ export function TextEditor() {
               />
             </Button>
           </Tooltip>
-          <Button
-            className={styles.attachment}
-            auto
-            onClick={() => {
-              inputFile.current.value = "";
-              inputFile.current.click();
-              setAttached(false);
-            }}
-          >
-            <Image
-              src="/icons/image.svg"
-              alt="Ícone de imagem"
-              width={22}
-              height={22}
-            />
-          </Button>
-          <Tooltip
-            placement="right"
-            trigger="click"
-            content={
-              <ReactGiphySearchbox
-                apiKey={process.env.NEXT_PUBLIC_GIPHY_API_KEY}
-                onSelect={(item) => handleSelectGif(item.embed_url)}
-                messageError="Não foi possível carregar a biblioteca de GIF'S"
-                messageLoading="Carregando..."
-                messageNoMatches="Nenhum GIF encontrado"
-                searchPlaceholder="Pesquisar GIF"
-                listWrapperClassName={styles.giphyListWrapper}
-                searchFormClassName={styles.giphySearchForm}
-              />
-            }
-          >
-            <Button className={styles.attachment} auto>
+          {gifPreview === null && (
+            <Button
+              className={styles.attachment}
+              auto
+              onClick={() => {
+                inputFile.current.value = "";
+                inputFile.current.click();
+                setAttached(false);
+              }}
+            >
               <Image
-                src="/icons/gif.svg"
-                alt="Ícone de GIF"
-                width={26}
-                height={26}
+                src="/icons/image.svg"
+                alt="Ícone de imagem"
+                width={22}
+                height={22}
               />
             </Button>
-          </Tooltip>
+          )}
+
+          {attached === false && (
+            <Tooltip
+              placement="right"
+              trigger="click"
+              content={
+                <ReactGiphySearchbox
+                  apiKey={process.env.NEXT_PUBLIC_GIPHY_API_KEY}
+                  onSelect={(item) => handleSelectGif(item.embed_url)}
+                  messageError="Não foi possível carregar a biblioteca de GIF'S"
+                  messageLoading="Carregando..."
+                  messageNoMatches="Nenhum GIF encontrado"
+                  searchPlaceholder="Pesquisar GIF"
+                  listWrapperClassName={styles.giphyListWrapper}
+                  searchFormClassName={styles.giphySearchForm}
+                />
+              }
+            >
+              <Button className={styles.attachment} auto>
+                <Image
+                  src="/icons/gif.svg"
+                  alt="Ícone de GIF"
+                  width={26}
+                  height={26}
+                />
+              </Button>
+            </Tooltip>
+          )}
         </div>
         <Button className={styles.sendGratiButton} onClick={sendMessage}>
           Enviar grati

@@ -78,7 +78,7 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
                     <div className={styles.divider}/>
                     {
                         message.sender.user.id === user.id &&
-                        <Delete onClick={deleteFunction} />
+                        <Delete onClick={() => deleteFunction(message.id)} />
                     }
                 </div>
             </Card.Header>

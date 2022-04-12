@@ -95,7 +95,6 @@ export default function DateProfile() {
       });
 
     if (imagePreview !== user.profile_picture) {
-      // put imagePreview in formData
       const formData = new FormData();
       formData.append("avatar", inputFile.current.files[0]);
 
