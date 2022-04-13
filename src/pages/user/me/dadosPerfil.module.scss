@@ -227,20 +227,12 @@
         gap: 0.5rem;
 
         font-size: 1rem;
-        cursor: pointer;
+        opacity: .4;
 
         span {
           color: #4e4e4e;
           font-size: 2rem;
           transition: all 0.2s ease-in-out;
-        }
-
-        &:hover {
-          border: 2px var(--nextui-colors-primary) dashed;
-          color: var(--nextui-colors-primary);
-          span {
-            color: var(--nextui-colors-primary);
-          }
         }
       }
 
@@ -556,43 +548,6 @@
       text-align: center;
       font-size: 1.5rem;
       border-radius: 5px;
-    }
-  }
-}
-.groupsModalInfoCorporative {
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 2rem;
-  .groupsWrapper {
-    display: flex;
-    flex-direction: column;
-
-    .cox {
-      border-radius: 5px;
-      background-color: white;
-      width: 100%;
-      .bar {
-        background-color: #ededed;
-        padding: 1rem;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        button {
-          width: 40px;
-          height: 40px;
-          background-color: white;
-          border-radius: 5px;
-          color: #6874e8;
-          font-weight: 600;
-        }
-      }
-      input {
-        border: 0px;
-        width: 100%;
-        padding: 2rem;
-        height: 250px;
-      }
     }
   }
 }

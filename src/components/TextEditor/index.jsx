@@ -145,8 +145,6 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
 
     if (file) {
       fileReader.readAsDataURL(file);
-    } else {
-      setImagePreview("/images/more-icon.png");
     }
 
     fileReader.onloadend = () => setImagePreview(fileReader.result);

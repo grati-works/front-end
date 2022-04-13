@@ -13,6 +13,8 @@ import { Skeleton } from "../../../components/Skeleton";
 import Router from "next/router";
 import { toast } from "react-toastify";
 import { DeleteMessageModal } from "../../../components/Modal/DeleteMessage";
+import { EditInfoModal } from "../../../components/Modal/EditInfo";
+import { AboutMeModal } from "../../../components/Modal/AboutMe";
 
 export default function DateProfile() {
   const [isVisible, setModalIsVisible] = useState(false);
@@ -56,12 +58,23 @@ export default function DateProfile() {
     setEditInfo(false);
   };
 
-  //Modal de alteração das informações corporativas studyInfo
-  const [editStudyInfo, setEditStudyInfo] = useState(false);
-  const handlerEditStudyInfo = () => setEditStudyInfo(true);
-  const closeHandlerEditStudyInfo = () => {
-    setEditStudyInfo(false);
-  };
+  const [aboutMeModalIsOpened, setAboutMeModalIsOpened] = useState(false);
+  function handleToggleAboutMeModal() {
+    setAboutMeModalIsOpened(!aboutMeModalIsOpened);
+  }
+  function handleUpdateAboutMe() {}
+
+  const [editSkillsModalIsOpened, setEditSkillsModalIsOpened] = useState(false);
+  function handleToggleSkillsModal() {
+    setEditSkillsModalIsOpened(!editSkillsModalIsOpened);
+  }
+  function handleUpdateSkills() {}
+
+  const [editGraduationsModalIsOpened, setEditGraduationsModalIsOpened] = useState(false);
+  function handleToggleGraduationsModal() {
+    setEditGraduationsModalIsOpened(!editGraduationsModalIsOpened);
+  }
+  function handleUpdateGraduations() {}
 
   //Modal de exclusao de mensagem
   const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false);
@@ -173,8 +186,6 @@ export default function DateProfile() {
 
     if (file) {
       fileReader.readAsDataURL(file);
-    } else {
-      setImagePreview("/images/more-icon.png");
     }
 
     fileReader.onloadend = () => setImagePreview(fileReader.result);
@@ -374,11 +385,11 @@ export default function DateProfile() {
                 <EditSquare
                   set="light"
                   className={styles.editIcon}
-                  onClick={handlerEditInfo}
+                  onClick={handleToggleAboutMeModal}
                 />
               </div>
               {!profile?.description ? (
-                <p className={styles.whoYou} onClick={handlerEditInfo}>
+                <p className={styles.whoYou}>
                   <span> + </span>
                   Quem é você e o que faz?
                 </p>
@@ -406,7 +417,7 @@ export default function DateProfile() {
                 <EditSquare
                   set="light"
                   className={styles.editIcon}
-                  onClick={handlerEditStudyInfo}
+                  onClick={handleToggleSkillsModal}
                 />
               </div>
             </div>
@@ -416,7 +427,7 @@ export default function DateProfile() {
                 <EditSquare
                   set="light"
                   className={styles.editIcon}
-                  onClick={handlerEditStudyInfo}
+                  onClick={handleToggleGraduationsModal}
                 />
               </div>
             </div>
@@ -424,81 +435,26 @@ export default function DateProfile() {
         </Modal.Body>
       </Modal>
 
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        open={editInfo}
-        onClose={closeHandlerEditInfo}
-        className={styles.groupsModalInfoCorporative}
-        width="1200px"
-        scroll
-      >
-        <Modal.Body className={styles.editGrape}>
-          Sobre mim
-          <div className={styles.aboutMe}>
-            <div className={styles.bar}>
-              <button>B</button>
-              <button>I</button>
-            </div>
-            <input type="text" placeholder="1200 caractéres" />
-          </div>
-          <div className={styles.gitHub}>
-            <button>
-              <img src="/images/imgGitHub.png" alt="imgGitHub" />
-              Github
-            </button>
-          </div>
-          <div className={styles.linkedin}>
-            <button>
-              <img src="/images/imgLinkedin.png" alt="imgLinkedin" />
-              Linkedin
-            </button>
-          </div>
-          <div className={styles.dribbble}>
-            <button>
-              <img src="/images/imgDribbble.png" alt="imgDribbble" />
-              Dribbble
-            </button>
-          </div>
-          <div className={styles.boxButons}>
-            <Button color="error">Cancelar</Button>
-            <Button>Salvar alterações</Button>
-          </div>
-        </Modal.Body>
-      </Modal>
-      <Modal
-        closeButton
-        aria-labelledby="modal-title"
-        open={editStudyInfo}
-        onClose={closeHandlerEditStudyInfo}
-        className={styles.groupsModalInfoCorporative}
-        width="1200px"
-        scroll
-      >
-        <Modal.Body className={styles.groupsWrapper}>
-          Skills
-          <div className={styles.cox}>
-            <div className={styles.bar}>
-              <button>B</button>
-              <button>I</button>
-            </div>
-            <input type="text" placeholder="1200 caractéres" />
-          </div>
-          Formação
-          <div className={styles.cox}>
-            <div className={styles.bar}>
-              <button>B</button>
-              <button>I</button>
-            </div>
-            <input type="text" placeholder="1200 caractéres" />
-          </div>
-          <div className={styles.boxButons}>
-            <Button color="error">Cancelar</Button>
-            <Button>Salvar alterações</Button>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <AboutMeModal
+        open={aboutMeModalIsOpened}
+        onToggle={handleToggleAboutMeModal}
+        onSave={handleUpdateAboutMe}
+      />
 
+      <EditInfoModal
+        title="Skills"
+        open={editSkillsModalIsOpened}
+        onToggle={handleToggleSkillsModal}
+        onSave={handleUpdateSkills}
+        currentContent=""
+      />
+      <EditInfoModal
+        title="Formação"
+        open={editGraduationsModalIsOpened}
+        onToggle={handleToggleGraduationsModal}
+        onSave={handleUpdateGraduations}
+        currentContent=""
+      />
       <DeleteMessageModal
         isVisible={deleteModalIsVisible}
         closeFunction={handleOpenDeleteModal}

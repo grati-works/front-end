@@ -1,0 +1,44 @@
+.groupsModalInfoCorporative {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 2rem;
+  .groupsWrapper {
+    display: flex;
+    flex-direction: column;
+
+    .cox {
+      border-radius: 5px;
+      background-color: white;
+      width: 100%;
+      .bar {
+        background-color: #ededed;
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        button {
+          width: 40px;
+          height: 40px;
+          background-color: white;
+          border-radius: 5px;
+          color: #6874e8;
+          font-weight: 600;
+        }
+      }
+      input {
+        border: 0px;
+        width: 100%;
+        padding: 2rem;
+        height: 250px;
+      }
+    }
+  }
+
+  .boxButons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-left: auto;
+  }
+}
