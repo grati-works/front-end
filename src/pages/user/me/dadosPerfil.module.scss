@@ -236,21 +236,27 @@
         }
       }
 
-      button {
-        margin-top: 1rem;
-        background-color: var(--nextui-colors-gray100);
-        color: var(--nextui-colors-gray800);
-
+      .vinculedAccounts {
         display: flex;
-        align-items: center;
-
-        transition: filter 0.2s ease-in-out;
-
-        img {
-          height: 1.5rem;
-          width: 1.5rem;
+        gap: 1rem;
+        
+        button {
+          margin-top: 1rem;
+          background-color: var(--nextui-colors-gray100);
+          color: var(--nextui-colors-gray800);
+  
+          display: flex;
+          align-items: center;
+  
+          transition: filter 0.2s ease-in-out;
+  
+          img {
+            height: 1.5rem;
+            width: 1.5rem;
+          }
         }
       }
+
     }
     .skills {
       padding: 2rem;

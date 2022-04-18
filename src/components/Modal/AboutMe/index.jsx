@@ -3,15 +3,59 @@ import React, { useState } from "react";
 import { Modal } from "@nextui-org/react";
 import { Button } from "../../Button";
 import styles from "./styles.module.scss";
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-import 'react-quill/dist/quill.snow.css';
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css";
+import { useEffect } from "react";
+import { api } from "../../../services/api";
 
-export function AboutMeModal({
-  open,
-  onToggle = () => {},
-  onSave = () => {},
-}) {
-  const [value, setValue] = useState('');
+export function AboutMeModal({ open, onToggle = () => {}, profile }) {
+  const [description, setDescription] = useState("");
+  const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [dribbble, setDribbble] = useState("");
+
+  async function handleSaveData() {
+    const data = {
+      description,
+      vinculed_accounts: [
+        {
+          provider: "Github",
+          account: github,
+        },
+        {
+          provider: "Linkedin",
+          account: linkedin,
+        },
+        {
+          provider: "Dribbble",
+          account: dribbble,
+        },
+      ],
+    };
+    console.log(profile, data);
+    await api.put(`profile/${profile.id}`, data);
+  }
+
+  useEffect(() => {
+    if (profile) {
+      console.log(profile);
+      profile.description && setDescription(profile.description);
+      profile.vinculed_accounts &&
+        profile.vinculed_accounts.forEach((account) => {
+          switch (account.provider) {
+            case "Github":
+              setGithub(account.account);
+              break;
+            case "Linkedin":
+              setLinkedin(account.account);
+              break;
+            case "Dribbble":
+              setDribbble(account.account);
+              break;
+          }
+        });
+    }
+  }, [profile]);
 
   return (
     <Modal
@@ -26,34 +70,65 @@ export function AboutMeModal({
       <Modal.Body className={styles.editGrape}>
         Sobre mim
         <div className={styles.aboutMe}>
-          <ReactQuill theme="snow" value={value} onChange={setValue}/>
-          {/* <div className={styles.bar}>
-            <button>B</button>
-            <button>I</button>
-          </div>
-          <input type="text" placeholder="1200 caractéres" /> */}
+          <ReactQuill
+            theme="snow"
+            value={description}
+            onChange={(value) => {
+              if (value.replace(/(<([^>]+)>)/gi, "").length <= 1200) {
+                setDescription(value);
+              } else {
+                setDescription(value.substring(0, 1203));
+              }
+            }}
+          />
+          <span
+            className={
+              description.replace(/(<([^>]+)>)/gi, "").length >= 1200
+                ? styles.maxCharLimit
+                : styles.maxChar
+            }
+          >
+            {description.replace(/(<([^>]+)>)/gi, "") === "undefined"
+              ? 1200
+              : 1200 - description.replace(/(<([^>]+)>)/gi, "").length}{" "}
+            caractéres restantes
+          </span>
         </div>
         <div className={styles.gitHub}>
-          <button>
+          <div>
             <img src="/images/imgGitHub.png" alt="imgGitHub" />
             Github
-          </button>
+          </div>
+          <input
+            type="text"
+            onChange={(event) => setGithub(event.target.value)}
+          />
         </div>
         <div className={styles.linkedin}>
-          <button>
+          <div>
             <img src="/images/imgLinkedin.png" alt="imgLinkedin" />
             Linkedin
-          </button>
+          </div>
+          <input
+            type="text"
+            onChange={(event) => setLinkedin(event.target.value)}
+          />
         </div>
         <div className={styles.dribbble}>
-          <button>
+          <div>
             <img src="/images/imgDribbble.png" alt="imgDribbble" />
             Dribbble
-          </button>
+          </div>
+          <input
+            type="text"
+            onChange={(event) => setDribbble(event.target.value)}
+          />
         </div>
         <div className={styles.boxButons}>
-          <Button onClick={onToggle} color="error">Cancelar</Button>
-          <Button onClick={onSave}>Salvar alterações</Button>
+          <Button onClick={onToggle} color="error">
+            Cancelar
+          </Button>
+          <Button onClick={handleSaveData}>Salvar alterações</Button>
         </div>
       </Modal.Body>
     </Modal>

@@ -15,6 +15,7 @@ import { Image, Modal } from "@nextui-org/react";
 import { dayjs, months } from "../../../../services/dayjs";
 import { useAuth } from "../../../../hooks/useAuth";
 import { DeleteMessageModal } from "../../../../components/Modal/DeleteMessage";
+import { EmptyBox } from "../../../../components/EmptyBox";
 
 export default function HomeUser(props) {
   const [messages, setMessages] = useState([]);
@@ -113,19 +114,7 @@ export default function HomeUser(props) {
             <TextEditor onSend={handleSendMessage} />
             <div className={styles.feed}>
               {messages == "vazio" ? (
-                <div className={styles.emptyMessages}>
-                  <Image
-                    src="/images/empty_messages.svg"
-                    alt="Ilustração de perguntas"
-                    showSkeleton
-                    maxDelay={10000}
-                    width={200}
-                  />
-                  <h2>Nenhuma mensagem por aqui...</h2>
-                  <p>
-                    Gostaria de enviar uma nova mensagem? Utilize a caixa acima!
-                  </p>
-                </div>
+                <EmptyBox />
               ) : messages.length > 0 ? (
                 messages.map((message) => (
                   <GratiCard

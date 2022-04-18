@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     .aboutMe {
+      margin-top: 2rem;
       border-radius: 5px;
       background-color: var(--nextui-colors-white);
       width: 100%;
@@ -15,15 +16,27 @@
 
         &:first-child {
           background-color: #ededed;
-  
+
+          span:first-of-type {
+            display: none;
+          }
+
           button {
-            background-color: #F6F7F8;
+            background-color: #f6f7f8;
             border-radius: 3px;
-            color: #6874e8;
+            color: var(--nextui-colors-primary);
             font-weight: 600;
-            margin-right: 4px;;
+            margin-right: 4px;
+
+            &:hover svg path {
+              stroke: var(--nextui-colors-primary);
+            }
           }
         }
+      }
+
+      > div div div {
+        min-height: 200px;
       }
 
       .bar {
@@ -40,19 +53,56 @@
         padding: 2rem;
         height: 250px;
       }
+
+      div[data-mode="link"] {
+        left: 1rem !important;
+
+        input {
+          border: 1px solid #ccc;
+          font-size: 13px;
+          height: 26px;
+          margin: 0px;
+          padding: 3px 5px;
+          width: 170px;
+        }
+      }
+
+      > span {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--nextui-colors-accents6);
+        display: block;
+        text-align: right;
+        padding: 1rem;
+
+        &.maxCharLimit {
+          color: var(--nextui-colors-error);
+        }
+      }
     }
   }
   .gitHub {
     width: 100%;
     background-color: white;
-    padding-block-start: 5px;
-    padding-block-end: 5px;
-    button {
-      margin-inline-start: 5px;
+    padding: 5px;
+    display: flex;
+    gap: 12px;
+
+    input {
+      border: none;
+      width: 100%;
+    }
+
+    div {
+      font-size: 1rem;
+      font-weight: 400;
+      width: 140px;
+      margin-left: 5px;
       background-color: var(--nextui-colors-gray100);
       color: var(--nextui-colors-gray800);
       border-radius: 5px;
       padding: 8px 12px;
+      padding-right: 18px;
 
       display: flex;
       align-items: center;
@@ -72,14 +122,25 @@
   .linkedin {
     width: 100%;
     background-color: white;
-    padding-block-start: 5px;
-    padding-block-end: 5px;
-    button {
-      margin-inline-start: 5px;
+    padding: 5px;
+    display: flex;
+    gap: 12px;
+
+    input {
+      border: none;
+      width: 100%;
+    }
+
+    div {
+      font-size: 1rem;
+      font-weight: 400;
+      width: 140px;
+      margin-left: 5px;
       background-color: var(--nextui-colors-gray100);
       color: var(--nextui-colors-gray800);
       border-radius: 5px;
       padding: 8px 12px;
+      padding-right: 18px;
 
       display: flex;
       align-items: center;
@@ -99,15 +160,25 @@
   .dribbble {
     width: 100%;
     background-color: white;
-    padding-block-start: 5px;
-    padding-block-end: 5px;
-    button {
-      margin-inline-start: 5px;
+    padding: 5px;
+    display: flex;
+    gap: 12px;
+
+    input {
+      border: none;
+      width: 100%;
+    }
+
+    div {
+      font-size: 1rem;
+      font-weight: 400;
+      width: 140px;
+      margin-left: 5px;
       background-color: var(--nextui-colors-gray100);
       color: var(--nextui-colors-gray800);
       border-radius: 5px;
       padding: 8px 12px;
-
+      
       display: flex;
       align-items: center;
       gap: 10px;

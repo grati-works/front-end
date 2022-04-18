@@ -25,7 +25,8 @@ export function Header({ user, privatePage = "" }) {
   }
 
   useEffect(() => {
-    // if(asPath.includes("auth") && user) push('/home');
+    console.log(asPath, user);
+    // if(asPath.includes("auth") && user) push('/organizations');
     // else if(privatePage !== '' && !user) push('/auth/signin')
   }, []);
 

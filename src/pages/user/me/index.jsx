@@ -3,18 +3,21 @@ import { useAuth } from "../../../hooks/useAuth";
 import Head from "next/head";
 import { Input } from "../../../components/Input";
 import styles from "./dadosPerfil.module.scss";
-import { Avatar, Modal, Image } from "@nextui-org/react";
+import { Avatar, Modal } from "@nextui-org/react";
 import { GratiCard } from "../../../components/GratiCard";
 import { Button } from "../../../components/Button";
 import { User, Lock, Edit, Paper, Wallet, EditSquare } from "react-iconly";
 import { parseCookies } from "nookies";
 import { api } from "../../../services/api";
 import { Skeleton } from "../../../components/Skeleton";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { DeleteMessageModal } from "../../../components/Modal/DeleteMessage";
 import { EditInfoModal } from "../../../components/Modal/EditInfo";
 import { AboutMeModal } from "../../../components/Modal/AboutMe";
+import { toastProps } from "../../../utils/toast";
+import { EmptyBox } from "../../../components/EmptyBox";
+import redirect from 'nextjs-redirect';
 
 export default function DateProfile() {
   const [isVisible, setModalIsVisible] = useState(false);
@@ -38,10 +41,21 @@ export default function DateProfile() {
   const inputFile = useRef(null);
   const [attached, setAttached] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
+  const router = useRouter();
 
   const vinculed_accounts = {
-    github: "/images/imgGitHub.png",
-    linkedin: "/images/imgLinkedin.png",
+    Github: {
+      icon: "/images/imgGitHub.png",
+      prefix: "https://github.com/",
+    },
+    Linkedin: {
+      icon: "/images/imgLinkedin.png",
+      prefix: "https://www.linkedin.com/in/",
+    },
+    Dribbble: {
+      icon: "/images/imgDribbble.png",
+      prefix: "https://dribbble.com/",
+    }
   };
 
   //Modal de visualização das informações corporativas
@@ -70,7 +84,8 @@ export default function DateProfile() {
   }
   function handleUpdateSkills() {}
 
-  const [editGraduationsModalIsOpened, setEditGraduationsModalIsOpened] = useState(false);
+  const [editGraduationsModalIsOpened, setEditGraduationsModalIsOpened] =
+    useState(false);
   function handleToggleGraduationsModal() {
     setEditGraduationsModalIsOpened(!editGraduationsModalIsOpened);
   }
@@ -111,15 +126,11 @@ export default function DateProfile() {
       const formData = new FormData();
       formData.append("avatar", inputFile.current.files[0]);
 
-      api
-        .patch("user/avatar", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(() => {
-          toast.success("Imagem atualizada com sucesso!");
-        });
+      api.patch("user/avatar", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     }
   }
 
@@ -158,12 +169,19 @@ export default function DateProfile() {
   useEffect(() => {
     async function loadMessages(user) {
       const { "grati.organization_id": organization_id } = parseCookies();
-      const response = await api.get(`profile/${organization_id}/${user.id}`);
+      console.log(organization_id);
+      if (organization_id == 0 || !organization_id) {
+        router.push("/organizations");
+        toast.warn("Você não selecionou nenhuma organização", toastProps);
+        return;
+      } else {
+        const response = await api.get(`profile/${organization_id}/${user.id}`);
 
-      let { sended_feedbacks, received_feedbacks } = response.data;
-      if (sended_feedbacks.length === 0) sended_feedbacks = "vazio";
-      if (received_feedbacks.length === 0) received_feedbacks = "vazio";
-      setMessages({ received_feedbacks, sended_feedbacks });
+        let { sended_feedbacks, received_feedbacks } = response.data;
+        if (sended_feedbacks.length === 0) sended_feedbacks = "vazio";
+        if (received_feedbacks.length === 0) received_feedbacks = "vazio";
+        setMessages({ received_feedbacks, sended_feedbacks });
+      }
     }
 
     if (user) {
@@ -321,20 +339,7 @@ export default function DateProfile() {
             </h3>
           </div>
           {messages[selectedMessagesSection] == "vazio" ? (
-            <div className={styles.emptyMessages}>
-              <Image
-                src="/images/empty_messages.svg"
-                alt="Ilustração de perguntas"
-                showSkeleton
-                maxDelay={10000}
-                width={200}
-                height={200}
-              />
-              <h2>Nenhuma mensagem por aqui...</h2>
-              <p>
-                Gostaria de enviar uma nova mensagem? Utilize a caixa acima!
-              </p>
-            </div>
+            <EmptyBox />
           ) : messages[selectedMessagesSection].length > 0 ? (
             messages[selectedMessagesSection].map((message) => (
               <GratiCard
@@ -394,22 +399,24 @@ export default function DateProfile() {
                   Quem é você e o que faz?
                 </p>
               ) : (
-                <p>{profile?.description}</p>
+                <p dangerouslySetInnerHTML={{__html: profile?.description}} />
               )}
-              {profile?.vinculed_accounts.map((vinculed_account) => (
-                <Button
-                  icon={
-                    <img
-                      src={vinculed_accounts[vinculed_account.provider]}
-                      alt={`Ícone de ${vinculed_account.provider}`}
-                    />
-                  }
-                  key={vinculed_account.provider}
-                  onClick={() => Router.push(vinculed_account.account)}
-                >
-                  {vinculed_account.provider}
-                </Button>
-              ))}
+              <div className={styles.vinculedAccounts}>
+                {profile?.vinculed_accounts.map((vinculed_account) => (
+                  <Button
+                    icon={
+                      <img
+                        src={vinculed_accounts[vinculed_account.provider].icon}
+                        alt={`Ícone de ${vinculed_account.provider}`}
+                      />
+                    }
+                    key={vinculed_account.provider}
+                    onClick={() => redirect(`${vinculed_accounts[vinculed_account.provider].prefix}${vinculed_account.account}`)}
+                  >
+                    {vinculed_account.provider}
+                  </Button>
+                ))}
+              </div>
             </div>
             <div className={styles.skills}>
               <div className={styles.title}>
@@ -438,7 +445,7 @@ export default function DateProfile() {
       <AboutMeModal
         open={aboutMeModalIsOpened}
         onToggle={handleToggleAboutMeModal}
-        onSave={handleUpdateAboutMe}
+        profile={profile}
       />
 
       <EditInfoModal
