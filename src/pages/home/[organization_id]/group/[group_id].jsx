@@ -36,9 +36,7 @@ export default function HomeUser(props) {
   function handleDeleteMessage() {
     api.delete(`/message/${selectedGrati}`).then(() => {
       setMessages((messages) => ({
-        ...messages.filter(
-          (message) => message.id !== selectedGrati
-        ),
+        ...messages.filter((message) => message.id !== selectedGrati),
       }));
       setModalIsVisible(false);
       toast.success("Mensagem excluida com sucesso!");
@@ -49,10 +47,12 @@ export default function HomeUser(props) {
     try {
       const { organization_id, group_id } = router.query;
       if (!organization_id || !user || !group_id) return;
-      if(organization_id == 0 || group_id == 0) {
-        router.push('/organizations')
-        if(organization_id == 0) toast.warn('Você não selecionou nenhuma organização', toastProps);
-        if(group_id == 0) toast.warn('Você não selecionou nenhum grupo', toastProps);
+      if (organization_id == 0 || group_id == 0) {
+        router.push("/organizations");
+        if (organization_id == 0)
+          toast.warn("Você não selecionou nenhuma organização", toastProps);
+        if (group_id == 0)
+          toast.warn("Você não selecionou nenhum grupo", toastProps);
         return;
       }
 
@@ -71,16 +71,23 @@ export default function HomeUser(props) {
       );
       setAccumulatedPoints(accumulatedPointsResponse.data);
 
-      const objectiveResponse = await api.get(`objective/${group_id}`);
-      setObjective(objectiveResponse.data[0]);
-
-      const messagesResponse = await api.get(`message/${organization_id}/${group_id}`);
+      const messagesResponse = await api.get(
+        `message/${organization_id}/${group_id}`
+      );
       if (messagesResponse.data.feedbacks.length === 0) {
         setMessages("vazio");
       } else {
         setMessages(messagesResponse.data.feedbacks);
         setReactions(messagesResponse.data.reacted_feedbacks);
       }
+
+
+
+      await api.get(`objective/${group_id}`).then(objectiveResponse => {
+        setObjective(objectiveResponse.data[0]);
+      }).catch(error => {
+        error.response.status === 404 && setObjective('nothing')
+      });
     } catch (error) {
       console.log(error);
       toast.error(error.message, toastProps);
@@ -145,10 +152,16 @@ export default function HomeUser(props) {
               <Skeleton width="100%" height="5rem" />
             )}
             {objective !== null ? (
-              <div className={styles.experience}>
-                <Calendar set="light" className={styles.icon} />
-                <p>Uma meta "{objective.name}" de {objective.goal} xp está agendada para {dayjs(objective.expires_in).format('DD/MM')}.</p>
-              </div>
+              objective !== "nothing" && (
+                <div className={styles.experience}>
+                  <Calendar set="light" className={styles.icon} />
+                  <p>
+                    Uma meta "{objective?.name}" de {objective?.goal} xp está
+                    agendada para {dayjs(objective?.expires_in).format("DD/MM")}
+                    .
+                  </p>
+                </div>
+              )
             ) : (
               <Skeleton width="100%" height="5rem" />
             )}
@@ -188,7 +201,11 @@ export default function HomeUser(props) {
         </div>
       </>
 
-      <DeleteMessageModal isVisible={isVisible} cancelFunction={handleOpenDeleteModal} deleteFunction={handleDeleteMessage}/>
+      <DeleteMessageModal
+        isVisible={isVisible}
+        cancelFunction={handleOpenDeleteModal}
+        deleteFunction={handleDeleteMessage}
+      />
     </>
   );
 }
