@@ -1,3 +1,12 @@
+:root {
+  --toastify-color-light: var(--nextui-colors-background);
+  --toastify-text-color-light: var(--nextui-colors-accents7);
+}
+
+::selection {
+  background: var(--nextui-colors-primaryDark);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -19,6 +28,10 @@ body {
   background-color: var(--nextui-colors-background);
   color: var(--nextui-colors-accents6);
   height: 100vh;
+
+  button[aria-label="close"] {
+    color: var(--nextui-colors-accents6);
+  }
 }
 
 body,
@@ -26,7 +39,7 @@ input,
 textarea,
 select,
 button {
-  font: 400 1rem 'Inter', san-serif;
+  font: 400 1rem 'Inter', sans-serif;
 }
 
 button {

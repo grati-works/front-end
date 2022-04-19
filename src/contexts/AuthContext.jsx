@@ -103,9 +103,26 @@ export function AuthContextProvider({ children }) {
     setUser(undefined);
   }
 
+  async function reloadProfile() {
+    try {
+      const { "grati.organization_id": organization_id } = parseCookies();
+
+      await api
+        .get(`profile/${organization_id}/${user.id}`)
+        .then((response) => {
+          const organization = response.data;
+
+          setProfile(organization);
+        })
+        .catch((error) => {});
+    } catch (error) {
+      toast.error(error.message, toastProps);
+    }
+  }
+
   return (
     <AuthContext.Provider
-      value={{ user, profile, isAuthenticated, signIn, signUp, signOut }}
+      value={{ user, profile, isAuthenticated, signIn, signUp, signOut, reloadProfile }}
     >
       {children}
     </AuthContext.Provider>

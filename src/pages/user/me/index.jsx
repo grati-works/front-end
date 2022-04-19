@@ -17,10 +17,8 @@ import { EditInfoModal } from "../../../components/Modal/EditInfo";
 import { AboutMeModal } from "../../../components/Modal/AboutMe";
 import { toastProps } from "../../../utils/toast";
 import { EmptyBox } from "../../../components/EmptyBox";
-import redirect from 'nextjs-redirect';
 
 export default function DateProfile() {
-  const [isVisible, setModalIsVisible] = useState(false);
   const [selectedGrati, setSelectedGrati] = useState(null);
   const [currentSection, setCurrentSection] = useState("data");
   const [messages, setMessages] = useState({
@@ -28,7 +26,7 @@ export default function DateProfile() {
     received_feedbacks: [],
   });
 
-  const { user, profile } = useAuth();
+  const { user, profile, reloadProfile } = useAuth();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -60,36 +58,56 @@ export default function DateProfile() {
 
   //Modal de visualização das informações corporativas
   const [visibleInfo, setVisibleInfo] = useState(false);
-  const handlerInfo = () => setVisibleInfo(true);
+  const handlerInfo = () => {
+    reloadProfile();
+    setVisibleInfo(true);
+  };
   const closeHandlerInfo = () => {
     setVisibleInfo(false);
   };
 
   //Modal de alteração das informações corporativas
   const [editInfo, setEditInfo] = useState(false);
-  const handlerEditInfo = () => setEditInfo(true);
   const closeHandlerEditInfo = () => {
     setEditInfo(false);
   };
 
   const [aboutMeModalIsOpened, setAboutMeModalIsOpened] = useState(false);
-  function handleToggleAboutMeModal() {
-    setAboutMeModalIsOpened(!aboutMeModalIsOpened);
+  function handleToggleAboutMeModal(status = !aboutMeModalIsOpened) {
+    setAboutMeModalIsOpened(status);
+    closeHandlerInfo();
   }
-  function handleUpdateAboutMe() {}
 
   const [editSkillsModalIsOpened, setEditSkillsModalIsOpened] = useState(false);
-  function handleToggleSkillsModal() {
-    setEditSkillsModalIsOpened(!editSkillsModalIsOpened);
+  function handleToggleSkillsModal(status = !editSkillsModalIsOpened) {
+    setEditSkillsModalIsOpened(status);
+    closeHandlerInfo();
   }
-  function handleUpdateSkills() {}
+
+  async function handleUpdateSkills(skills) {
+    await api.put(`profile/${profile.id}`, {
+      skills
+    }).then(() => {
+      toast.success("Skills atualizadas com sucesso!", toastProps);
+    });
+    handleToggleSkillsModal(false);
+  }
 
   const [editGraduationsModalIsOpened, setEditGraduationsModalIsOpened] =
     useState(false);
-  function handleToggleGraduationsModal() {
-    setEditGraduationsModalIsOpened(!editGraduationsModalIsOpened);
+  function handleToggleGraduationsModal(status = !editGraduationsModalIsOpened) {
+    setEditGraduationsModalIsOpened(status);
+    closeHandlerInfo();
   }
-  function handleUpdateGraduations() {}
+
+  async function handleUpdateGraduations(graduations) {
+    api.put(`profile/${profile.id}`, {
+      graduations
+    }).then(() => {
+      toast.success("Graduações atualizadas com sucesso!", toastProps);
+    });
+    handleToggleGraduationsModal(false);
+  }
 
   //Modal de exclusao de mensagem
   const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false);
@@ -411,7 +429,7 @@ export default function DateProfile() {
                       />
                     }
                     key={vinculed_account.provider}
-                    onClick={() => redirect(`${vinculed_accounts[vinculed_account.provider].prefix}${vinculed_account.account}`)}
+                    onClick={() => window.location=`${vinculed_accounts[vinculed_account.provider].prefix}${vinculed_account.account}`}
                   >
                     {vinculed_account.provider}
                   </Button>
@@ -427,6 +445,7 @@ export default function DateProfile() {
                   onClick={handleToggleSkillsModal}
                 />
               </div>
+              <p dangerouslySetInnerHTML={{__html: profile?.skills}} />
             </div>
             <div className={styles.formation}>
               <div className={styles.title}>
@@ -437,6 +456,7 @@ export default function DateProfile() {
                   onClick={handleToggleGraduationsModal}
                 />
               </div>
+              <p dangerouslySetInnerHTML={{__html: profile?.graduations}} />
             </div>
           </div>
         </Modal.Body>
@@ -453,14 +473,16 @@ export default function DateProfile() {
         open={editSkillsModalIsOpened}
         onToggle={handleToggleSkillsModal}
         onSave={handleUpdateSkills}
-        currentContent=""
+        profile={profile}
+        contentKey="skills"
       />
       <EditInfoModal
         title="Formação"
         open={editGraduationsModalIsOpened}
         onToggle={handleToggleGraduationsModal}
         onSave={handleUpdateGraduations}
-        currentContent=""
+        profile={profile}
+        contentKey="graduations"
       />
       <DeleteMessageModal
         isVisible={deleteModalIsVisible}

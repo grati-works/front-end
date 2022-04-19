@@ -8,25 +8,32 @@
     .aboutMe {
       margin-top: 2rem;
       border-radius: 5px;
-      background-color: var(--nextui-colors-white);
+      background-color: var(--nextui-colors-backgroundHighlight);
       width: 100%;
 
       > div > div {
         border: none;
 
         &:first-child {
-          background-color: #ededed;
+          background-color: var(--nextui-colors-accents2);
+          border-radius: 5px 5px 0 0;
 
           span:first-of-type {
             display: none;
           }
 
           button {
-            background-color: #f6f7f8;
+            background-color: var(--nextui-colors-accents1);
             border-radius: 3px;
             color: var(--nextui-colors-primary);
             font-weight: 600;
             margin-right: 4px;
+
+            svg {
+              path, line, rect {
+                stroke: var(--nextui-colors-accents8);
+              }
+            }
 
             &:hover svg path {
               stroke: var(--nextui-colors-primary);
@@ -40,7 +47,7 @@
       }
 
       .bar {
-        background-color: #ededed;
+        background-color: var(--nextui-colors-accents2);
         padding: 1rem;
         width: 100%;
         display: flex;
@@ -83,7 +90,8 @@
   }
   .gitHub {
     width: 100%;
-    background-color: white;
+    background-color: var(--nextui-colors-backgroundHighlight);
+    border-radius: 5px;
     padding: 5px;
     display: flex;
     gap: 12px;
@@ -91,6 +99,8 @@
     input {
       border: none;
       width: 100%;
+      background-color: var(--nextui-colors-backgroundHighlight);
+      color: var(--nextui-colors-accents7);
     }
 
     div {
@@ -98,8 +108,8 @@
       font-weight: 400;
       width: 140px;
       margin-left: 5px;
-      background-color: var(--nextui-colors-gray100);
-      color: var(--nextui-colors-gray800);
+      background-color: var(--nextui-colors-background);
+      color: var(--nextui-colors-accents7);
       border-radius: 5px;
       padding: 8px 12px;
       padding-right: 18px;
@@ -113,15 +123,13 @@
       img {
         height: 1.5rem;
         width: 1.5rem;
-      }
-      &:hover {
-        filter: brightness(0.9);
       }
     }
   }
   .linkedin {
     width: 100%;
-    background-color: white;
+    background-color: var(--nextui-colors-backgroundHighlight);
+    border-radius: 5px;
     padding: 5px;
     display: flex;
     gap: 12px;
@@ -129,6 +137,8 @@
     input {
       border: none;
       width: 100%;
+      background-color: var(--nextui-colors-backgroundHighlight);
+      color: var(--nextui-colors-accents7);
     }
 
     div {
@@ -136,8 +146,8 @@
       font-weight: 400;
       width: 140px;
       margin-left: 5px;
-      background-color: var(--nextui-colors-gray100);
-      color: var(--nextui-colors-gray800);
+      background-color: var(--nextui-colors-background);
+      color: var(--nextui-colors-accents7);
       border-radius: 5px;
       padding: 8px 12px;
       padding-right: 18px;
@@ -152,14 +162,12 @@
         height: 1.5rem;
         width: 1.5rem;
       }
-      &:hover {
-        filter: brightness(0.9);
-      }
     }
   }
   .dribbble {
     width: 100%;
-    background-color: white;
+    background-color: var(--nextui-colors-backgroundHighlight);
+    border-radius: 5px;
     padding: 5px;
     display: flex;
     gap: 12px;
@@ -167,6 +175,8 @@
     input {
       border: none;
       width: 100%;
+      background-color: var(--nextui-colors-backgroundHighlight);
+      color: var(--nextui-colors-accents7);
     }
 
     div {
@@ -174,8 +184,8 @@
       font-weight: 400;
       width: 140px;
       margin-left: 5px;
-      background-color: var(--nextui-colors-gray100);
-      color: var(--nextui-colors-gray800);
+      background-color: var(--nextui-colors-background);
+      color: var(--nextui-colors-accents7);
       border-radius: 5px;
       padding: 8px 12px;
       
@@ -188,9 +198,6 @@
       img {
         height: 1.5rem;
         width: 1.5rem;
-      }
-      &:hover {
-        filter: brightness(0.9);
       }
     }
   }

@@ -17,7 +17,8 @@ function MyApp({ Component, pageProps }) {
     primaryDark: '#5562db',
 
     success: '#4CD62B',
-    error: '#E83F5B'
+    error: '#E83F5B',
+    selection: '#6874E8',
   }
 
   const lightTheme = createTheme({

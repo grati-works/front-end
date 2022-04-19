@@ -7,6 +7,8 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import { useEffect } from "react";
 import { api } from "../../../services/api";
+import { toast } from "react-toastify";
+import { toastProps } from "../../../utils/toast";
 
 export function AboutMeModal({ open, onToggle = () => {}, profile }) {
   const [description, setDescription] = useState("");
@@ -18,39 +20,43 @@ export function AboutMeModal({ open, onToggle = () => {}, profile }) {
     const data = {
       description,
       vinculed_accounts: [
-        {
+        github !== "" ? {
           provider: "Github",
           account: github,
-        },
-        {
+        } : null,
+        linkedin !== "" ? {
           provider: "Linkedin",
           account: linkedin,
-        },
-        {
+        } : null,
+        dribbble !== "" ? {
           provider: "Dribbble",
           account: dribbble,
-        },
+        } : null
       ],
     };
-    console.log(profile, data);
+
+    console.log(data)
+
     await api.put(`profile/${profile.id}`, data);
+    onToggle(false);
+
+    toast.success("Perfil atualizado com sucesso!", toastProps);
   }
 
   useEffect(() => {
     if (profile) {
-      console.log(profile);
       profile.description && setDescription(profile.description);
       profile.vinculed_accounts &&
-        profile.vinculed_accounts.forEach((account) => {
-          switch (account.provider) {
+        profile.vinculed_accounts.forEach((vinculed_account) => {
+          switch (vinculed_account.provider) {
             case "Github":
-              setGithub(account.account);
+              setGithub(vinculed_account.account);
               break;
             case "Linkedin":
-              setLinkedin(account.account);
+              setLinkedin(vinculed_account.account);
               break;
             case "Dribbble":
-              setDribbble(account.account);
+              setDribbble(vinculed_account.account);
               break;
           }
         });
@@ -62,7 +68,7 @@ export function AboutMeModal({ open, onToggle = () => {}, profile }) {
       closeButton
       aria-labelledby="modal-title"
       open={open}
-      onClose={onToggle}
+      onClose={() => onToggle(false)}
       className={styles.groupsModalInfoCorporative}
       width="1200px"
       scroll
@@ -101,6 +107,7 @@ export function AboutMeModal({ open, onToggle = () => {}, profile }) {
           </div>
           <input
             type="text"
+            value={github}
             onChange={(event) => setGithub(event.target.value)}
           />
         </div>
@@ -111,6 +118,7 @@ export function AboutMeModal({ open, onToggle = () => {}, profile }) {
           </div>
           <input
             type="text"
+            value={linkedin}
             onChange={(event) => setLinkedin(event.target.value)}
           />
         </div>
@@ -121,11 +129,12 @@ export function AboutMeModal({ open, onToggle = () => {}, profile }) {
           </div>
           <input
             type="text"
+            value={dribbble}
             onChange={(event) => setDribbble(event.target.value)}
           />
         </div>
         <div className={styles.boxButons}>
-          <Button onClick={onToggle} color="error">
+          <Button onClick={() => onToggle(false)} color="error">
             Cancelar
           </Button>
           <Button onClick={handleSaveData}>Salvar alterações</Button>

@@ -1,4 +1,5 @@
 import {Input, Link} from '@nextui-org/react';
+import Router from 'next/router';
 import {parseCookies} from 'nookies';
 import { useState, useEffect } from 'react';
 import {api} from '../../services/api';
@@ -21,7 +22,11 @@ export function SearchInput() {
     if (query.length > 0 && query.length % 3 === 0) {
       updateSuggestions(query)
     }
-  }, [query])
+  }, [query]);
+
+  useEffect(() => {
+   setQuery(Router.query['q']);
+  }, []);
 
   return (
     <div className={styles.searchBoxWrapper}>
@@ -40,7 +45,7 @@ export function SearchInput() {
         suggestions.length !== 0 &&
         <div className={styles.suggestionsWrapper}>
           {suggestions.map((suggestion) => (
-            <Link href={`/search?query=${suggestion}`} key={suggestion}>
+            <Link href={`/search?q=${suggestion}`} key={suggestion}>
                 {suggestion.slice(0, 1).toUpperCase() + suggestion.slice(1)}
             </Link>
           ))}

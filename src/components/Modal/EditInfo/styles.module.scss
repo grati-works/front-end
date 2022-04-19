@@ -1,36 +1,91 @@
-.groupsModalInfoCorporative {
+.editInfoModal {
   font-size: 1.5rem;
   font-weight: 600;
   padding: 2rem;
-  .groupsWrapper {
+  .editInfoWrapper {
     display: flex;
     flex-direction: column;
 
-    .cox {
+    .inputWrapper {
+      margin-top: 2rem;
       border-radius: 5px;
-      background-color: white;
+      background-color: var(--nextui-colors-backgroundHighlight);
       width: 100%;
+
+      > div > div {
+        border: none;
+
+        &:first-child {
+          background-color: var(--nextui-colors-accents2);
+          border-radius: 5px 5px 0 0;
+
+          span:first-of-type {
+            display: none;
+          }
+
+          button {
+            background-color: var(--nextui-colors-accents1);
+            border-radius: 3px;
+            color: var(--nextui-colors-primary);
+            font-weight: 600;
+            margin-right: 4px;
+
+            svg {
+              path, line, rect {
+                stroke: var(--nextui-colors-accents8);
+              }
+            }
+
+            &:hover svg path {
+              stroke: var(--nextui-colors-primary);
+            }
+          }
+        }
+      }
+
+      > div div div {
+        min-height: 200px;
+      }
+
       .bar {
-        background-color: #ededed;
+        background-color: var(--nextui-colors-accents2);
         padding: 1rem;
         width: 100%;
         display: flex;
         flex-direction: row;
         gap: 1rem;
-        button {
-          width: 40px;
-          height: 40px;
-          background-color: white;
-          border-radius: 5px;
-          color: #6874e8;
-          font-weight: 600;
-        }
       }
       input {
         border: 0px;
         width: 100%;
         padding: 2rem;
         height: 250px;
+      }
+
+      div[data-mode="link"] {
+        left: 1rem !important;
+
+        input {
+          border: 1px solid #ccc;
+          font-size: 13px;
+          height: 26px;
+          margin: 0px;
+          padding: 3px 5px;
+          width: 170px;
+        }
+      }
+
+      > span {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--nextui-colors-accents6);
+        display: block;
+        text-align: right;
+        padding: 1rem;
+
+        &.maxCharLimit {
+          color: var(--nextui-colors-error);
+        }
       }
     }
   }

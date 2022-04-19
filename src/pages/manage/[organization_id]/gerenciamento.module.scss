@@ -1,0 +1,281 @@
+.manageWrapper {
+  padding: 7rem 10rem;
+  .editions {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    .editionsPage {
+      font-size: 1.2rem;
+      font-weight: 600;
+
+      .appearance {
+        background-color: var(--nextui-colors-backgroundHighlight);
+        border-radius: 5px;
+        display: flex;
+        font-size: 1rem;
+        font-weight: 400;
+        padding: 18px 24px;
+        gap: 1.5rem;
+        margin: 1.1rem 0 1.5rem 0;
+
+        > div {
+          width: 140px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+
+          button {
+            border-radius: 5px;
+            height: 85px;
+            margin-bottom: 0.5rem;
+
+            &:focus,
+            &.selectedColorScheme {
+              border: 5px solid #6874e8;
+            }
+          }
+        }
+
+        .darkMode button {
+          background-color: #4b5066;
+        }
+        .clearMode button {
+          background-color: #f6f7f8;
+        }
+        .automatic button {
+          background-image: linear-gradient(100deg, #4b5066 50%, #f6f7f8 50%);
+        }
+      }
+      .colorScheme {
+        background-color: var(--nextui-colors-backgroundHighlight);
+        border-radius: 5px;
+        display: flex;
+        gap: 1.5rem;
+        padding: 14px 24px;
+        margin: 1.1rem 0 1.5rem 0;
+
+        > button {
+          height: 32px;
+          width: 32px;
+          border-radius: 16px;
+          &:focus,
+          &.selectedColor {
+            border: 3px solid var(--nextui-colors-primary);
+          }
+        }
+
+        .grati {
+          background-color: var(--nextui-colors-primary);
+          &:focus,
+          &.selectedColor {
+            border: 3px solid var(--nextui-colors-primaryDark);
+          }
+        }
+
+        .red {
+          background-color: #e86868;
+        }
+        .yellow {
+          background-color: #e8db68;
+        }
+        .green {
+          background-color: #b0e868;
+        }
+        .blue {
+          background-color: #68e0e8;
+        }
+        .purple {
+          background-color: #8268e8;
+        }
+        .pink {
+          background-color: #e868d4;
+        }
+        .black {
+          background-color: #121212;
+        }
+        .gray {
+          background-color: #d9d9d9;
+        }
+      }
+
+      .manageGroups {
+        display: flex;
+        flex-direction: row;
+        margin-block-start: 25px;
+        gap: 1.5rem;
+        margin: 1.1rem 0 1.5rem 0;
+
+        .groupCard {
+          cursor: pointer;
+          padding: 18px;
+          background-color: var(--nextui-colors-backgroundHighlight);
+          border-radius: 5px;
+          text-align: center;
+          font-weight: 500;
+          font-size: 1.1rem;
+          transition: all 0.2s ease-in-out;
+
+          div {
+            background-color: #dd473b;
+            width: 100%;
+            height: 12px;
+            border-radius: 3px;
+            margin-bottom: 1rem;
+          }
+
+          &:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+          }
+        }
+
+        .createGroup {
+          div {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: -10px;
+          }
+          padding: 18px;
+          background-color: var(--nextui-colors-backgroundHighlight);
+          border-radius: 5px;
+          text-align: center;
+          font-weight: 500;
+          font-size: 1.1rem;
+          cursor: pointer;
+        }
+      }
+    }
+    .boxGood {
+      font-size: 1.2rem;
+      font-weight: 600;
+      .registerUser {
+        margin-block-start: 15px;
+        margin-block-end: 15px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        input {
+          border-radius: 7px;
+        }
+      }
+      .addCsv {
+        background-color: var(--nextui-colors-backgroundHighlight);
+        width: 350px;
+        display: flex;
+        border-radius: 5px;
+        .left {
+          padding-top: 10px;
+          width: 60px;
+          border-right: 1.5px solid var(--nextui-colors-accents3);
+          text-align: center;
+
+          img {
+            width: 30px;
+            width: 30px;
+            position: relative;
+            margin-top: 20px;
+          }
+        }
+        .right {
+          display: flex;
+          flex-direction: column;
+          font-size: 1rem;
+          font-weight: lighter;
+          max-width: 100%;
+          margin: 20px;
+          .boxGrape {
+            align-items: center;
+            margin-top: 10px;
+            button {
+              padding-block-start: 15px;
+              padding-block-end: 15px;
+              color: white;
+              border-radius: 5px;
+              font-weight: 800;
+              height: 50px;
+              width: 250px;
+              margin-bottom: 10px;
+            }
+            .importCsv {
+              border: 1px solid #8e92a4;
+              width: 250px;
+              height: 50px;
+              border-radius: 7px;
+              display: flex;
+              flex-direction: row;
+              .infoUpload {
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                margin: 7px;
+                margin: auto;
+                margin: 10px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              .importCsvButton {
+                background-color: transparent;
+                color: #8e92a4;
+                font-weight: 200;
+                border-left: 1px solid #8e92a4;
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tabelaUsuarios {
+    width: 100%;
+    font-weight: 100;
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--nextui-colors-accents6);
+    }
+    .tableUsers {
+      width: 100%;
+      height: 100%;
+      margin-block-start: 20px;
+      margin-block-end: 20px;
+      thead {
+        color: white;
+        th {
+          color: var(--nextui-colors-accents5);
+          font-size: 0.8rem;
+          text-align: left;
+          padding-bottom: 1rem;
+
+          &.positionTitle {
+            width: 5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.groupsModal {
+  font-family: "Inter";
+  border-radius: 5px;
+  a {
+    color: #6874e8;
+    text-decoration: underline;
+  }
+  .groupsModalHeader {
+    p {
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
+  }
+  .calendar {
+    width: 100%;
+    margin-inline-start: 15%;
+  }
+}

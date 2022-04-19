@@ -15,11 +15,12 @@ export function UIProvider({ children }) {
         "home": "Início",
         "user": "Perfil",
         "ranking": "Ranking",
-        "applicationManagement": "Gerenciamento"
+        "manage": "Gerenciamento",
+        "search": "Pesquisa"
     };
 
     const privateRoutesPath = Object.keys(privateRoutes);
-    const isPrivateRoute = privateRoutesPath.includes(asPath) 
+    const isPrivateRoute = privateRoutesPath.includes(asPath.split("?")[0]);
 
     return (
         <div className={styles.container}>

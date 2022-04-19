@@ -24,13 +24,11 @@ export default function SignIn() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit() {
-    console.log("AAAAA")
     const emailError = validateEmail(email);
     const passwordError = validatePassword(password);
 
     if (emailError !== true || passwordError !== true) {
       setErrors({ ...emailError, ...passwordError });
-      console.log({ emailError, passwordError });
       return;
     }
 

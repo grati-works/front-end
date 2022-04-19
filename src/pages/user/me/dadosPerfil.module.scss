@@ -128,7 +128,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: white;
+      background-color: var(--nextui-colors-backgroundHighlight);
       border-radius: 7px;
       padding: 2rem;
       text-align: center;
@@ -143,7 +143,7 @@
         height: 150px;
         background-color: #6874e8;
         .imgPerfilOn {
-          border: 5px solid white;
+          border: 5px solid var(--nextui-colors-backgroundHighlight);
           justify-content: center;
           width: 95%;
           height: 95%;
@@ -152,7 +152,7 @@
       h1 {
         font-size: 1.5rem;
         font-weight: 500;
-        color: #3b3b3b;
+        color: var(--nextui-colors-accents8);
         margin-bottom: 2.5rem;
         margin-top: .5rem;
       }
@@ -162,7 +162,7 @@
         flex-direction: column;
         align-items: flex-start;
         border-radius: 4px;
-        border: 2px solid #dadadd;
+        border: 2px solid var(--nextui-colors-accents5);
         background: var(--nextui-colors-background);
         padding: 5px;
         span {
@@ -203,7 +203,7 @@
       font-size: 2rem;
       font-weight: 500;
       border-radius: 7px;
-      background-color: white;
+      background-color: var(--nextui-colors-backgroundHighlight);
       width: 100%;
 
       .span {
@@ -242,13 +242,13 @@
         
         button {
           margin-top: 1rem;
-          background-color: var(--nextui-colors-gray100);
-          color: var(--nextui-colors-gray800);
+          background-color: var(--nextui-colors-background);
+          color: var(--nextui-colors-accents8);
   
           display: flex;
           align-items: center;
   
-          transition: filter 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
   
           img {
             height: 1.5rem;
@@ -261,7 +261,7 @@
     .skills {
       padding: 2rem;
       border-radius: 7px;
-      background-color: white;
+      background-color: var(--nextui-colors-backgroundHighlight);
       width: 100%;
       font-size: 2rem;
       font-weight: 500;
@@ -327,7 +327,7 @@
     .formation {
       padding: 2rem;
       border-radius: 7px;
-      background-color: white;
+      background-color: var(--nextui-colors-backgroundHighlight);
       width: 100%;
       font-size: 2rem;
       font-weight: 500;
