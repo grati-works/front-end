@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.scss';
 import '../styles/attachment.css';
+import '../styles/calendar.css';
 
 function MyApp({ Component, pageProps }) {
   const defaultColors = {

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 
-export function CalendarComponent() {
-  const [value, onChange] = useState(new Date());
-
+export function CalendarComponent({ onChange, value }) {
   return (
     <div>
-      <Calendar onChange={onChange} value={value} />
+      <Calendar onChange={onChange} value={value} calendarType="US" minDate={new Date()} activeStartDate={value} />
     </div>
   );
 }

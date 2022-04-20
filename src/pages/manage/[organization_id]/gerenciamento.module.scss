@@ -42,7 +42,7 @@
         .clearMode button {
           background-color: #f6f7f8;
         }
-        .automatic button {
+        .system button {
           background-image: linear-gradient(100deg, #4b5066 50%, #f6f7f8 50%);
         }
       }
@@ -93,7 +93,7 @@
         .black {
           background-color: #121212;
         }
-        .gray {
+        .personalizated {
           background-color: #d9d9d9;
         }
       }
@@ -116,7 +116,6 @@
           transition: all 0.2s ease-in-out;
 
           div {
-            background-color: #dd473b;
             width: 100%;
             height: 12px;
             border-radius: 3px;
@@ -261,21 +260,32 @@
   }
 }
 
-.groupsModal {
+.editGroupModalWrapper {
   font-family: "Inter";
   border-radius: 5px;
   a {
     color: #6874e8;
     text-decoration: underline;
   }
-  .groupsModalHeader {
+  .editGroupModalHeader {
     p {
       font-weight: 500;
       font-size: 1.5rem;
     }
   }
+  .editGroupModalBody {
+    span, input {
+      font-size: 1rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--nextui-colors-accents8);
+    }
+  }
   .calendar {
-    width: 100%;
-    margin-inline-start: 15%;
+    margin: auto;
+    margin-bottom: 12px;
   }
 }
