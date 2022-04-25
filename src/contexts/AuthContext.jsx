@@ -1,4 +1,4 @@
-import { parseCookies, setCookie } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { createContext, useEffect, useState } from "react";
 import Router from "next/router";
 
@@ -96,8 +96,8 @@ export function AuthContextProvider({ children }) {
   async function signOut() {
     destroyCookie(undefined, "grati.token");
     destroyCookie(undefined, "grati.refreshToken");
-
-    authChannel.postMessage("signOut");
+    destroyCookie(undefined, "grati.organization_id");
+    destroyCookie(undefined, "grati.group_id");
 
     Router.push("/");
     setUser(undefined);

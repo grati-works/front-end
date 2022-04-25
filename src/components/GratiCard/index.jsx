@@ -13,7 +13,7 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
 
     useEffect(() => {
         if(!message) setMessage(content);
-    }, [])
+    }, []);
     
     function toggleReaction(id) {
         if(message.reactions[id] > 1) {
@@ -77,7 +77,7 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
                     <Emoji emoji={{ id: message.emoji }} set='twitter' size={24} />
                     <div className={styles.divider}/>
                     {
-                        message.sender.user.id === user.id &&
+                        message.sender.user.id === user?.id &&
                         <Delete onClick={() => deleteFunction(message.id)} />
                     }
                 </div>

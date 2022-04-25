@@ -53,24 +53,18 @@
         gap: 1rem;
 
         button {
-          background-color: var(--nextui-colors-gray100);
-          color: var(--nextui-colors-gray800);
-          border-radius: 5px;
-          padding: 8px 12px;
+          margin-top: 1rem;
+          background-color: var(--nextui-colors-background);
+          color: var(--nextui-colors-accents8);
 
           display: flex;
           align-items: center;
-          gap: 10px;
 
-          transition: filter 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
 
           img {
             height: 1.5rem;
             width: 1.5rem;
-          }
-
-          &:hover {
-            filter: brightness(1.2);
           }
         }
       }
@@ -168,7 +162,7 @@
       }
 
       .filterActive:after {
-        content: '';
+        content: "";
         height: 4px;
         width: calc(100% + 2rem);
         margin-left: -1rem;

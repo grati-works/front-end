@@ -17,6 +17,7 @@ import { EditInfoModal } from "../../../components/Modal/EditInfo";
 import { AboutMeModal } from "../../../components/Modal/AboutMe";
 import { toastProps } from "../../../utils/toast";
 import { EmptyBox } from "../../../components/EmptyBox";
+import { vinculed_accounts } from "../../../utils/vinculedAccounts";
 
 export default function DateProfile() {
   const [selectedGrati, setSelectedGrati] = useState(null);
@@ -40,21 +41,6 @@ export default function DateProfile() {
   const [attached, setAttached] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const router = useRouter();
-
-  const vinculed_accounts = {
-    Github: {
-      icon: "/images/imgGitHub.png",
-      prefix: "https://github.com/",
-    },
-    Linkedin: {
-      icon: "/images/imgLinkedin.png",
-      prefix: "https://www.linkedin.com/in/",
-    },
-    Dribbble: {
-      icon: "/images/imgDribbble.png",
-      prefix: "https://dribbble.com/",
-    }
-  };
 
   //Modal de visualização das informações corporativas
   const [visibleInfo, setVisibleInfo] = useState(false);

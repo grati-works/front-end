@@ -1,42 +1,29 @@
-import { useState } from 'react';
-import Head from 'next/head';
+import { useState, useEffect } from "react";
+import Head from "next/head";
 
-import styles from './profile.module.scss';
-import { Avatar, Card, Modal } from '@nextui-org/react';
-import { GratiCard } from '../../../components/GratiCard';
-import { Button } from '../../../components/Button';
-import { DeleteMessageModal } from '../../../components/Modal/DeleteMessage';
+import styles from "./profile.module.scss";
+import { Avatar } from "@nextui-org/react";
+import { GratiCard } from "../../../components/GratiCard";
+import { DeleteMessageModal } from "../../../components/Modal/DeleteMessage";
+import { useRouter } from "next/router";
+import { api } from "../../../services/api";
+import { Skeleton } from "../../../components/Skeleton";
+import { EmptyBox } from "../../../components/EmptyBox";
+import { Button } from "../../../components/Button";
+import { vinculed_accounts } from "../../../utils/vinculedAccounts";
 
 export default function Profile() {
+  const router = useRouter();
+
   const [isVisible, setModalIsVisible] = useState(false);
   const [selectedGrati, setSelectedGrati] = useState(null);
-
-  const message = {
-    message: "TESTE",
-    receivers: [
-      {
-        user: {
-          id: 1,
-          name: "Caua",
-          profile_picture: "http://localhost:3333/avatars/teste.png"
-        }
-      }
-    ],
-    sender: {
-      user: {
-        id: 1,
-        name: "Caua",
-        profile_picture: "http://localhost:3333/avatars/teste.png"
-      }
-    },
-    reactions: [
-      
-    ]
-  }
+  const [userData, setUserData] = useState(null);
+  const [selectedMessagesSection, setSelectedMessagesSection] =
+    useState("sended_feedbacks");
 
   function handleOpenDeleteModal(id) {
     setSelectedGrati(id);
-    setModalIsVisible(!selectedGrati)
+    setModalIsVisible(!selectedGrati);
   }
 
   function handleDeleteMessage() {
@@ -52,6 +39,27 @@ export default function Profile() {
     });
   }
 
+  useEffect(() => {
+    async function loadUserData() {
+      const { organization_id, id } = router.query;
+      console.log(organization_id, id);
+
+      if (organization_id && id) {
+        var response = await api.get(`profile/${organization_id}/${id}`);
+
+        let { sended_feedbacks, received_feedbacks } = response.data;
+        if (sended_feedbacks.length === 0)
+          response.data.sended_feedbacks = "vazio";
+        if (received_feedbacks.length === 0)
+          response.data.received_feedbacks = "vazio";
+
+        setUserData(response.data);
+      }
+    }
+
+    loadUserData();
+  }, [router.query]);
+
   return (
     <>
       <Head>
@@ -60,26 +68,39 @@ export default function Profile() {
 
       <div className={styles.profileWrapper}>
         <div className={styles.containerNavBar}>
-          <img className={styles.imgFundo} src='/images/imgFundoProfile.png' alt='imagemDeFundo' />
+          <img
+            className={styles.imgFundo}
+            src="/images/imgFundoProfile.png"
+            alt="imagemDeFundo"
+          />
           <div className={styles.headerContent}>
-            <Avatar src='https://mdbcdn.b-cdn.net/img/new/avatars/8.webp' className={styles.imgPerfil} />
+            <Avatar
+              src={userData?.user.profile_picture}
+              className={styles.imgPerfil}
+            />
             <dir className={styles.userName}>
-              <h1>Túlio Nogueira</h1>
-              <h2>Product Owner</h2>
+              <h1>{userData?.user.name}</h1>
+              <h2>{userData?.responsibility}</h2>
             </dir>
             <div className={styles.imgIcons}>
-              <button>
-                <img src='/images/imgGitHub.png' alt='imgGitHub' />
-                Github
-              </button>
-              <button>
-                <img src='/images/imgLinkedin.png' alt='imgLinkedin' />
-                Linkedin
-              </button>
-              <button>
-                <img src='/images/imgDribbble.png' alt='imgDribbble' />
-                Dribbble
-              </button>
+              {userData?.vinculed_accounts.map((vinculed_account) => (
+                <Button
+                  icon={
+                    <img
+                      src={vinculed_accounts[vinculed_account.provider].icon}
+                      alt={`Ícone de ${vinculed_account.provider}`}
+                    />
+                  }
+                  key={vinculed_account.provider}
+                  onClick={() =>
+                    (window.location = `${
+                      vinculed_accounts[vinculed_account.provider].prefix
+                    }${vinculed_account.account}`)
+                  }
+                >
+                  {vinculed_account.provider}
+                </Button>
+              ))}
             </div>
           </div>
         </div>
@@ -88,58 +109,70 @@ export default function Profile() {
           <div className={styles.personalInfo}>
             <div className={styles.aboutPersonCard}>
               <h1>Sobre mim</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultrices nulla nunc tortor magna posuere. Amet, faucibus sed malesuada vitae malesuada. Amet eros, ultrices
-                ut viverra enim est diam pellentesque. Sapien sodales tempus viverra risus a elit placerat euismod risus. Ipsum mattis volutpat massa tortor lacinia.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: userData?.description }} />
             </div>
             <div className={styles.skillsCard}>
               <h1>Skills</h1>
               <div className={styles.skillsContent}>
-                <div className={styles.experienced}>
-                  <ul>Tenho experiência</ul>
-                  <li>Comunicação</li>
-                  <li>Trabalhar sobre pressão</li>
-                </div>
-
-                <div className={styles.studying}>
-                  <ul>Estou estudando</ul>
-                  <li>Liderança de equipe</li>
-                </div>
+                <p dangerouslySetInnerHTML={{ __html: userData?.skills }} />
               </div>
             </div>
             <div className={styles.formationCard}>
               <h1>Formação</h1>
               <div className={styles.formationContent}>
-                <div className={styles.completed}>
-                  <ul>Concluida</ul>
-                  <li>Graduação em Ciência da computação [2016]</li>
-                </div>
-
-                <div className={styles.progress}>
-                  <ul>Em andamento</ul>
-                  <li>Curso de Java Spring avançado</li>
-                </div>
-
-                <div className={styles.interested}>
-                  <ul>Tenho interesse</ul>
-                  <li>Tecnologia em Processamento de Dados</li>
-                </div>
+                <p dangerouslySetInnerHTML={{ __html: userData?.skills }} />
               </div>
             </div>
           </div>
           <div className={styles.messageList}>
             <div className={styles.commentHeader}>
-              <h3 className={`${styles.cardFilter} ${styles.filterActive}`}>Enviados</h3>
-              <h3 className={styles.cardFilter}>Recebidos</h3>
+              <h3
+                className={`${styles.cardFilter} ${
+                  selectedMessagesSection == "sended_feedbacks"
+                    ? styles.filterActive
+                    : ""
+                }`}
+                onClick={() => setSelectedMessagesSection("sended_feedbacks")}
+              >
+                Enviados
+              </h3>
+              <h3
+                className={`${styles.cardFilter} ${
+                  selectedMessagesSection == "received_feedbacks"
+                    ? styles.filterActive
+                    : ""
+                }`}
+                onClick={() => setSelectedMessagesSection("received_feedbacks")}
+              >
+                Recebidos
+              </h3>
             </div>
-            <GratiCard content={message} deleteFunction={handleOpenDeleteModal} />
-            <GratiCard content={message} deleteFunction={handleOpenDeleteModal} />
+            {userData !== null &&
+              (userData[selectedMessagesSection] == "vazio" ? (
+                <EmptyBox />
+              ) : userData[selectedMessagesSection].length > 0 ? (
+                userData[selectedMessagesSection].map((message) => (
+                  <GratiCard
+                    content={message}
+                    key={message.id}
+                    reactedMessages={message.reactions.filter(
+                      (reaction) => reaction.feedback_id === message.id
+                    )}
+                    deleteFunction={() => handleOpenDeleteModal(message.id)}
+                  />
+                ))
+              ) : (
+                <Skeleton width="100%" height="300px" repeat={5} />
+              ))}
           </div>
         </div>
       </div>
-      
-      <DeleteMessageModal isVisible={isVisible} closeFunction={handleOpenDeleteModal} deleteFunction={handleDeleteMessage}/>
+
+      <DeleteMessageModal
+        isVisible={isVisible}
+        closeFunction={handleOpenDeleteModal}
+        deleteFunction={handleDeleteMessage}
+      />
     </>
   );
 }

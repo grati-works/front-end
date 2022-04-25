@@ -5,7 +5,6 @@ import { Input } from "../../../components/Input";
 import { UserCard } from "../../../components/UserCard";
 import { Modal } from "@nextui-org/react";
 import { Button } from "../../../components/Button";
-import { Checkbox } from "@nextui-org/react";
 import { api } from "../../../services/api";
 
 import styles from "./gerenciamento.module.scss";

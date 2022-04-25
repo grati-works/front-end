@@ -30,7 +30,8 @@
       display: none;
     }
 
-    a, p:first-of-type {
+    a,
+    p:first-of-type {
       display: inline-block;
       position: relative;
       padding: 0 0.5rem;
@@ -40,7 +41,6 @@
     }
 
     a {
-
       transition: color 0.2s;
 
       & + a {
@@ -66,7 +66,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: .4rem;
+        gap: 0.4rem;
         margin-top: 2rem;
 
         background-color: transparent;
@@ -146,16 +146,50 @@
   span {
     cursor: pointer;
   }
- 
 }
-.userTooltip{
+
+.tooltipContainer {
   display: flex;
-  flex-direction: row;
-  text-align: start;
-  span{
-    font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.notificationCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+
+  & + .notificationCard {
+    border-top: 1px solid var(--nextui-colors-accents4);
+  }
+
+  .contentWrapper {
+    span {
+      font-weight: bold;
+    }
   }
 }
+
+.userTooltip {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 15rem;
+
+  button {
+    width: 100%;
+    padding: .9rem 0;
+    background-color: var(--nextui-colors-background);
+
+    & + button {
+      border-top: 1px solid var(--nextui-colors-accents4);
+    }
+  }
+}
+
 .icon {
   height: 1.4rem;
   width: 1.4rem;
@@ -167,16 +201,4 @@
     color: var(--nextui-colors-accents7);
     stroke: var(--nextui-colors-accents7);
   }
-}
-
-.tooltipContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-  
-}
-.userTooltip {
-  width: 280px;
 }

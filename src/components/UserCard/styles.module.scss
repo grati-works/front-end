@@ -59,3 +59,37 @@
     }
   }
 }
+
+.userContainer {
+  display: flex;
+  padding: 16px 24px;
+  gap: 1rem;
+
+  width: 100%;
+
+  background-color: var(--nextui-colors-backgroundHighlight);
+  border-radius: 5px;
+
+  transition: all 0.3s ease-in-out;
+  transform: scale(.99);
+
+  &:hover {
+    transform: scale(1);
+  }
+
+  img {
+
+  }
+
+  .userInfo {
+    text-align: left;
+    .name {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .user {
+
+    }
+  }
+}

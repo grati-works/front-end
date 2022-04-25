@@ -1,20 +1,25 @@
 import styles from "./styles.module.scss";
 import { useState, useEffect } from "react";
-import { useAuth } from "../../hooks/useAuth";
 import { useRouter } from "next/router";
+import { useAuth } from "../../hooks/useAuth";
+import { api } from "../../services/api";
 
 import { ActiveLink } from "../ActiveLink";
 import { Button } from "../Button";
 import { ThemeSwitcher } from "../ThemeSwitcher";
-import { Avatar, Input, Tooltip, Image } from "@nextui-org/react";
+import { Avatar, Tooltip, Image } from "@nextui-org/react";
 import { Notification, Search } from "react-iconly";
 import Link from "next/link";
-import {SearchInput} from '../SearchInput';
+import { SearchInput } from "../SearchInput";
+import dayjs from "dayjs";
 
 export function Header({ user, privatePage = "" }) {
   const { push, asPath } = useRouter();
+  const { signOut } = useAuth();
+
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
+  const [notifications, setNotifications] = useState(null);
 
   function toggleSearchBar() {
     setSearchBarIsOpen(!searchBarIsOpen);
@@ -27,12 +32,23 @@ export function Header({ user, privatePage = "" }) {
   useEffect(() => {
     // if(asPath.includes("auth") && user) push('/organizations');
     // else if(privatePage !== '' && !user) push('/auth/signin')
+
+    async function loadNotifications() {
+      const response = await api.get("notification/list");
+      const data = await response.data;
+
+      setNotifications(data);
+    }
+
+    if (user) {
+      loadNotifications();
+    }
   }, []);
 
   return (
     <header className={styles.headerContainer}>
       <div className={styles.logoContainer}>
-        <Image src="/images/logo.svg" alt="grati" height="50%" width="50%"/>
+        <Image src="/images/logo.svg" alt="grati" height="50%" width="50%" />
       </div>
       <div className={styles.headerContent}>
         <nav>
@@ -79,9 +95,7 @@ export function Header({ user, privatePage = "" }) {
           </div>
         ) : (
           <div className={styles.userContainer}>
-            {searchBarIsOpen && (
-              <SearchInput />
-            )}
+            {searchBarIsOpen && <SearchInput />}
             <Search
               set="light"
               onClick={toggleSearchBar}
@@ -90,12 +104,17 @@ export function Header({ user, privatePage = "" }) {
             <ThemeSwitcher style={styles.icon} />
             <Tooltip
               placement="bottom"
-              content={
-                <div className={styles.userTooltip}>
+              className={styles.tooltipContainer}
+              content={notifications?.map((notification) => (
+                <div className={styles.notificationCard}>
                   <Avatar pointer size="lg" src={user.profile_picture} />
-                  @<span>regi.freitas</span>te enviou um grati hoje às 13:30
+                  <div className={styles.contentWrapper}>
+                    <span>@{notification.feedback.sender.user.username}</span>{" "}
+                    te enviou um grati hoje às{" "}
+                    {dayjs(notification.created_at).format("HH:mm")}
+                  </div>
                 </div>
-              }
+              ))}
               trigger="click"
             >
               <Notification set="light" className={styles.icon} />
@@ -105,7 +124,17 @@ export function Header({ user, privatePage = "" }) {
               className={styles.tooltipContainer}
               content={
                 <div className={styles.userTooltip}>
-                  <p>TODO: Implementar esse menu</p>
+                  <button onClick={() => push("/organizations")}>
+                    Minhas organizações
+                  </button>
+                  <button
+                    onClick={() => {
+                      push("/");
+                      signOut();
+                    }}
+                  >
+                    Fazer logoff
+                  </button>
                 </div>
               }
               trigger="click"

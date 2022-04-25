@@ -26,7 +26,7 @@ export function UIProvider({ children }) {
         <div className={styles.container}>
             <Header privatePage={isPrivateRoute ? privateRoutes[asPath] : ""} user={user} />
             <div className={styles.contentContainer}>
-                {isPrivateRoute && <NavBar /> }
+                {isPrivateRoute && <NavBar user={user} /> }
                 <div className={styles[isPrivateRoute ? "contentNavbarWidth" : "contentFullWidth"]}>
                     {children}
                 </div>
