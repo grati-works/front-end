@@ -23,7 +23,7 @@ api.interceptors.response.use(
         case 401:
           if (error.response.data.code === "token.invalid") {
             cookies = parseCookies();
-            const token = cookies['grati.refreshToken'];
+            const token = cookies["grati.refreshToken"];
             const originalConfig = error.config;
 
             if (!isRefreshing) {
@@ -38,15 +38,10 @@ api.interceptors.response.use(
                     maxAge: 60 * 60 * 24 * 30, // 30 days
                     path: "/",
                   });
-                  setCookie(
-                    undefined,
-                    "grati.refreshToken",
-                    refresh_token,
-                    {
-                      maxAge: 60 * 60 * 24 * 30, // 30 days
-                      path: "/",
-                    }
-                  );
+                  setCookie(undefined, "grati.refreshToken", refresh_token, {
+                    maxAge: 60 * 60 * 24 * 30, // 30 days
+                    path: "/",
+                  });
 
                   api.defaults.headers.common[
                     "Authorization"
@@ -63,6 +58,7 @@ api.interceptors.response.use(
                     request.onFailure(error)
                   );
                   failedRequestQueue = [];
+                  return Promise.reject(error);
                 })
                 .finally(() => {
                   isRefreshing = false;

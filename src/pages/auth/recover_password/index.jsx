@@ -6,7 +6,7 @@ import { User } from 'react-iconly';
 import { Button } from '../../../components/Button';
 import { AuthRoutesProvider } from '../../../providers/AuthRoutesProvider';
 
-export default function SignIn() {
+export default function RecoverPassword() {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
