@@ -8,7 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 import Router from "next/router";
 import { api } from "../services/api";
 import { useState } from "react";
-import { Image } from '@nextui-org/react';
+import { Image } from "@nextui-org/react";
 
 export default function Home({ products }) {
   const { user } = useAuth();
@@ -186,7 +186,9 @@ export default function Home({ products }) {
         </div>
 
         <div className={styles.footer_social_content}>
-          <p>Grati - {new Date().getFullYear()}. Todos os Direitos Reservados</p>
+          <p>
+            Grati - {new Date().getFullYear()}. Todos os Direitos Reservados
+          </p>
           <Link href="#">Política de privacidade</Link>
           <Link href="#">Termos de serviço</Link>
         </div>
@@ -207,15 +209,17 @@ export const getStaticProps = async () => {
     .sort((a, b) => a.unit_amount - b.unit_amount)
     .map((price) => {
       const product = test.data.find((product) => product.id == price.product);
-      return {
-        priceId: price.id,
-        amount: new Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        }).format(price.unit_amount / 100),
-        name: product.name,
-        description: product.description,
-      };
+      if (product !== undefined) {
+        return {
+          priceId: price.id,
+          amount: new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(price.unit_amount / 100),
+          name: product.name,
+          description: product.description,
+        };
+      }
     });
 
   const groupedProducts = products.reduce(

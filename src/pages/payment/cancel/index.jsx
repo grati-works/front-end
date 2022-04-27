@@ -8,7 +8,7 @@ export default function PaymentCancel() {
 
   useEffect(() => {
     router.push("/");
-    toast.error("Pagamento cancelado!");
+    toast.info("Pagamento cancelado!");
   }, []);
   
   return (

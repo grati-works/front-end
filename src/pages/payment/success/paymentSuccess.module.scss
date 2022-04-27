@@ -1,3 +1,35 @@
 .contentWrapper {
-    
+  height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  img {
+    height: 35rem;
+  }
+
+  h1 {
+    color: var(--nextui-colors-accents7);
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    max-width: 60ch;
+    font-weight: 400;
+    color: var(--nextui-colors-accents6);
+  }
+
+  p {
+    font-size: 1.3rem;
+    color: var(--nextui-colors-accents6);
+
+    span {
+      display: block;
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--nextui-colors-accents7);
+    }
+  }
 }
