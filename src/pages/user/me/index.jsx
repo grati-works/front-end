@@ -227,6 +227,7 @@ export default function DateProfile() {
               ref={inputFile}
               onChange={() => setAttached(true)}
               style={{ display: "none" }}
+              accept="image/png, image/jpeg, image/gif"
             />
             <Avatar src={imagePreview} className={styles.imgPerfilOn} />
             <img
