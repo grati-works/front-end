@@ -1,5 +1,50 @@
 .groupCenter{
     width: 100%;
-    background-color: red;
-    
+    display: flex;
+    flex-direction: row;
+}
+.containerLeft{
+    width: 60%;
+        img{
+            height: 95vh;
+        }
+}
+.containerFaq{
+    width: 40%;
+        .boxQuestions{
+            border-radius: 7px;
+            width: 85%;
+            background-color: white;
+            margin-inline-start: auto;
+            margin-inline-end: auto;
+            margin-block-start: 50px;
+            padding-inline-start: 55px;
+            padding-inline-end: 55px;
+            padding-block-start: 30px;
+            padding-block-end: 30px;
+                h1{
+                    font-size: 2rem;
+                }
+                p{
+                    font-size: 1.2rem;
+                }
+        }
+        .moreQuestion{
+            color: #6874e8;
+            border-radius: 7px;
+            width: 85%;
+            background-color: white;
+            margin-inline-start: auto;
+            margin-inline-end: auto;
+            margin-block-start: 50px;
+            text-align: center;
+            justify-content: center;
+            text-shadow: 2px 3px 3px #4a4e77;
+            font-size: 4rem;
+            cursor: pointer;
+            &:hover{
+                box-shadow: 4px 4px 6px #b3b3b9;
+
+            }
+        }
 }
