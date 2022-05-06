@@ -51,6 +51,30 @@
     }
   }
 
+  .autocompleteItems {
+    position: absolute;
+    top: 5rem;
+    left: 1rem;
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+
+    button {
+      background-color: var(--nextui-colors-backgroundHighlight);
+      border: 1px solid var(--nextui-colors-accents3);
+      padding: .8rem 6rem;
+
+      & + button { 
+        border-top: none;
+      }
+
+      &:last-of-type {
+        border-radius: 0 0 5px 5px;
+      }
+    }
+  }
+
   .tag {
     background-color: var(--nextui-colors-background);
     border-radius: 5px;
@@ -133,7 +157,6 @@
     opacity: 0.9;
     margin-left: 0;
     margin-top: 1rem;
-
   }
 
   .attachments {

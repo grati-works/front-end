@@ -63,6 +63,7 @@ export function AuthContextProvider({ children }) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       if (redirect) Router.push("/organizations");
+      
     } catch (error) {
       if (error.response?.data?.code.includes("auth.not_activated")) {
         toast.error("Usuário não ativado", toastProps);

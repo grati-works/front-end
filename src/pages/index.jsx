@@ -17,7 +17,7 @@ export default function Home({ products }) {
 
   async function handleSubscribe(price_id) {
     if (!user) {
-      Router.push("/auth/signin");
+      Router.push("/auth/signin?redirect=/");
       return;
     }
 

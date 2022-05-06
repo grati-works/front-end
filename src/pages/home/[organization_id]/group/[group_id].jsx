@@ -85,6 +85,7 @@ export default function HomeUser(props) {
 
 
       await api.get(`objective/${group_id}`).then(objectiveResponse => {
+        console.log(objectiveResponse.data[0])
         setObjective(objectiveResponse.data[0]);
       }).catch(error => {
         error.response.status === 404 && setObjective('nothing')
@@ -145,9 +146,16 @@ export default function HomeUser(props) {
                 <div className={styles.experience}>
                   <Calendar set="light" className={styles.icon} />
                   <p>
-                    Uma meta "{objective?.name}" de {objective?.goal} xp está
-                    agendada para {dayjs(objective?.expires_in).format("DD/MM")}
-                    .
+                    {
+                      new Date(objective?.expires_in) > new Date()
+                      ? `Uma meta "${objective?.name}" de ${objective?.goal} xp está
+                      agendada para ${dayjs(objective?.expires_in).format("DD/MM")}
+                      .` : `
+                        Uma meta "${objective?.name}" de ${objective?.goal} xp estava
+                        agendada para ${dayjs(objective?.expires_in).format("DD/MM")}.
+                        ${accumulatedPoints >= objective?.goal ? "Você concluiu a meta con exito!" : "Infelizmente você não atingiu a meta!"}
+                      `
+                    }
                   </p>
                 </div>
               )

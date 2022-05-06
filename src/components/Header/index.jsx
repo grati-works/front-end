@@ -13,13 +13,16 @@ import Link from "next/link";
 import { SearchInput } from "../SearchInput";
 import dayjs from "dayjs";
 
+import { destroyCookie, parseCookies, setCookie } from "nookies";
+
 export function Header({ user, privatePage = "" }) {
-  const { push, asPath } = useRouter();
+  const { push, query } = useRouter();
   const { signOut } = useAuth();
 
   const [searchBarIsOpen, setSearchBarIsOpen] = useState(false);
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
   const [notifications, setNotifications] = useState(null);
+  let { "grati.organization_id": organization_id } = parseCookies();
 
   function toggleSearchBar() {
     setSearchBarIsOpen(!searchBarIsOpen);
@@ -45,9 +48,34 @@ export function Header({ user, privatePage = "" }) {
     }
   }, []);
 
+  useEffect(() => {
+    if (!organization_id) {
+      if (query["organization_id"]) {
+        organization_id = query["organization_id"];
+        setCookie(null, "grati.organization_id", organization_id);
+      }
+    }
+    
+    async function loadOrganizationColor() {
+      const response = await api.get(`organization/${organization_id}`);
+      const data = await response.data;
+
+      if(data.color !== null) {
+        document.body.style.setProperty("--nextui-colors-header", data.color);
+      }
+    }
+
+    if (organization_id) {
+      loadOrganizationColor();
+    }
+  }, [organization_id]);
+
   return (
     <header className={styles.headerContainer}>
-      <div className={styles.logoContainer}>
+      <div
+        className={styles.logoContainer}
+        onClick={() => push("/")}
+      >
         <Image src="/images/logo.svg" alt="grati" height="50%" width="50%" />
       </div>
       <div className={styles.headerContent}>
@@ -130,6 +158,10 @@ export function Header({ user, privatePage = "" }) {
                   <button
                     onClick={() => {
                       push("/");
+                      destroyCookie(null, "grati.group_id");
+                      destroyCookie(null, "grati.organization_id");
+                      destroyCookie(null, "grati.refreshToken");
+                      destroyCookie(null, "grati.token");
                       signOut();
                     }}
                   >

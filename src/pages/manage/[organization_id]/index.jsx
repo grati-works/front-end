@@ -14,22 +14,29 @@ import { useEffect } from "react";
 import { parseCookies } from "nookies";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 
 export default function Manage() {
-  const defaultColors = [
-    "#e86868",
-    "#e8db68",
-    "#b0e868",
-    "#68e0e8",
-    "#8268e8",
-    "#e868d4",
-    "#121212",
-  ];
+  const [defaultColors] = useState({
+    grati: "#6874E8",
+    red: "#e86868",
+    yellow: "#e8db68",
+    green: "#b0e868",
+    blue: "#68e0e8",
+    purple: "#8268e8",
+    pink: "#e868d4",
+    black: "#121212",
+  });
+
   const defaultColorModes = {
-    "light": 1,
-    "dark": 2,
-    "system": 3,
-  }
+    light: 1,
+    dark: 2,
+    system: 3,
+  };
+
+  const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
   const inputFile = useRef(null);
   const [visibleInfo, setVisibleInfo] = useState(false);
@@ -42,7 +49,7 @@ export default function Manage() {
   const [organization, setOrganization] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [organizationName, setOrganizationName] = useState("");
-  const { "grati.organization_id": organization_id } = parseCookies();
+  const { organization_id } = router.query;
 
   const [groupName, setGroupName] = useState("");
   const [objectiveName, setObjectiveName] = useState("");
@@ -50,7 +57,7 @@ export default function Manage() {
   const [objectiveDate, setObjectiveDate] = useState(new Date());
 
   const [selectedColorScheme, setSelectedColorScheme] = useState("system");
-  const [selectedColor, setSelectedColor] = useState("grati");
+  const [selectedColor, setSelectedColor] = useState(defaultColors.grati);
 
   const [visibleGroup, setVisibleGroup] = useState(false);
   const handlerGroup = (group, status = !visibleGroup) => {
@@ -88,20 +95,20 @@ export default function Manage() {
         groups: organization.groups.map((group) =>
           group.id === selectedGroup.id ? { ...group, name: groupName } : group
         ),
-        users: organization.users.map(
-          (profile) =>
-            profile.groups[0]?.id === selectedGroup.id ? {
-              ...profile,
-              groups: [
-                {
-                  ...profile.groups[0],
-                  name: groupName,
-                },
-              ],
-            } : profile
+        users: organization.users.map((profile) =>
+          profile.groups[0]?.id === selectedGroup.id
+            ? {
+                ...profile,
+                groups: [
+                  {
+                    ...profile.groups[0],
+                    name: groupName,
+                  },
+                ],
+              }
+            : profile
         ),
-      })
-
+      });
     }
 
     handlerGroup(null, false);
@@ -110,9 +117,26 @@ export default function Manage() {
 
   async function updateColorScheme(name) {
     setSelectedColorScheme(name);
+
+    setTheme(name);
+    localStorage.setItem("theme", name);
+
     await api.patch(`organization/${organization_id}`, {
       color_mode: defaultColorModes[name],
     });
+
+    toast.success("Esquema de cores atualizado com sucesso!");
+  }
+
+  async function updateColor(color) {
+    setSelectedColor(color);
+    document.body.style.setProperty("--nextui-colors-header", color);
+
+    await api.patch(`organization/${organization_id}`, {
+      color,
+    });
+
+    toast.success("Cor atualizada com sucesso!");
   }
 
   useEffect(() => {
@@ -121,16 +145,14 @@ export default function Manage() {
         setOrganization(response.data);
         setOrganizationName(response.data.name);
         setSelectedColorScheme(response.data.color_mode.name);
-        setSelectedColor(
-          defaultColors.includes(response.data.color)
-            ? response.data.color
-            : "personalizated"
-        );
+        setSelectedColor(response.data.color);
       });
     }
 
-    loadOrganizationData();
-  }, []);
+    if (organization_id) {
+      loadOrganizationData();
+    }
+  }, [organization_id]);
 
   useEffect(() => {
     const file = inputFile.current.files[0];
@@ -150,7 +172,7 @@ export default function Manage() {
         },
       });
     };
-  }, [attached])
+  }, [attached]);
 
   return (
     <>
@@ -200,60 +222,17 @@ export default function Manage() {
             </div>
             Esquema de cores
             <div className={styles.colorScheme}>
-              <button
-                className={`${styles.grati} ${
-                  selectedColor === "grati" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("grati")}
-              />
-              <button
-                className={`${styles.red} ${
-                  selectedColor === "red" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("red")}
-              />
-              <button
-                className={`${styles.yellow} ${
-                  selectedColor === "yellow" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("yellow")}
-              />
-              <button
-                className={`${styles.green} ${
-                  selectedColor === "green" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("green")}
-              />
-              <button
-                className={`${styles.blue} ${
-                  selectedColor === "blue" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("blue")}
-              />
-              <button
-                className={`${styles.purple} ${
-                  selectedColor === "purple" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("purple")}
-              />
-              <button
-                className={`${styles.pink} ${
-                  selectedColor === "pink" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("pink")}
-              />
-              <button
-                className={`${styles.black} ${
-                  selectedColor === "black" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("black")}
-              />
-              <button
-                className={`${styles.personalizated} ${
-                  selectedColor === "personalizated" && styles.selectedColor
-                }`}
-                onClick={() => setSelectedColor("personalizated")}
-              />
+              {Object.values(defaultColors).map((color) => (
+                <button
+                  className={`${
+                    selectedColor === color && styles.selectedColor
+                  }`}
+                  onClick={() => updateColor(color)}
+                  style={{
+                    backgroundColor: `${color}`,
+                  }}
+                />
+              ))}
             </div>
             Gerenciamento de grupos
             <div className={styles.manageGroups}>
@@ -283,10 +262,16 @@ export default function Manage() {
                 value={organizationName}
                 onChange={(event) => setOrganizationName(event.target.value)}
                 onBlur={async () => {
-                  if(organizationName !== organization.name) {
-                    await api.patch(`organization/${organization_id}`, {
-                      name: organizationName,
-                    }).then(() => toast.success("Nome da organização atualizado com sucesso!"));
+                  if (organizationName !== organization.name) {
+                    await api
+                      .patch(`organization/${organization_id}`, {
+                        name: organizationName,
+                      })
+                      .then(() =>
+                        toast.success(
+                          "Nome da organização atualizado com sucesso!"
+                        )
+                      );
 
                     setOrganization({
                       ...organization,

@@ -47,11 +47,16 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
     },
   };
 
+  const router = useRouter();
   const inputFile = useRef(null);
+  const [userSuggestions, setUserSuggestions] = useState([]);
   const [attached, setAttached] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [gifPreview, setGifPreview] = useState(null);
-  const [selectedPrivacy, setSelectedPrivacy] = useState("public");
+  const isGroupRoute = router.asPath.includes("/group");
+  const [selectedPrivacy, setSelectedPrivacy] = useState(
+    isGroupRoute ? "group" : "public"
+  );
   const [newTagText, setNewTagText] = useState("");
   const [newUserText, setNewUserText] = useState("");
   const [message, setMessage] = useState("");
@@ -83,6 +88,7 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
   }
 
   function handleAddUser(name) {
+    setUserSuggestions([]);
     setData({
       ...data,
       receivers_usernames: [...data.receivers_usernames, name],
@@ -95,8 +101,14 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
   }
 
   async function sendMessage() {
-    if(message == "" || data.receivers_usernames.length < 1 || data.tags.length < 1) {
-      toast.error("Por favor, preencha todos os campos! É necessário inserir no mínimo a mensagem, os destinatários e tags");
+    if (
+      message == "" ||
+      data.receivers_usernames.length < 1 ||
+      data.tags.length < 1
+    ) {
+      toast.error(
+        "Por favor, preencha todos os campos! É necessário inserir no mínimo a mensagem, os destinatários e tags"
+      );
       return;
     }
 
@@ -111,32 +123,36 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
       groups: [group],
       organization_id,
     };
-    console.log(sentData)
+    console.log(sentData);
 
     const formData = new FormData();
-    if(inputFile.current.files.length === 1 && attached !== false) formData.append("attachment", inputFile.current.files[0]);
+    if (inputFile.current.files.length === 1 && attached !== false)
+      formData.append("attachment", inputFile.current.files[0]);
     else sentData["attachment_gif"] = gifPreview;
-    
+
     formData.append("data", JSON.stringify(sentData));
 
-    api.post(`message/${organization_id}`, formData).then((response) => {
-      toast.success('Mensagem enviada com sucesso!');
-      setAttached(false);
-      setImagePreview(null);
-      setGifPreview(null);
-      setSelectedPrivacy("public")
-      setNewTagText("");
-      setNewUserText("");
-      setMessage("");
-      setSelectedEmoji("");
-      setData({
-        receivers_usernames: [],
-        tags: [],
+    api
+      .post(`message/${organization_id}`, formData)
+      .then((response) => {
+        toast.success("Mensagem enviada com sucesso!");
+        setAttached(false);
+        setImagePreview(null);
+        setGifPreview(null);
+        setSelectedPrivacy("public");
+        setNewTagText("");
+        setNewUserText("");
+        setMessage("");
+        setSelectedEmoji("");
+        setData({
+          receivers_usernames: [],
+          tags: [],
+        });
+        onSend();
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      onSend();
-    }).catch(error => {
-      console.log(error)
-    });
   }
 
   useEffect(() => {
@@ -168,11 +184,31 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
             className={styles.userInput}
             placeholder="Insira os usuários"
             value={newUserText}
-            onChange={(input) => setNewUserText(input.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Tab" || event.key === "Enter") {
-                handleAddUser(newUserText);
-                setNewUserText("");
+            onChange={async (input) => {
+              setNewUserText(input.target.value);
+
+              if (
+                input.target.value.length % 2 === 0 &&
+                input.target.value.length > 0
+              ) {
+                const userSuggestionsResponse = await api.get(
+                  `user/suggestions/${organization_id}?q=${input.target.value}`
+                );
+                setUserSuggestions(userSuggestionsResponse.data);
+                console.log(userSuggestionsResponse.data);
+              } else if (input.target.value.length === 0) {
+                setUserSuggestions([]);
+              }
+            }}
+            onBlur={(event) => {
+              if(event.relatedTarget.className !== "autocomplete_item") setUserSuggestions([]);
+            }}
+            onFocus={async (input) => {
+              if (input.target.value.length > 1) {
+                const userSuggestionsResponse = await api.get(
+                  `user/suggestions/${organization_id}?q=${input.target.value}`
+                );
+                setUserSuggestions(userSuggestionsResponse.data);
               }
             }}
           />
@@ -186,12 +222,14 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
             trigger="click"
             content={
               <Button.Group size="lg" vertical>
-                <Button
-                  ghost={selectedPrivacy !== "public" ? true : false}
-                  onClick={() => setSelectedPrivacy("public")}
-                >
-                  Público
-                </Button>
+                {!isGroupRoute ? (
+                  <Button
+                    ghost={selectedPrivacy !== "public" ? true : false}
+                    onClick={() => setSelectedPrivacy("public")}
+                  >
+                    Público
+                  </Button>
+                ) : null}
                 <Button
                   ghost={selectedPrivacy !== "private" ? true : false}
                   onClick={() => setSelectedPrivacy("private")}
@@ -220,6 +258,25 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
           </Tooltip>
         </div>
       </Card.Header>
+      <div className={styles.autocompleteItems}>
+        {userSuggestions
+          .filter(
+            (suggestion) => data.receivers_usernames.indexOf(suggestion) === -1
+          )
+          .map((user, id) => (
+            <button
+              className="autocomplete_item"
+              key={id}
+              onClick={() => {
+                console.log("A");
+                handleAddUser(user);
+                setNewUserText("");
+              }}
+            >
+              <p>{user}</p>
+            </button>
+          ))}
+      </div>
       <Divider />
       <Card.Body>
         <div className={styles.tags}>
@@ -257,7 +314,10 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
               />
             }
           >
-            <button className={styles.tag} onClick={() => setTooltipVisible(true)}>
+            <button
+              className={styles.tag}
+              onClick={() => setTooltipVisible(true)}
+            >
               <ChevronDown className={styles.addIcon} />
             </button>
           </Tooltip>

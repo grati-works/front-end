@@ -4,17 +4,20 @@ import { ActiveLink } from "../ActiveLink";
 import { parseCookies } from "nookies";
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
+import { useRouter } from "next/router";
 
 export function NavBar({ user }) {
   const [selectedOrganizationid, setSelectedOrganizationId] = useState(null);
   const [selectedGroupdId, setSelectedGroupId] = useState(null);
-  const [isAuthorOfOrganization, setIsAuthorOfOrganization] = useState(null);
+  const [isAuthorOfOrganization, setIsAuthorOfOrganization] = useState(false);
+  const { asPath, query } = useRouter();
 
   useEffect(() => {
-    const {
+    let {
       "grati.organization_id": organization_id,
       "grati.group_id": group_id,
     } = parseCookies();
+
     setSelectedOrganizationId(organization_id || 0);
     setSelectedGroupId(group_id || null);
 
@@ -70,7 +73,7 @@ export function NavBar({ user }) {
           <TicketStar set="light" />
         </a>
       </ActiveLink>
-      {isAuthorOfOrganization && (
+      {isAuthorOfOrganization || asPath.includes('manage') ? (
         <ActiveLink
           activeClassname={styles.active}
           href={`/manage/${selectedOrganizationid}`}
@@ -80,7 +83,8 @@ export function NavBar({ user }) {
             <Setting set="light" />
           </a>
         </ActiveLink>
-      )}
+      ) : null
+    }
     </nav>
   );
 }

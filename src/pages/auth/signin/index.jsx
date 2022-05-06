@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 
 export default function SignIn() {
   const { signIn } = useAuth();
-  const { push } = useRouter();
+  const { push, query } = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,10 +35,11 @@ export default function SignIn() {
     setIsSubmitting(true);
 
     try {
-      const signedWithSuccess = await signIn(email, password);
+      await signIn(email, password, !query.redirect);
 
-      if (signedWithSuccess === true) {
-        push("/home");
+      if (query.redirect) {
+        console.log(query.redirect)
+        push(query.redirect);
       }
     } catch (error) {
       console.log(error);
