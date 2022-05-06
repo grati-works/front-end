@@ -71,7 +71,6 @@
             border: 3px solid var(--nextui-colors-primaryDark);
           }
         }
-
       }
 
       .manageGroups {
@@ -203,6 +202,32 @@
           }
         }
       }
+      .monthReports {
+        background-color: var(--nextui-colors-backgroundHighlight);
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        margin-top: 1rem;
+
+        border-radius: 5px;
+        gap: 0.5rem;
+
+        p {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        .generateMonthReportsButton {
+          width: 100%;
+          border-radius: 5px;
+          height: 3rem;
+        }
+      }
     }
   }
 
@@ -250,7 +275,8 @@
     }
   }
   .editGroupModalBody {
-    span, input {
+    span,
+    input {
       font-size: 1rem;
     }
 
@@ -263,5 +289,24 @@
   .calendar {
     margin: auto;
     margin-bottom: 12px;
+  }
+}
+
+.registerUserModalWrapper {
+  .registerUserModalHeader p {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  .registerUserModalBody {
+    display: flex;
+    flex-direction: column;
+
+    .registerButton {
+      width: 100%;
+      border-radius: 5px;
+      height: 3.5rem;
+      margin-top: 0.8rem;
+    }
   }
 }

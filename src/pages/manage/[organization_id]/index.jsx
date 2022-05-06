@@ -1,6 +1,15 @@
 import Head from "next/head";
 import { useRef, useState } from "react";
-import { Bookmark, Folder, Paper, Wallet, User } from "react-iconly";
+import {
+  Bookmark,
+  Folder,
+  Paper,
+  Wallet,
+  User,
+  Calendar,
+  Edit,
+  Message,
+} from "react-iconly";
 import { Input } from "../../../components/Input";
 import { UserCard } from "../../../components/UserCard";
 import { Modal } from "@nextui-org/react";
@@ -11,11 +20,11 @@ import styles from "./gerenciamento.module.scss";
 
 import { CalendarComponent } from "../../../components/Calendar";
 import { useEffect } from "react";
-import { parseCookies } from "nookies";
-import dayjs from "dayjs";
+import { dayjs, months } from "../../../services/dayjs";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
+import { validateEmail } from "../../../utils/validator";
 
 export default function Manage() {
   const [defaultColors] = useState({
@@ -40,6 +49,8 @@ export default function Manage() {
 
   const inputFile = useRef(null);
   const [visibleInfo, setVisibleInfo] = useState(false);
+  const [userRegisterModalIsVisible, setUserRegisterModalIsVisible] =
+    useState(false);
   const handlerInfo = () => setVisibleInfo(true);
   const closeHandlerInfo = () => {
     setVisibleInfo(false);
@@ -58,6 +69,12 @@ export default function Manage() {
 
   const [selectedColorScheme, setSelectedColorScheme] = useState("system");
   const [selectedColor, setSelectedColor] = useState(defaultColors.grati);
+
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [visibleGroup, setVisibleGroup] = useState(false);
   const handlerGroup = (group, status = !visibleGroup) => {
@@ -139,6 +156,70 @@ export default function Manage() {
     toast.success("Cor atualizada com sucesso!");
   }
 
+  async function handleGenerateMonthReports() {
+    setIsSubmitting(true);
+
+    const response = await api.get(
+      `organization/${organization_id}/reports?start_date=${dayjs()
+        .subtract(1, "month")
+        .format("YYYY-MM-DD")}&end_date=${dayjs().format("YYYY-MM-DD")}`
+    );
+
+    try {
+      const [cloudinaryURL, filePath] = response.data.split("/upload/");
+      const fileName = filePath.split("/reports/")[1];
+
+      await api
+        .get(`${cloudinaryURL}/upload/fl_attachment/${filePath}`, {
+          responseType: "blob",
+        })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", fileName.replace("%20", " "));
+          document.body.appendChild(link);
+          link.click();
+        });
+    } catch {
+      router.push(response.data);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleSubmitUserRegister() {
+    const emailError = validateEmail(email);
+
+    if (emailError !== true) {
+      setErrors({ ...emailError });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await api
+        .post(`organization/${organization_id}/users`, {
+          users: [
+            {
+              name,
+              username,
+              email,
+            },
+          ],
+        })
+        .then(() => {
+          toast.success("Usuário adicionado à organização com sucesso!");
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   useEffect(() => {
     async function loadOrganizationData() {
       await api.get(`organization/${organization_id}`).then((response) => {
@@ -166,11 +247,18 @@ export default function Manage() {
       const formData = new FormData();
       formData.append("file", inputFile.current.files[0]);
 
-      await api.post(`organization/${organization_id}/users/csv`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await api
+        .post(`organization/${organization_id}/users/csv`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          toast.success("Usuários importados com sucesso!");
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
     };
   }, [attached]);
 
@@ -288,7 +376,10 @@ export default function Manage() {
               <div className={styles.right}>
                 Cadastro de usuários
                 <div className={styles.boxGrape}>
-                  <Button className={styles.manualRegister}>
+                  <Button
+                    className={styles.manualRegister}
+                    onClick={() => setUserRegisterModalIsVisible(true)}
+                  >
                     Cadastro manual
                   </Button>
                   <div className={styles.importCsv}>
@@ -317,6 +408,23 @@ export default function Manage() {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className={styles.monthReports}>
+              <p>
+                <Calendar />
+                Resultados do último mês{" "}
+                {months[dayjs().subtract(1, "month").get("month")]} à{" "}
+                {months[dayjs().get("month")]}
+              </p>
+              <Button
+                backgroundColor
+                className={styles.generateMonthReportsButton}
+                auto
+                onClick={handleGenerateMonthReports}
+                isLoading={isSubmitting}
+              >
+                Gerar relatório mensal
+              </Button>
             </div>
           </div>
         </div>
@@ -365,6 +473,69 @@ export default function Manage() {
             tincidunt in. Sed eleifend.
           </p>
           <a href="">Clique aqui para baixar o template.</a>
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={userRegisterModalIsVisible}
+        onClose={() => setUserRegisterModalIsVisible(false)}
+        className={styles.registerUserModalWrapper}
+        width="530px"
+        scroll
+      >
+        <Modal.Header className={styles.registerUserModalHeader}>
+          <p>Cadastro de usuário</p>
+        </Modal.Header>
+        <Modal.Body className={styles.registerUserModalBody}>
+          <Input
+            Icon={Edit}
+            placeholder="Nome"
+            required
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") handleSubmitUserRegister();
+            }}
+          />
+          <Input
+            Icon={User}
+            placeholder="Usuário"
+            required
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") handleSubmitUserRegister();
+            }}
+          />
+          <Input
+            Icon={Message}
+            placeholder="E-mail"
+            required
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrors({});
+            }}
+            error={errors.email}
+            color={errors.email ? "error" : "primary"}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") handleSubmitUserRegister();
+            }}
+          />
+          <Button
+            className={styles.registerButton}
+            isLoading={isSubmitting}
+            onClick={handleSubmitUserRegister}
+          >
+            Cadastrar usuário
+          </Button>
         </Modal.Body>
       </Modal>
 
