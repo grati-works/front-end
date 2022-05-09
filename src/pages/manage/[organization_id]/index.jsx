@@ -9,10 +9,11 @@ import {
   Calendar,
   Edit,
   Message,
+  Delete,
 } from "react-iconly";
 import { Input } from "../../../components/Input";
 import { UserCard } from "../../../components/UserCard";
-import { Modal } from "@nextui-org/react";
+import { Modal, Input as NextuiInput } from "@nextui-org/react";
 import { Button } from "../../../components/Button";
 import { api } from "../../../services/api";
 
@@ -45,7 +46,7 @@ export default function Manage() {
   };
 
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   const inputFile = useRef(null);
   const [visibleInfo, setVisibleInfo] = useState(false);
@@ -63,6 +64,7 @@ export default function Manage() {
   const { organization_id } = router.query;
 
   const [groupName, setGroupName] = useState("");
+  const [groupColor, setGroupColor] = useState("#000000");
   const [objectiveName, setObjectiveName] = useState("");
   const [objectivePoints, setObjectivePoints] = useState(0);
   const [objectiveDate, setObjectiveDate] = useState(new Date());
@@ -75,6 +77,7 @@ export default function Manage() {
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCreatingGroup, setIsCreatingGroup] = useState(false);
 
   const [visibleGroup, setVisibleGroup] = useState(false);
   const handlerGroup = (group, status = !visibleGroup) => {
@@ -82,10 +85,23 @@ export default function Manage() {
     setSelectedGroup(group);
 
     setGroupName(group?.name);
+    setGroupColor(group?.color);
     setObjectiveName(group?.objective?.name);
     setObjectivePoints(group?.objective?.goal);
-    setObjectiveDate(dayjs(group?.objective?.expires_in).toDate());
+    if(dayjs(group?.objective?.expires_in).toDate() < new Date()) {
+      setObjectiveDate(new Date());
+    } else {
+      setObjectiveDate(dayjs(group?.objective?.expires_in).toDate());
+    }
   };
+
+  async function handleDeleteUser(userId) {
+    console.log("Deletar", userId)
+  }
+
+  async function handleUpdateUser(userId) {
+    console.log("Atualizar", userId)
+  }
 
   async function handleUpdateGroupData() {
     if (
@@ -105,6 +121,7 @@ export default function Manage() {
     if (selectedGroup.name !== groupName) {
       await api.patch(`group/${selectedGroup.id}`, {
         name: groupName,
+        color: groupColor,
       });
 
       setOrganization({
@@ -130,6 +147,62 @@ export default function Manage() {
 
     handlerGroup(null, false);
     toast.success("Grupo atualizado com sucesso!");
+  }
+
+  async function handleCreateGroup() {
+    if (
+      groupName.trim() !== ''
+    ) {
+      await api.post(`group`, {
+        name: groupName,
+        color: groupColor,
+        organization_id
+      });
+      
+      setOrganization({
+        ...organization,
+        groups: [
+          ...organization.groups,
+          {
+            id: Date.now(),
+            name: groupName,
+            color: groupColor,
+          },
+        ],
+      });
+
+      toast.success("Grupo criado com sucesso!");
+
+      setGroupName("");
+      setGroupColor("#000000");
+      setObjectiveName("");
+      setObjectivePoints(0);
+      setObjectiveDate(new Date());
+      handlerGroup(null, false);
+      setIsCreatingGroup(false);
+    } else {
+      return toast.error("Preencha o nome do grupo!");
+    }
+  }
+
+  async function handleDeleteGroup() {
+    await api.delete(`group/${selectedGroup.id}`);
+    setOrganization({
+      ...organization,
+      groups: organization.groups.filter(
+        (group) => group.id !== selectedGroup.id
+      ),
+      users: organization.users.map((profile) =>
+        profile.groups[0]?.id === selectedGroup.id
+          ? {
+              ...profile,
+              groups: [],
+          } : profile
+      ),
+    });
+
+    handlerGroup(null, false);
+    toast.success("Grupo deletado com sucesso!");
   }
 
   async function updateColorScheme(name) {
@@ -335,7 +408,7 @@ export default function Manage() {
                   {group.name}
                 </div>
               ))}
-              <div className={styles.createGroup} onClick={handlerGroup}>
+              <div className={styles.createGroup} onClick={() => { setIsCreatingGroup(true); handlerGroup();}}>
                 <div>+</div>
                 <nobr>Criar grupo</nobr>
               </div>
@@ -448,6 +521,8 @@ export default function Manage() {
                   email={profile.user.email}
                   group={profile?.groups[0]?.name || "Nenhum"}
                   id={profile.id}
+                  deleteFunction={handleDeleteUser}
+                  updateFunction={handleUpdateUser}
                 />
               ))}
             </tbody>
@@ -543,13 +618,17 @@ export default function Manage() {
         closeButton
         aria-labelledby="modal-title"
         open={visibleGroup}
-        onClose={() => handlerGroup(null, false)}
+        onClose={() => { handlerGroup(null, false); setIsCreatingGroup(false); }}
         className={styles.editGroupModalWrapper}
         width="530px"
         scroll
       >
         <Modal.Header className={styles.editGroupModalHeader}>
-          <p>Opções de grupo</p>
+          {
+            isCreatingGroup ?
+            <p>Criar grupo</p> :
+            <p>Opções de grupo</p>
+          }
         </Modal.Header>
         <Modal.Body className={styles.editGroupModalBody}>
           <Input
@@ -558,27 +637,48 @@ export default function Manage() {
             value={groupName}
             onChange={(event) => setGroupName(event.target.value)}
           />
-          <h2>Meta</h2>
-          <Input
-            Icon={Paper}
-            placeholder="Nome da meta"
-            value={objectiveName}
-            onChange={(event) => setObjectiveName(event.target.value)}
+          <h2>Cor</h2>
+          <NextuiInput
+            type="color"
+            value={groupColor}
+            onChange={(event) => setGroupColor(event.target.value)}
+            className={styles.groupColor}
           />
-          <Input
-            Icon={Wallet}
-            placeholder="Pontos"
-            value={objectivePoints}
-            onChange={(event) => setObjectivePoints(event.target.value)}
-          />
-          <div className={styles.calendar}>
-            <CalendarComponent
-              className={styles.CalendarComponent}
-              onChange={setObjectiveDate}
-              value={objectiveDate}
-            />
-          </div>
-          <Button onClick={handleUpdateGroupData}>Salvar alterações</Button>
+          {
+            !isCreatingGroup &&
+            <>
+              <h2>Meta</h2>
+              <Input
+                Icon={Paper}
+                placeholder="Nome da meta"
+                value={objectiveName}
+                onChange={(event) => setObjectiveName(event.target.value)}
+              />
+              <Input
+                Icon={Wallet}
+                placeholder="Pontos"
+                value={objectivePoints}
+                onChange={(event) => setObjectivePoints(event.target.value)}
+              />
+              <div className={styles.calendar}>
+                <CalendarComponent
+                  className={styles.CalendarComponent}
+                  onChange={setObjectiveDate}
+                  value={objectiveDate}
+                />
+              </div>
+            </>
+          }
+          {
+            isCreatingGroup ?
+            <Button onClick={handleCreateGroup}>Criar grupo</Button> :
+            <div className={styles.editGroupButtons}>
+              <Button color="error" auto onClick={handleDeleteGroup}>
+                <Delete />
+              </Button>
+              <Button onClick={handleUpdateGroupData}>Salvar alterações</Button>
+            </div>
+          }
         </Modal.Body>
       </Modal>
     </>

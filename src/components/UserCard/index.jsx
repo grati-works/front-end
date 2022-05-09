@@ -13,6 +13,8 @@ export function UserCard({
   type = "admin",
   organization_id = null,
   id = null,
+  deleteFunction = () => {},
+  updateFunction = () => {},
 }) {
   return size == "lg" ? (
     type == "admin" ? (
@@ -31,10 +33,10 @@ export function UserCard({
           </select>
         </td>
         <td className={styles.acoes}>
-          <button className={styles.editor}>
+          <button className={styles.editor} onClick={() => deleteFunction(id)}>
             <img src="/images/iconPencil.jpg" alt="editor" />
           </button>
-          <button className={styles.trash}>
+          <button className={styles.trash} onClick={() => updateFunction(id)}>
             <img src="/images/trashIcon.jpg" alt="delete" />
           </button>
         </td>

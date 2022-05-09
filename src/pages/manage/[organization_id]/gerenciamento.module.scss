@@ -280,15 +280,31 @@
       font-size: 1rem;
     }
 
+    inpyt[type="color"] {
+      width: 100%;
+      border: none;
+      margin: 0;
+    }
+
     h2 {
       font-size: 1.2rem;
       font-weight: 600;
       color: var(--nextui-colors-accents8);
     }
   }
+
   .calendar {
     margin: auto;
     margin-bottom: 12px;
+  }
+
+  .editGroupButtons {
+    display: flex;
+    gap: 1rem;
+    
+    button:last-child {
+      flex: 1;
+    }
   }
 }
 

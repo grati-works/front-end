@@ -59,10 +59,9 @@ export function Header({ user, privatePage = "" }) {
     async function loadOrganizationColor() {
       const response = await api.get(`organization/${organization_id}`);
       const data = await response.data;
+      const color = data.color || "#6874E8";
 
-      if(data.color !== null) {
-        document.body.style.setProperty("--nextui-colors-header", data.color);
-      }
+      document.body.style.setProperty("--nextui-colors-header", color);
     }
 
     if (organization_id) {
