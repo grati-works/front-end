@@ -49,22 +49,22 @@ export function Header({ user, privatePage = "" }) {
   }, []);
 
   useEffect(() => {
-    if (!organization_id) {
-      if (query["organization_id"]) {
-        organization_id = query["organization_id"];
-        setCookie(null, "grati.organization_id", organization_id);
-      }
-    }
-    
+    let color = "#6874E8"
     async function loadOrganizationColor() {
       const response = await api.get(`organization/${organization_id}`);
       const data = await response.data;
-      const color = data.color || "#6874E8";
+      color = data.color || "#6874E8";
 
       document.body.style.setProperty("--nextui-colors-header", color);
     }
 
-    if (organization_id) {
+    if (!organization_id) {
+      document.body.style.setProperty("--nextui-colors-header", color);
+      if (query["organization_id"]) {
+        organization_id = query["organization_id"];
+        setCookie(null, "grati.organization_id", organization_id);
+      }
+    } else {
       loadOrganizationColor();
     }
   }, [organization_id]);
