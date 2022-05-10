@@ -1,8 +1,7 @@
-import { Image } from "@nextui-org/react";
 import Router from "next/router";
 import styles from "./styles.module.scss";
 
-export function EmptyBox() {
+export function MessageEmptyBox() {
   return (
     <div className={styles.emptyMessages}>
       <svg

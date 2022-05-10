@@ -8,6 +8,7 @@ import { api } from "../../services/api";
 import { useRouter } from "next/router";
 import { parseCookies, setCookie } from 'nookies';
 import { toast } from 'react-toastify';
+import { OrganizationEmptyBox } from '../../components/EmptyBox/Organization';
 
 export default function Organizacao() {
   const [visible, setVisible] = useState(false);
@@ -71,12 +72,16 @@ export default function Organizacao() {
       </Head>
       <div className={styles.organizationWrapper}>
         {
+          organizations.length > 0 ?
           organizations.map(organization => (
             <div key={organization.id} className={`${styles.cardOrganization} ${selectedOrganization == organization.id ? styles.selectedOrganization : ''}`} onClick={() => handler(organization.id)}>
               <div className={styles.organizationIcon} style={{ backgroundColor: `${organization.color || 'var(--nextui-colors-primary)'}` }} />
               <p>{organization.name}</p>
             </div>
-          ))
+          )) :
+          <div className={styles.organizationEmptyBox}>
+            <OrganizationEmptyBox />
+          </div>
         }
       </div>
       <Modal

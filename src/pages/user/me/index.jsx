@@ -16,7 +16,7 @@ import { DeleteMessageModal } from "../../../components/Modal/DeleteMessage";
 import { EditInfoModal } from "../../../components/Modal/EditInfo";
 import { AboutMeModal } from "../../../components/Modal/AboutMe";
 import { toastProps } from "../../../utils/toast";
-import { EmptyBox } from "../../../components/EmptyBox";
+import { MessageEmptyBox } from "../../../components/EmptyBox/Message";
 import { vinculed_accounts } from "../../../utils/vinculedAccounts";
 
 export default function DateProfile() {
@@ -344,7 +344,7 @@ export default function DateProfile() {
             </h3>
           </div>
           {messages[selectedMessagesSection] == "vazio" ? (
-            <EmptyBox />
+            <MessageEmptyBox />
           ) : messages[selectedMessagesSection].length > 0 ? (
             messages[selectedMessagesSection].map((message) => (
               <GratiCard

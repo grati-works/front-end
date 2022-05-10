@@ -8,7 +8,7 @@ import { DeleteMessageModal } from "../../../components/Modal/DeleteMessage";
 import { useRouter } from "next/router";
 import { api } from "../../../services/api";
 import { Skeleton } from "../../../components/Skeleton";
-import { EmptyBox } from "../../../components/EmptyBox";
+import { MessageEmptyBox } from "../../../components/EmptyBox/Message";
 import { Button } from "../../../components/Button";
 import { vinculed_accounts } from "../../../utils/vinculedAccounts";
 
@@ -149,7 +149,7 @@ export default function Profile() {
             </div>
             {userData !== null &&
               (userData[selectedMessagesSection] == "vazio" ? (
-                <EmptyBox />
+                <MessageEmptyBox />
               ) : userData[selectedMessagesSection].length > 0 ? (
                 userData[selectedMessagesSection].map((message) => (
                   <GratiCard

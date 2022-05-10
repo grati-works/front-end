@@ -11,11 +11,10 @@ import { toast } from "react-toastify";
 import { toastProps } from "../../../utils/toast";
 import { useRouter } from "next/router";
 import { Skeleton } from "../../../components/Skeleton";
-import { Image, Modal } from "@nextui-org/react";
 import { dayjs, months } from "../../../services/dayjs";
 import { useAuth } from "../../../hooks/useAuth";
 import { DeleteMessageModal } from "../../../components/Modal/DeleteMessage";
-import { EmptyBox } from "../../../components/EmptyBox";
+import { MessageEmptyBox } from "../../../components/EmptyBox/Message";
 
 export default function HomeUser(props) {
   const [messages, setMessages] = useState([]);
@@ -102,7 +101,7 @@ export default function HomeUser(props) {
             <TextEditor onSend={handleSendMessage} />
             <div className={styles.feed}>
               {messages == "vazio" ? (
-                <EmptyBox />
+                <MessageEmptyBox />
               ) : messages.length > 0 ? (
                 messages.map((message) => (
                   <GratiCard
