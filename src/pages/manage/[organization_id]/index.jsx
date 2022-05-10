@@ -486,8 +486,8 @@ export default function Manage() {
               <p>
                 <Calendar />
                 Resultados do último mês{" "}
-                {months[dayjs().subtract(1, "month").get("month")]} à{" "}
-                {months[dayjs().get("month")]}
+                {months[dayjs().subtract(1, "month").get("month")].toLowerCase()} a{" "}
+                {months[dayjs().get("month")].toLowerCase()}
               </p>
               <Button
                 backgroundColor

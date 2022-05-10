@@ -10,7 +10,7 @@ export function NavBar({ user }) {
   const [selectedOrganizationid, setSelectedOrganizationId] = useState(null);
   const [selectedGroupdId, setSelectedGroupId] = useState(null);
   const [isAuthorOfOrganization, setIsAuthorOfOrganization] = useState(false);
-  const { asPath, query } = useRouter();
+  const { asPath } = useRouter();
 
   useEffect(() => {
     let {
