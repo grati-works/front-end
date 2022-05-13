@@ -48,6 +48,7 @@ export default function Faq() {
         </Modal.Header>
         <Modal.Body className={styles.groupsWrapper}>
           <Input Icon={Category} placeholder="Digite sua pergunta"/>
+          <button>Realizar pergunta</button>
         </Modal.Body>
       </Modal>
     </>
