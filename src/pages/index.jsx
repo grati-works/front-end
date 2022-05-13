@@ -178,8 +178,8 @@ export default function Home({ products }) {
             height={65}
           />
           <nav>
-            <Link href="#">Início</Link>
-            <Link href="#">Sobre nós</Link>
+            <Link href="/">Início</Link>
+            <Link href="/about">Sobre nós</Link>
             <Link href="#">Planos</Link>
             <Link href="#">Login</Link>
           </nav>
