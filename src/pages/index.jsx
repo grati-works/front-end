@@ -73,12 +73,18 @@ export default function Home({ products }) {
         />
 
         <div className={styles.mainSectionContainer}>
+        <Image
+            src="/images/logo_dark.svg"
+            alt="logo-footer"
+            className={styles.logo_footer}
+            width={300}
+            height={300}
+          />
           <h1>
             Adote <span>feedbacks</span> em sua organização
           </h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci dui
-            sed amet elementum, nunc augue mauris gravida ultrices.
+            A melhor plataforma para aprimorar o engajamento interpessoal dentro da sua organização.
           </p>
           <div className={styles.adquireButtons}>
             <Link href="">
@@ -108,25 +114,19 @@ export default function Home({ products }) {
         <div id="about" className={styles.aboutSectionContainer}>
           <h2>Sobre nós</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sem
-            odio ut viverra mi quam. Vitae fames porttitor arcu tempor vulputate
-            proin. Vitae erat a, vitae a amet vestibulum. Diam a etiam ipsum
-            quis auctor massa. Lacinia at amet facilisi mattis massa placerat.
-            Adipiscing id libero, placerat egestas. Sit amet, morbi viverra in
-            cras amet non quam. Habitant maecenas mattis fermentum id. Pretium
-            pretium maecenas maecenas elit facilisi. Turpis suscipit interdum
-            proin curabitur vulputate. Placerat duis nunc molestie dui mi.
-            Velit, aliquam cum faucibus at maecenas at auctor ut in. Neque urna
-            cum ultrices vitae odio etiam quam sed nunc. Felis rhoncus at
-            gravida condimentum viverra quis id bibendum sollicitudin.
+          Fundamos a empresa Grati em 2022, surgiu com o intuito de facilitar a comunicação entre “organização-funcionário”, 
+          e durante o tempo de produção surgiram inúmeras ideias de ferramentas e disponibilidades, nas quais a nossa aplicação detem.
+          </p>
+          <p>
+          Possuímos uma interface intuitiva e com gamificação do inicio ao fim para que o usuário tenha interesse constante em utilizar a plataforma. 
+          Temos como objetivo o aumento da produtividade em empresas mantendo a equidade no ambiente entre todos.
           </p>
         </div>
 
         <div className={styles.plansSectionContainer}>
           <h2>Planos</h2>
           <p className={styles.plansSectionContainer2}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor sem
-            odio ut viverra mi quam.
+            Contamos com varias disponibilidades de planos: 
           </p>
           <div className={styles.planFilter}>
             <button

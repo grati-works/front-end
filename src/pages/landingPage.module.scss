@@ -26,7 +26,7 @@
     z-index: 1;
 
     p {
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       max-width: 45ch;
       font-weight: 400;
     }
@@ -45,7 +45,7 @@
 
   .plansSectionContainer {
     text-align: center;
-    margin-top: 8rem;
+    margin-top: 6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,7 +61,7 @@
 
     .plansSectionContainer2 {
       padding: 0 4rem;
-      font-size: 18px;
+      font-size: 1.8rem;
       line-height: 22px;
       text-align: center;
 
@@ -105,7 +105,7 @@
       gap: 1.5rem;
       align-items: center;
       justify-content: center;
-      margin-bottom: 10rem;
+      margin-bottom: 8rem;
 
       .plan {
         background-color: var(--nextui-colors-backgroundHighlight);
@@ -157,11 +157,11 @@
 
   .aboutSectionContainer {
     width: 100%;
-    margin-top: 8rem;
+    margin-top: 6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    text-align: center;
     h2 {
       font-weight: bold;
       font-size: 48px;
@@ -169,13 +169,12 @@
       color: var(--nextui-colors-accents8);
     }
     p {
-      max-width: 90vw;
+      margin-block-start: 2rem;
+      max-width: 50vw;
       padding: 0 4rem;
-
-      font-size: 18px;
-      line-height: 22px;
-      text-align: justify;
-
+      text-align: center;
+      font-size: 1.8rem;
+      line-height: 40px;
       color: var(--nextui-colors-accents7);
     }
   }
