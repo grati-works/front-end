@@ -21,16 +21,24 @@ export default function Faq() {
       </div>
       <div className={styles.containerFaq}>
         <div className={styles.boxQuestions}>
-          <h1>What this?</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci dui sed amet elementum, nunc augue mauris gravida ultrices.</p>
+          <h1>Como a plataforma funciona?</h1>
+          <p> Para a utilização da plataforma com a sua organização, 
+              é necessário um usuário administrador, 
+              que gerencia os usuários a serem cadastrados.
+              Após os primeiros passos o restante é criar 
+              os grupos de usuários e definir as metas de interações, 
+              com tudo isso concluído espere os bons 
+              resultados aparecerem. 
+          </p>
         </div>
         <div className={styles.boxQuestions}>
-          <h1>What is it for?</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci dui sed amet elementum, nunc augue mauris gravida ultrices.</p>
+          <h1>Existe uma opção de plano superior a 1000 usuários?</h1>
+          <p>Sim, para planos superiores a quantidade de usuários que
+             o nosso planpo de grande porte oferece, favor entrar em contato connosco.</p>
         </div>
         <div className={styles.boxQuestions}>
-          <h1>How do I get this application?</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci dui sed amet elementum, nunc augue mauris gravida ultrices.</p>
+          <h1>Quais as formas de pagamentos dísponiveis?</h1>
+          <p>Cartão de débito e crédito.</p>
         </div>
         <div className={styles.moreQuestion} onClick={handlerInfo}>
           +
