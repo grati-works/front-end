@@ -179,7 +179,7 @@ export default function DateProfile() {
         toast.warn("Você não selecionou nenhuma organização", toastProps);
         return;
       } else {
-        const response = await api.get(`profile/${organization_id}/${user.id}`);
+        const response = await api.get(`profile/${organization_id}/${user.id}?getAllData=true`);
 
         let { sended_feedbacks, received_feedbacks } = response.data;
         if (sended_feedbacks.length === 0) sended_feedbacks = "vazio";

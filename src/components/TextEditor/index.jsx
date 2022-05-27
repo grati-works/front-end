@@ -16,37 +16,37 @@ import { useRouter } from "next/router";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
-export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
-  const emojiPickerTexts = {
-    search: "Pesquisa",
-    clear: "Limpar", // Accessible label on "clear" button
-    notfound: "Emoji não encontrado",
-    skintext: "Selecione o tom de pele padrão",
-    categories: {
-      search: "Resultados de pesquisa",
-      recent: "Frequentemente usados",
-      smileys: "Emoções",
-      people: "Pessoas",
-      nature: "Natureza",
-      foods: "Alimentação",
-      activity: "Atividades",
-      places: "Viagem",
-      objects: "Objetos",
-      symbols: "Símbolos",
-      flags: "Bandeiras",
-      custom: "Customizados",
-    },
-    categorieslabel: "Categorias", // Accessible title for the list of categories
-    skintones: {
-      1: "Tom de pele padrão",
-      2: "Tom de pele claro",
-      3: "Tom de pele meio-claro",
-      4: "Tom de pele médio",
-      5: "Tom de pele meio-escuro",
-      6: "Tom de pele escuro",
-    },
-  };
+export const emojiPickerTexts = {
+  search: "Pesquisa",
+  clear: "Limpar", // Accessible label on "clear" button
+  notfound: "Emoji não encontrado",
+  skintext: "Selecione o tom de pele padrão",
+  categories: {
+    search: "Resultados de pesquisa",
+    recent: "Frequentemente usados",
+    smileys: "Emoções",
+    people: "Pessoas",
+    nature: "Natureza",
+    foods: "Alimentação",
+    activity: "Atividades",
+    places: "Viagem",
+    objects: "Objetos",
+    symbols: "Símbolos",
+    flags: "Bandeiras",
+    custom: "Customizados",
+  },
+  categorieslabel: "Categorias", // Accessible title for the list of categories
+  skintones: {
+    1: "Tom de pele padrão",
+    2: "Tom de pele claro",
+    3: "Tom de pele meio-claro",
+    4: "Tom de pele médio",
+    5: "Tom de pele meio-escuro",
+    6: "Tom de pele escuro",
+  },
+};
 
+export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
   const router = useRouter();
   const inputFile = useRef(null);
   const [userSuggestions, setUserSuggestions] = useState([]);

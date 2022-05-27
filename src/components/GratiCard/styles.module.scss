@@ -74,9 +74,33 @@
   }
 
   .gratiCardFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .attachmentContainer {
+      height: 20rem;
+      max-width: 100%;
+
+      .attachment {
+        height: 20rem;
+        max-width: 100%;
+        object-fit: cover;
+        border-radius: 6px !important;
+      }
+    }
     .reactionsContainer {
+      width: 100%;
       display: flex;
       gap: 12px;
+
+      .addReaction {
+        margin-left: auto;
+        .addReactionButton {
+          background: transparent;
+        }
+      }
 
       .reaction {
         display: flex;

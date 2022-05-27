@@ -10,7 +10,7 @@ export function NavBar({ user }) {
   const [selectedOrganizationid, setSelectedOrganizationId] = useState(null);
   const [selectedGroupdId, setSelectedGroupId] = useState(null);
   const [isAuthorOfOrganization, setIsAuthorOfOrganization] = useState(false);
-  const { asPath } = useRouter();
+  const { asPath, pathname } = useRouter();
 
   useEffect(() => {
     let {
@@ -32,7 +32,7 @@ export function NavBar({ user }) {
     }
 
     isAuthorOfOrganization();
-  }, []);
+  }, [pathname]);
   return (
     <nav className={styles.navbarContainer}>
       <ActiveLink
@@ -73,7 +73,7 @@ export function NavBar({ user }) {
           <TicketStar set="light" />
         </a>
       </ActiveLink>
-      {isAuthorOfOrganization || asPath.includes('manage') ? (
+      {isAuthorOfOrganization || asPath.includes("manage") ? (
         <ActiveLink
           activeClassname={styles.active}
           href={`/manage/${selectedOrganizationid}`}
@@ -83,8 +83,7 @@ export function NavBar({ user }) {
             <Setting set="light" />
           </a>
         </ActiveLink>
-      ) : null
-    }
+      ) : null}
     </nav>
   );
 }
