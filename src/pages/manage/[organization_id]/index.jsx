@@ -57,6 +57,9 @@ export default function Manage() {
     setVisibleInfo(false);
   };
 
+  const [editUserModal, setVisibleEditUserModal] = useState(false);
+  const [deleteUserModal, setVisibleDeleteUserModal] = useState(false);
+
   const [attached, setAttached] = useState(false);
   const [organization, setOrganization] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -97,10 +100,13 @@ export default function Manage() {
 
   async function handleDeleteUser(userId) {
     console.log("Deletar", userId)
+    setVisibleDeleteUserModal(true)
+
   }
 
   async function handleUpdateUser(userId) {
     console.log("Atualizar", userId)
+    setVisibleEditUserModal(true)
   }
 
   async function handleUpdateGroupData() {
@@ -396,6 +402,7 @@ export default function Manage() {
               ))}
             </div>
             Gerenciamento de grupos
+            <scrolll-container className={styles.scrollGroup}>
             <div className={styles.manageGroups}>
               {organization?.groups.map((group) => (
                 <div
@@ -413,6 +420,7 @@ export default function Manage() {
                 <nobr>Criar grupo</nobr>
               </div>
             </div>
+            </scrolll-container>
           </div>
           <div className={styles.boxGood}>
             Dados
@@ -548,6 +556,56 @@ export default function Manage() {
             tincidunt in. Sed eleifend.
           </p>
           <a href="">Clique aqui para baixar o template.</a>
+        </Modal.Body>
+      </Modal>
+
+      //Modal edição de usuário
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={editUserModal}
+        onClose={() => setVisibleEditUserModal(false)}
+        className={styles.groupsModal}
+        width="530px"
+        scroll
+      >
+        <Modal.Header className={styles.groupsModalHeader}>
+          <p>Edição de Usuário</p>
+        </Modal.Header>
+        <Modal.Body className={styles.groupsWrapper}>
+          <Input
+          Icon={User}
+          placeholder="alterar nome"
+          required
+          value={name}
+          />
+          <Input
+          Icon={Paper}
+          placeholder="alterar nome de usuário"
+          required
+          value={name}
+          />
+          <Button className={styles.btnClose}>Cancelar</Button>
+          <Button className={styles.btnEdit}>Editar</Button>
+        </Modal.Body>
+      </Modal>
+
+      //Modal exclusão de usuário
+      <Modal
+        closeButton
+        aria-labelledby="modal-title"
+        open={deleteUserModal}
+        onClose={() => setVisibleDeleteUserModal(false)}
+        className={styles.modalDeleteUser}
+        width="530px"
+        scroll
+      >
+        <Modal.Header>
+          <p>Exclusão de usuário de Usuário</p>
+        </Modal.Header>
+        <Modal.Body className={styles.modalWrapperDeleteUser}>
+          <Button className={styles.btnClose}>Cancelar</Button>
+          <Button className={styles.btnDelete}>Excluir</Button>
         </Modal.Body>
       </Modal>
 

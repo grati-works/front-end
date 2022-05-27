@@ -33,10 +33,10 @@ export function UserCard({
           </select>
         </td>
         <td className={styles.acoes}>
-          <button className={styles.editor} onClick={() => deleteFunction(id)}>
+          <button className={styles.editor} onClick={() => updateFunction(id)}>
             <img src="/images/iconPencil.jpg" alt="editor" />
           </button>
-          <button className={styles.trash} onClick={() => updateFunction(id)}>
+          <button className={styles.trash} onClick={() => deleteFunction(id)}>
             <img src="/images/trashIcon.jpg" alt="delete" />
           </button>
         </td>
