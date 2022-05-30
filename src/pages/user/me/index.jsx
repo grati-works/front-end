@@ -71,27 +71,33 @@ export default function DateProfile() {
   }
 
   async function handleUpdateSkills(skills) {
-    await api.put(`profile/${profile.id}`, {
-      skills
-    }).then(() => {
-      toast.success("Skills atualizadas com sucesso!", toastProps);
-    });
+    await api
+      .put(`profile/${profile.id}`, {
+        skills,
+      })
+      .then(() => {
+        toast.success("Skills atualizadas com sucesso!", toastProps);
+      });
     handleToggleSkillsModal(false);
   }
 
   const [editGraduationsModalIsOpened, setEditGraduationsModalIsOpened] =
     useState(false);
-  function handleToggleGraduationsModal(status = !editGraduationsModalIsOpened) {
+  function handleToggleGraduationsModal(
+    status = !editGraduationsModalIsOpened
+  ) {
     setEditGraduationsModalIsOpened(status);
     closeHandlerInfo();
   }
 
   async function handleUpdateGraduations(graduations) {
-    api.put(`profile/${profile.id}`, {
-      graduations
-    }).then(() => {
-      toast.success("Graduações atualizadas com sucesso!", toastProps);
-    });
+    api
+      .put(`profile/${profile.id}`, {
+        graduations,
+      })
+      .then(() => {
+        toast.success("Graduações atualizadas com sucesso!", toastProps);
+      });
     handleToggleGraduationsModal(false);
   }
 
@@ -179,11 +185,14 @@ export default function DateProfile() {
         toast.warn("Você não selecionou nenhuma organização", toastProps);
         return;
       } else {
-        const response = await api.get(`profile/${organization_id}/${user.id}?getAllData=true`);
+        const response = await api.get(
+          `profile/${organization_id}/${user.id}?getAllData=true`
+        );
 
         let { sended_feedbacks, received_feedbacks } = response.data;
         if (sended_feedbacks.length === 0) sended_feedbacks = "vazio";
         if (received_feedbacks.length === 0) received_feedbacks = "vazio";
+        console.log(sended_feedbacks);
         setMessages({ received_feedbacks, sended_feedbacks });
       }
     }
@@ -346,16 +355,18 @@ export default function DateProfile() {
           {messages[selectedMessagesSection] == "vazio" ? (
             <MessageEmptyBox />
           ) : messages[selectedMessagesSection].length > 0 ? (
-            messages[selectedMessagesSection].map((message) => (
-              <GratiCard
-                content={message}
-                key={message.id}
-                reactedMessages={message.reactions.filter(
-                  (reaction) => reaction.feedback_id === message.id
-                )}
-                deleteFunction={() => handleOpenDeleteModal(message.id)}
-              />
-            ))
+            <>
+              {messages[selectedMessagesSection].map((message) => (
+                <GratiCard
+                  content={message}
+                  key={message.id}
+                  reactedMessages={message.reactions.filter(
+                    (reaction) => reaction.feedback_id === message.id
+                  )}
+                  deleteFunction={() => handleOpenDeleteModal(message.id)}
+                />
+              ))}
+            </>
           ) : (
             <Skeleton width="100%" height="300px" repeat={5} />
           )}
@@ -404,7 +415,7 @@ export default function DateProfile() {
                   Quem é você e o que faz?
                 </p>
               ) : (
-                <p dangerouslySetInnerHTML={{__html: profile?.description}} />
+                <p dangerouslySetInnerHTML={{ __html: profile?.description }} />
               )}
               <div className={styles.vinculedAccounts}>
                 {profile?.vinculed_accounts.map((vinculed_account) => (
@@ -416,7 +427,11 @@ export default function DateProfile() {
                       />
                     }
                     key={vinculed_account.provider}
-                    onClick={() => window.location=`${vinculed_accounts[vinculed_account.provider].prefix}${vinculed_account.account}`}
+                    onClick={() =>
+                      (window.location = `${
+                        vinculed_accounts[vinculed_account.provider].prefix
+                      }${vinculed_account.account}`)
+                    }
                   >
                     {vinculed_account.provider}
                   </Button>
@@ -432,7 +447,7 @@ export default function DateProfile() {
                   onClick={handleToggleSkillsModal}
                 />
               </div>
-              <p dangerouslySetInnerHTML={{__html: profile?.skills}} />
+              <p dangerouslySetInnerHTML={{ __html: profile?.skills }} />
             </div>
             <div className={styles.formation}>
               <div className={styles.title}>
@@ -443,7 +458,7 @@ export default function DateProfile() {
                   onClick={handleToggleGraduationsModal}
                 />
               </div>
-              <p dangerouslySetInnerHTML={{__html: profile?.graduations}} />
+              <p dangerouslySetInnerHTML={{ __html: profile?.graduations }} />
             </div>
           </div>
         </Modal.Body>

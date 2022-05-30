@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import styles from './ranking.module.scss';
 import { UserRankingCard } from '../../../components/UserRankingCard';
-import { useState, useEffect } from 'react/';
+import { useState, useEffect } from 'react';
 import { Pagination } from '@nextui-org/react';
 import { api } from "../../../services/api";
 import { parseCookies } from 'nookies';

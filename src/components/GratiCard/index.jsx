@@ -13,28 +13,47 @@ import { api } from "../../services/api";
 export function GratiCard({ content, deleteFunction, reactedMessages }) {
   const [message, setMessage] = useState(content);
   const { user } = useAuth();
-  const [reactions, setReactions] = useState(reactedMessages);
+  const [reactions, setReactions] = useState(
+    message.reactions.filter(
+      (reaction) =>
+        reaction.feedback_id === message.id && reaction.user.user_id == user.id
+    )
+  );
 
   useEffect(() => {
     if (!message) setMessage(content);
-    console.log(reactions);
+    console.log({ reactions });
   }, []);
 
   async function toggleReaction(id) {
-    if (!reactions.includes(id)) {
+    if (!reactions.find((reacted) => reacted.emoji === id)) {
+      console.log({
+        add: [
+          ...message.reactions,
+          {
+            id: message.reactions[message.reactions.length - 1].id + 1,
+            emoji: id,
+            user_id: user.id,
+          },
+        ],
+      });
       setReactions(reactions.concat(id));
-      setMessage({
-        ...message,
-        reactions: { [id]: message.reactions[id] + 1 },
-      });
-      await api.patch(`/message/${message.id}/reaction/add`, {
-        emoji: id,
-      });
+      // await api.patch(`/message/${message.id}/reaction/add`, {
+      //   emoji: id,
+      // });
     } else {
-        
+      console.log({
+        remove: message.reactions.filter(
+          (reaction) => reaction.emoji !== id
+        ),
+      });
+      console.log(reactions.filter((reacted) => reacted !== id));
+      // await api.patch(`/message/${message.id}/reaction/remove`, {
+      //   emoji: id,
+      // });
     }
   }
-  //   console.log(content);
+  // console.log(content.reactions);
 
   function handleAddReaction() {}
 
@@ -112,20 +131,33 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
         <div className={styles.reactionsContainer}>
           {
             // ${reaction.reacted && styles.reacted}
-            Object.keys(message.reactions).map((reaction, index) => (
-              <span
-                className={`${styles.reaction} ${
-                  reactions.find((reacted) => reacted.emoji === reaction)
-                    ? styles.reacted
-                    : ""
-                } `}
-                onClick={() => toggleReaction(reaction)}
-                key={reaction}
-              >
-                <Emoji emoji={{ id: reaction }} set="twitter" size={16} />
-                {Object.values(message.reactions)[index]}
-              </span>
-            ))
+            message.reactions.reduce((previous, current) =>
+              previous.emoji !== undefined ||
+              previous.emoji !== current.emoji ? (
+                <span
+                  className={`${styles.reaction} ${
+                    reactions.find((reacted) => reacted.emoji === current.emoji)
+                      ? styles.reacted
+                      : ""
+                  } `}
+                  onClick={() => toggleReaction(current.emoji)}
+                  key={current.emoji}
+                >
+                  <Emoji
+                    emoji={{ id: current.emoji }}
+                    set="twitter"
+                    size={16}
+                  />
+                  {
+                    content.reactions.filter(
+                      (message) => message.emoji == current.emoji
+                    ).length
+                  }
+                </span>
+              ) : (
+                <></>
+              )
+            )
           }
           <div className={styles.addReaction}>
             <Tooltip

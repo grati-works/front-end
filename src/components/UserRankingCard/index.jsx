@@ -1,13 +1,26 @@
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
-import { ChevronUp, ChevronDown } from 'react-iconly';
-import { Avatar } from '@nextui-org/react';
+import { ChevronUp, ChevronDown } from "react-iconly";
+import { Avatar } from "@nextui-org/react";
+import { useRouter } from "next/router";
 
-export function UserRankingCard({ position, avatar = "https://mdbcdn.b-cdn.net/img/new/avatars/2.webp", name, level, received_feedbacks, points, size = "lg" }) {
+export function UserRankingCard({
+  id,
+  organization_id,
+  position,
+  avatar = "https://mdbcdn.b-cdn.net/img/new/avatars/2.webp",
+  name,
+  level,
+  received_feedbacks,
+  points,
+  size = "lg",
+}) {
+  const { push } = useRouter();
+
   return size == "lg" ? (
     <tr className={styles.cardContainer}>
       <td className={styles.position}>{position}</td>
-      <td  className={styles.user}>
+      <td className={styles.user} onClick={() => push(`/user/${organization_id}/${id}`)}>
         <div>
           <Avatar src={avatar} size="lg" text={name} />
           <div>
@@ -18,8 +31,12 @@ export function UserRankingCard({ position, avatar = "https://mdbcdn.b-cdn.net/i
           </div>
         </div>
       </td>
-      <td className={styles.grati}><span>{received_feedbacks}</span> recebidos</td>
-      <td className={styles.experience}><span>{points}</span> xp</td>
+      <td className={styles.grati}>
+        <span>{received_feedbacks}</span> recebidos
+      </td>
+      <td className={styles.experience}>
+        <span>{points}</span> xp
+      </td>
     </tr>
   ) : (
     <div className={styles.cardContainerSmall}>
@@ -29,5 +46,5 @@ export function UserRankingCard({ position, avatar = "https://mdbcdn.b-cdn.net/i
       <p className={styles.name}>{name}</p>
       <span className={styles.gratis}>{points}</span>
     </div>
-  )
+  );
 }

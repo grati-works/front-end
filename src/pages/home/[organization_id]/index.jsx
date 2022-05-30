@@ -35,9 +35,7 @@ export default function HomeUser(props) {
   function handleDeleteMessage() {
     api.delete(`/message/${selectedGrati}`).then(() => {
       setMessages((messages) => ({
-        ...messages.filter(
-          (message) => message.id !== selectedGrati
-        ),
+        ...messages.filter((message) => message.id !== selectedGrati),
       }));
       setModalIsVisible(false);
       toast.success("Mensagem excluida com sucesso!");
@@ -47,10 +45,10 @@ export default function HomeUser(props) {
   async function loadMessages() {
     try {
       const { organization_id } = router.query;
-      if (!organization_id || !user ) return;
-      if(organization_id == 0) {
-        router.push('/organizations')
-        toast.warn('Você não selecionou nenhuma organização', toastProps);
+      if (!organization_id || !user) return;
+      if (organization_id == 0) {
+        router.push("/organizations");
+        toast.warn("Você não selecionou nenhuma organização", toastProps);
         return;
       }
 
@@ -140,6 +138,8 @@ export default function HomeUser(props) {
                     .map((profile, index) => (
                       <UserRankingCard
                         size="sm"
+                        id={profile.id}
+                        organization_id={profile.organization_id}
                         avatar={profile.user.profile_picture}
                         name={profile.user.name}
                         points={profile.points}
@@ -163,7 +163,11 @@ export default function HomeUser(props) {
         </div>
       </>
 
-      <DeleteMessageModal isVisible={isVisible} cancelFunction={handleOpenDeleteModal} deleteFunction={handleDeleteMessage}/>
+      <DeleteMessageModal
+        isVisible={isVisible}
+        cancelFunction={handleOpenDeleteModal}
+        deleteFunction={handleDeleteMessage}
+      />
     </>
   );
 }
