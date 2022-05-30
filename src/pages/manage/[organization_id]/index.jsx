@@ -559,7 +559,7 @@ export default function Manage() {
         </Modal.Body>
       </Modal>
 
-      //Modal edição de usuário
+      {/* Modal edição de usuário */}
       <Modal
         closeButton
         aria-labelledby="modal-title"
@@ -590,7 +590,7 @@ export default function Manage() {
         </Modal.Body>
       </Modal>
 
-      //Modal exclusão de usuário
+      {/* Modal exclusão de usuário */}
       <Modal
         closeButton
         aria-labelledby="modal-title"
