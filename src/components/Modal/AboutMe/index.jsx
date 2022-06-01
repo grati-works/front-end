@@ -35,8 +35,6 @@ export function AboutMeModal({ open, onToggle = () => {}, profile }) {
       ],
     };
 
-    console.log(data)
-
     await api.put(`profile/${profile.id}`, data);
     onToggle(false);
 

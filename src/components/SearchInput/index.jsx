@@ -14,7 +14,6 @@ export function SearchInput() {
     const suggestions = await api.get(
       `/search/suggest/${organization_id}?q=${query}`
     );
-    console.log(suggestions)
     setSuggestions(suggestions.data);
   }
 

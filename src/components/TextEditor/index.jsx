@@ -96,7 +96,6 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
   }
 
   function handleSelectGif(url) {
-    console.log(url);
     setGifPreview(url);
   }
 
@@ -123,7 +122,6 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
       groups: [group],
       organization_id,
     };
-    console.log(sentData);
 
     const formData = new FormData();
     if (inputFile.current.files.length === 1 && attached !== false)
@@ -195,7 +193,6 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
                   `user/suggestions/${organization_id}?q=${input.target.value}`
                 );
                 setUserSuggestions(userSuggestionsResponse.data);
-                console.log(userSuggestionsResponse.data);
               } else if (input.target.value.length === 0) {
                 setUserSuggestions([]);
               }
@@ -268,7 +265,6 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
               className="autocomplete_item"
               key={id}
               onClick={() => {
-                console.log("A");
                 handleAddUser(user);
                 setNewUserText("");
               }}

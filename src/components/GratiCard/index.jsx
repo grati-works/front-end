@@ -13,16 +13,28 @@ import { api } from "../../services/api";
 export function GratiCard({ content, deleteFunction, reactedMessages }) {
   const [message, setMessage] = useState(content);
   const { user } = useAuth();
-  const [reactions, setReactions] = useState(
-    message.reactions.filter(
-      (reaction) =>
-        reaction.feedback_id === message.id && reaction.user.user_id == user.id
-    )
-  );
+  const [reactions, setReactions] = useState([]);
 
   useEffect(() => {
-    if (!message) setMessage(content);
-    console.log({ reactions });
+    setReactions(content.reactions.filter(reaction => reaction.feedback_id === content.id && reaction.user.user_id == user.id))
+
+    const newContent = content;
+    const reactions = newContent.reactions;
+    newContent.reactions = {};
+
+    reactions.forEach((reaction) => {
+      if (!newContent.reactions[reaction.emoji]) {
+        newContent.reactions[reaction.emoji] = {
+          ...reaction,
+          count: 1,
+        };
+      } else {
+        newContent.reactions[reaction.emoji].count++;
+      }
+    });
+
+    
+    if (!message) setMessage(newContent);
   }, []);
 
   async function toggleReaction(id) {
@@ -43,9 +55,7 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
       // });
     } else {
       console.log({
-        remove: message.reactions.filter(
-          (reaction) => reaction.emoji !== id
-        ),
+        remove: message.reactions.filter((reaction) => reaction.emoji !== id),
       });
       console.log(reactions.filter((reacted) => reacted !== id));
       // await api.patch(`/message/${message.id}/reaction/remove`, {
@@ -129,36 +139,20 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
           </div>
         )}
         <div className={styles.reactionsContainer}>
-          {
-            // ${reaction.reacted && styles.reacted}
-            message.reactions.reduce((previous, current) =>
-              previous.emoji !== undefined ||
-              previous.emoji !== current.emoji ? (
-                <span
-                  className={`${styles.reaction} ${
-                    reactions.find((reacted) => reacted.emoji === current.emoji)
-                      ? styles.reacted
-                      : ""
-                  } `}
-                  onClick={() => toggleReaction(current.emoji)}
-                  key={current.emoji}
-                >
-                  <Emoji
-                    emoji={{ id: current.emoji }}
-                    set="twitter"
-                    size={16}
-                  />
-                  {
-                    content.reactions.filter(
-                      (message) => message.emoji == current.emoji
-                    ).length
-                  }
-                </span>
-              ) : (
-                <></>
-              )
-            )
-          }
+          {Object.values(message.reactions).map((reaction) => (
+            <span
+              className={`${styles.reaction} ${
+                reactions.find((reacted) => reacted.emoji === reaction.emoji && reacted.feedback_id === message.id) !== undefined
+                  ? styles.reacted
+                  : ""
+              } `}
+              onClick={() => toggleReaction(reaction.emoji)}
+              key={reaction.emoji}
+            >
+              <Emoji emoji={{ id: reaction.emoji }} set="twitter" size={16} />
+              {reaction.count}
+            </span>
+          ))}
           <div className={styles.addReaction}>
             <Tooltip
               placement="left"
