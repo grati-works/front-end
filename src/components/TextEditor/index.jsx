@@ -66,6 +66,8 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
     tags: ["Persistência"],
   });
   const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [emojiTooltipIsVisible, setEmojiTooltipIsVisible] = useState(false);
+  const [gifTooltipIsVisible, setGifTooltipIsVisible] = useState(false);
 
   const { asPath } = useRouter();
   const [organization_id, _, group_id] = asPath.split("/").splice(2, 4);
@@ -360,6 +362,7 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
           <Tooltip
             placement="right"
             trigger="click"
+            visible={emojiTooltipIsVisible}
             content={
               <Picker
                 i18n={emojiPickerTexts}
@@ -371,7 +374,7 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
               />
             }
           >
-            <Button className={styles.attachment} auto>
+            <Button className={styles.attachment} auto onClick={() => setEmojiTooltipIsVisible(!emojiTooltipIsVisible)}>
               <Image
                 src="/icons/emoji.svg"
                 alt="Ícone de emoji"
@@ -403,6 +406,7 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
             <Tooltip
               placement="right"
               trigger="click"
+              visible={gifTooltipIsVisible}
               content={
                 <ReactGiphySearchbox
                   apiKey={process.env.NEXT_PUBLIC_GIPHY_API_KEY}
@@ -416,7 +420,7 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
                 />
               }
             >
-              <Button className={styles.attachment} auto>
+              <Button className={styles.attachment} auto onClick={() => setGifTooltipIsVisible(!gifTooltipIsVisible)}>
                 <Image
                   src="/icons/gif.svg"
                   alt="Ícone de GIF"
