@@ -174,7 +174,7 @@ export default function HomeUser(props) {
                     .map((profile, index) => (
                       <UserRankingCard
                         size="sm"
-                        id={profile.id}
+                        id={profile.user.id}
                         organization_id={profile.organization_id}
                         avatar={profile.user.profile_picture}
                         name={profile.user.name}

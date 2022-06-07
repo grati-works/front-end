@@ -7,11 +7,13 @@ import { Pagination } from '@nextui-org/react';
 import { api } from "../../../services/api";
 import { parseCookies } from 'nookies';
 import dayjs from 'dayjs';
+import { useRouter } from "next/router";
 
 export default function Ranking() {
   const [ranking, setRanking] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const { asPath } = useRouter();
 
   useEffect(() => {
     const { 'grati.organization_id': selectedOrganizationId } = parseCookies();
@@ -54,7 +56,7 @@ export default function Ranking() {
           <tbody>
             {
               ranking.map((profile, position) => (
-                <UserRankingCard key={position} position={position+1} avatar={profile.user.profile_picture} name={profile.user.name} level={profile.level} received_feedbacks={profile.received_feedbacks} points={profile.points} />
+                <UserRankingCard key={position} organization_id={asPath.split('/')[2]} position={position+1} avatar={profile.user.profile_picture} name={profile.user.name} level={profile.level} received_feedbacks={profile.received_feedbacks} points={profile.points} id={profile.user.id} />
               ))
             }
             {/* <UserRankingCard position="2" avatar="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" name="Carlos Almeida" status="down" level="11" gratis="34" experience="1560" /> */}

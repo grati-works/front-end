@@ -56,10 +56,12 @@ export function Header({ user, privatePage = "" }) {
       color = data.color || "#6874E8";
 
       document.body.style.setProperty("--nextui-colors-header", color);
+      document.body.style.setProperty("--nextui-colors-primary", color);
     }
 
     if (!organization_id) {
       document.body.style.setProperty("--nextui-colors-header", color);
+      document.body.style.setProperty("--nextui-colors-primary", color);
       if (query["organization_id"]) {
         organization_id = query["organization_id"];
         setCookie(null, "grati.organization_id", organization_id);

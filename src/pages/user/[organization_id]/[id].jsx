@@ -45,7 +45,9 @@ export default function Profile() {
       console.log(organization_id, id);
 
       if (organization_id && id) {
-        var response = await api.get(`profile/${organization_id}/${id}`);
+        var response = await api.get(`profile/${organization_id}/${id}?isPublic=true&getAllData=true`);
+
+        console.log(response);
 
         let { sended_feedbacks, received_feedbacks } = response.data;
         if (sended_feedbacks.length === 0)
@@ -155,9 +157,15 @@ export default function Profile() {
                   <GratiCard
                     content={message}
                     key={message.id}
-                    reactedMessages={message.reactions.filter(
-                      (reaction) => reaction.feedback_id === message.id
-                    )}
+                    reactedMessages={() => {
+                      try {
+                        return message.reactions.filter(
+                          (reaction) => reaction.feedback_id === message.id
+                        )
+                      } catch {
+                        return [];
+                      }
+                    }}
                     deleteFunction={() => handleOpenDeleteModal(message.id)}
                   />
                 ))

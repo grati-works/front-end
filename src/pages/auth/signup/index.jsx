@@ -17,10 +17,10 @@ export default function SignUp() {
   const { signUp } = useAuth();
   const { push } = useRouter();
 
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("erick.capito");
+  const [name, setName] = useState("Erick Nathan");
+  const [email, setEmail] = useState("eriick.capito@gmail.com");
+  const [password, setPassword] = useState("12345678Teste!");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 

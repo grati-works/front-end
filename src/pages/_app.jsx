@@ -85,10 +85,11 @@ function MyApp({ Component, pageProps }) {
           <UIProvider>
             <ToastContainer />
             <NextNProgress
-              color={defaultColors.primary}
+              color="var(--nextui-colors-primary)"
               startPosition={0.3}
               stopDelayMs={200}
               height={3}
+              
             />
             <Component {...pageProps} />
           </UIProvider>
