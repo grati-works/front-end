@@ -111,18 +111,6 @@ export default function Home({ products }) {
           />
         </div>
 
-        <div id="about" className={styles.aboutSectionContainer}>
-          <h2>Sobre nós</h2>
-          <p>
-          Fundamos a empresa Grati em 2022, surgiu com o intuito de facilitar a comunicação entre “organização-funcionário”, 
-          e durante o tempo de produção surgiram inúmeras ideias de ferramentas e disponibilidades, nas quais a nossa aplicação detem.
-          </p>
-          <p>
-          Possuímos uma interface intuitiva e com gamificação do inicio ao fim para que o usuário tenha interesse constante em utilizar a plataforma. 
-          Temos como objetivo o aumento da produtividade em empresas mantendo a equidade no ambiente entre todos.
-          </p>
-        </div>
-
         <div className={styles.plansSectionContainer}>
           <h2>Planos</h2>
           <p className={styles.plansSectionContainer2}>
