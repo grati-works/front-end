@@ -120,9 +120,6 @@ export default function HomeUser(props) {
                   <GratiCard
                     content={message}
                     key={message.id}
-                    reactedMessages={reactions.filter(
-                      (reaction) => reaction.feedback_id === message.id
-                    )}
                     deleteFunction={handleOpenDeleteModal}
                   />
                 ))

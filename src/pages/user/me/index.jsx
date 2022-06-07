@@ -360,9 +360,6 @@ export default function DateProfile() {
                 <GratiCard
                   content={message}
                   key={message.id}
-                  reactedMessages={message.reactions.filter(
-                    (reaction) => reaction.feedback_id === message.id
-                  )}
                   deleteFunction={() => handleOpenDeleteModal(message.id)}
                 />
               ))}

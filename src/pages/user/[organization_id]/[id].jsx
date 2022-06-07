@@ -42,10 +42,9 @@ export default function Profile() {
   useEffect(() => {
     async function loadUserData() {
       const { organization_id, id } = router.query;
-      console.log(organization_id, id);
 
       if (organization_id && id) {
-        var response = await api.get(`profile/${organization_id}/${id}`);
+        var response = await api.get(`profile/${organization_id}/${id}?getAllData=true&isPublic=true`);
 
         let { sended_feedbacks, received_feedbacks } = response.data;
         if (sended_feedbacks.length === 0)
@@ -155,9 +154,6 @@ export default function Profile() {
                   <GratiCard
                     content={message}
                     key={message.id}
-                    reactedMessages={message.reactions.filter(
-                      (reaction) => reaction.feedback_id === message.id
-                    )}
                     deleteFunction={() => handleOpenDeleteModal(message.id)}
                   />
                 ))

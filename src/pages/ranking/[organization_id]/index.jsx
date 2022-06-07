@@ -1,23 +1,26 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import styles from './ranking.module.scss';
-import { UserRankingCard } from '../../../components/UserRankingCard';
-import { useState, useEffect } from 'react';
-import { Pagination } from '@nextui-org/react';
+import styles from "./ranking.module.scss";
+import { UserRankingCard } from "../../../components/UserRankingCard";
+import { useState, useEffect } from "react";
+import { Pagination } from "@nextui-org/react";
 import { api } from "../../../services/api";
-import { parseCookies } from 'nookies';
-import dayjs from 'dayjs';
+import { parseCookies } from "nookies";
+import dayjs from "dayjs";
 
 export default function Ranking() {
   const [ranking, setRanking] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [organizationId, setOrganizationId] = useState(null);
 
   useEffect(() => {
-    const { 'grati.organization_id': selectedOrganizationId } = parseCookies();
-    if(selectedOrganizationId == 0) {
-      router.push('/organizations')
-      toast.warn('Você não selecionou nenhuma organização', toastProps);
+    const { "grati.organization_id": selectedOrganizationId } = parseCookies();
+    setOrganizationId(selectedOrganizationId);
+
+    if (selectedOrganizationId == 0) {
+      router.push("/organizations");
+      toast.warn("Você não selecionou nenhuma organização", toastProps);
       return;
     }
 
@@ -27,10 +30,14 @@ export default function Ranking() {
         .subtract(3, "month")
         .format("YYYY-MM-DD");
 
-      const response = await api.get(`organization/${selectedOrganizationId}/ranking?page=${currentPage-1}&start_date=${threeMonthsAgoDate}&end_date=${nowDate}`);
+      const response = await api.get(
+        `organization/${selectedOrganizationId}/ranking?page=${
+          currentPage - 1
+        }&start_date=${threeMonthsAgoDate}&end_date=${nowDate}`
+      );
 
       setRanking(response.data.ranking);
-      setTotalPages(response.data.total_pages)
+      setTotalPages(response.data.total_pages);
     }
 
     loadRanking();
@@ -39,7 +46,7 @@ export default function Ranking() {
   return (
     <>
       <Head>
-          <title>Grati | Ranking</title>
+        <title>Grati | Ranking</title>
       </Head>
       <div className={styles.rankingContainer}>
         <table className={styles.rankingTable}>
@@ -52,16 +59,30 @@ export default function Ranking() {
             </tr>
           </thead>
           <tbody>
-            {
-              ranking.map((profile, position) => (
-                <UserRankingCard key={position} position={position+1} avatar={profile.user.profile_picture} name={profile.user.name} level={profile.level} received_feedbacks={profile.received_feedbacks} points={profile.points} />
-              ))
-            }
-            {/* <UserRankingCard position="2" avatar="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" name="Carlos Almeida" status="down" level="11" gratis="34" experience="1560" /> */}
+            {ranking.map((profile, position) => (
+              <UserRankingCard
+                key={position}
+                position={position + 1}
+                avatar={profile.user.profile_picture}
+                name={profile.user.name}
+                level={profile.level}
+                received_feedbacks={profile.received_feedbacks}
+                points={profile.points}
+                organization_id={organizationId}
+                id={profile.user.id}
+              />
+            ))}
           </tbody>
         </table>
-        <Pagination total={totalPages} initialPage={1} onClick={(event) => event.target.textContent !== '' && setCurrentPage(event.target.textContent)} />
+        <Pagination
+          total={totalPages}
+          initialPage={1}
+          onClick={(event) =>
+            event.target.textContent !== "" &&
+            setCurrentPage(event.target.textContent)
+          }
+        />
       </div>
     </>
-  )
+  );
 }

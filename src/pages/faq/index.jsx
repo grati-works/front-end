@@ -1,8 +1,7 @@
 import styles from "./faq.module.scss";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { Modal } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import { Modal, Image, Collapse } from "@nextui-org/react";
 import { Category } from "react-iconly";
 import { Input } from "../../components/Input";
 
@@ -15,37 +14,34 @@ export default function Faq() {
   };
   return (
     <>
-    <div className={styles.groupCenter}>
-      <div className={styles.containerLeft}>
-          <img src="./images/faqBackground.jpg" alt="background" />
+      <div className={styles.groupCenter}>
+        <div className={styles.containerLeft}>
+          <img src="./images/faqBackground.svg" alt="background" />
+        </div>
+        <Collapse.Group className={styles.containerFaq}>
+          <Collapse title="Como a plataforma funciona?" className={styles.boxQuestions}>
+            <p>
+              Para a utilização da plataforma com a sua organização, é
+              necessário um usuário administrador, que gerencia os usuários a
+              serem cadastrados. Após os primeiros passos o restante é criar os
+              grupos de usuários e definir as metas de interações, com tudo isso
+              concluído espere os bons resultados aparecerem.
+            </p>
+          </Collapse>
+          <Collapse title="Existe uma opção de plano superior a 1000 usuários?" className={styles.boxQuestions}>
+            <p>
+              Sim, para planos superiores a quantidade de usuários que o nosso
+              planpo de grande porte oferece, favor entrar em contato connosco.
+            </p>
+          </Collapse>
+          <Collapse title="Quais as formas de pagamentos dísponiveis?" className={styles.boxQuestions}>
+            <p>
+              Atualmente aceitamos Cartão de crédito e débito como forma de pagamento.
+            </p>
+          </Collapse>
+        </Collapse.Group>
       </div>
-      <div className={styles.containerFaq}>
-        <div className={styles.boxQuestions}>
-          <h1>Como a plataforma funciona?</h1>
-          <p> Para a utilização da plataforma com a sua organização, 
-              é necessário um usuário administrador, 
-              que gerencia os usuários a serem cadastrados.
-              Após os primeiros passos o restante é criar 
-              os grupos de usuários e definir as metas de interações, 
-              com tudo isso concluído espere os bons 
-              resultados aparecerem. 
-          </p>
-        </div>
-        <div className={styles.boxQuestions}>
-          <h1>Existe uma opção de plano superior a 1000 usuários?</h1>
-          <p>Sim, para planos superiores a quantidade de usuários que
-             o nosso planpo de grande porte oferece, favor entrar em contato connosco.</p>
-        </div>
-        <div className={styles.boxQuestions}>
-          <h1>Quais as formas de pagamentos dísponiveis?</h1>
-          <p>Cartão de débito e crédito.</p>
-        </div>
-        <div className={styles.moreQuestion} onClick={handlerInfo}>
-          +
-        </div>
-      </div>
-    </div>
-    <div className={styles.footer}>
+      <div className={styles.footer}>
         <div className={styles.menu}>
           <Image
             src="/images/logo_dark.svg"
@@ -70,7 +66,7 @@ export default function Faq() {
           <Link href="#">Termos de serviço</Link>
         </div>
       </div>
-    <Modal
+      <Modal
         closeButton
         aria-labelledby="modal-title"
         open={visibleInfo}
@@ -79,10 +75,9 @@ export default function Faq() {
         width="530px"
         scroll
       >
-        <Modal.Header className={styles.groupsModalHeader}>
-        </Modal.Header>
+        <Modal.Header className={styles.groupsModalHeader}></Modal.Header>
         <Modal.Body className={styles.groupsWrapper}>
-          <Input Icon={Category} placeholder="Digite sua pergunta"/>
+          <Input Icon={Category} placeholder="Digite sua pergunta" />
           <button>Realizar pergunta</button>
         </Modal.Body>
       </Modal>

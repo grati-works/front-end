@@ -10,31 +10,20 @@ import { Picker } from "emoji-mart";
 import { emojiPickerTexts } from "../TextEditor";
 import { api } from "../../services/api";
 
-export function GratiCard({ content, deleteFunction, reactedMessages }) {
-  const [message, setMessage] = useState(content);
+export function GratiCard({ content, deleteFunction }) {
+  const [message, setMessage] = useState({ ...content });
   const { user } = useAuth();
   const [reactions, setReactions] = useState([]);
+  const [reactionsToShow, setReactionsToShow] = useState([]);
 
   useEffect(() => {
-    setReactions(content.reactions.filter(reaction => reaction.feedback_id === content.id && reaction.user.user_id == user.id))
-
-    const newContent = content;
-    const reactions = newContent.reactions;
-    newContent.reactions = {};
-
-    reactions.forEach((reaction) => {
-      if (!newContent.reactions[reaction.emoji]) {
-        newContent.reactions[reaction.emoji] = {
-          ...reaction,
-          count: 1,
-        };
-      } else {
-        newContent.reactions[reaction.emoji].count++;
-      }
-    });
-
-    
     if (!message) setMessage(newContent);
+    console.log(
+      message.reactions.filter(
+        (reaction, index) => message.reactions[message.reactions.indexOf(reaction)].emoji === reaction.emoji
+      )
+    );
+    setReactionsToShow([]);
   }, []);
 
   async function toggleReaction(id) {
@@ -142,7 +131,11 @@ export function GratiCard({ content, deleteFunction, reactedMessages }) {
           {Object.values(message.reactions).map((reaction) => (
             <span
               className={`${styles.reaction} ${
-                reactions.find((reacted) => reacted.emoji === reaction.emoji && reacted.feedback_id === message.id) !== undefined
+                reactions.find(
+                  (reacted) =>
+                    reacted.emoji === reaction.emoji &&
+                    reacted.feedback_id === message.id
+                ) !== undefined
                   ? styles.reacted
                   : ""
               } `}

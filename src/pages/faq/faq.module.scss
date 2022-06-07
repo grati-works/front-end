@@ -1,107 +1,106 @@
-.groupCenter{
+.groupCenter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.containerLeft {
+  width: 60%;
+  img {
+    height: 95vh;
+  }
+}
+.footer {
+  padding: 4rem;
+  background-color: var(--nextui-colors-backgroundHighlight);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .menu {
     width: 100%;
     display: flex;
     flex-direction: row;
-}
-.containerLeft{
-    width: 60%;
-        img{
-            height: 95vh;
-        }
-}
-.footer {
-    padding: 4rem;
-    background-color: var(--nextui-colors-backgroundHighlight);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    .menu {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 1rem;
-  
-      justify-content: space-between;
-  
-      nav {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 2rem;
-        width: 100%;
-        justify-content: center;
-      }
-  
-      a {
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--nextui-colors-accents7);
-      }
-    }
-    .footer_social_content {
-      width: 100%;
-      justify-content: center;
-      border-top: 1px solid var(--nextui-colors-accents7);
+    margin-bottom: 1rem;
+
+    justify-content: space-between;
+
+    nav {
       display: flex;
       flex-direction: row;
       align-items: center;
       gap: 2rem;
-  
-      padding-top: 2rem;
-      
-      a {
-        text-decoration: underline;
-      }
+      width: 100%;
+      justify-content: center;
+    }
+
+    a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--nextui-colors-accents7);
     }
   }
-  
-.containerFaq{
-    width: 40%;
-        .boxQuestions{
-            border-radius: 7px;
-            width: 85%;
-            background-color: white;
-            margin-inline-start: auto;
-            margin-inline-end: auto;
-            margin-block-start: 50px;
-            padding-inline-start: 55px;
-            padding-inline-end: 55px;
-            padding-block-start: 30px;
-            padding-block-end: 30px;
-                h1{
-                    font-size: 2rem;
-                }
-                p{
-                    font-size: 1.2rem;
-                }
-        }
-        .moreQuestion{
-            color: #6874e8;
-            border-radius: 7px;
-            width: 85%;
-            background-color: white;
-            margin-inline-start: auto;
-            margin-inline-end: auto;
-            margin-block-start: 50px;
-            text-align: center;
-            justify-content: center;
-            text-shadow: 2px 3px 3px #4a4e77;
-            font-size: 4rem;
-            cursor: pointer;
-            &:hover{
-                box-shadow: 4px 4px 6px #b3b3b9;
+  .footer_social_content {
+    width: 100%;
+    justify-content: center;
+    border-top: 1px solid var(--nextui-colors-accents7);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
 
-            }
-        }
-}
-.groupsWrapper{
-    button{
-        background-color: #6874e8;
-        border-radius: 5px;
-        color: white;
-        height: 50px;
-        font-size: 1.5rem;
+    padding-top: 2rem;
+
+    a {
+      text-decoration: underline;
     }
+  }
+}
+
+.containerFaq {
+  width: 40%;
+  .boxQuestions {
+    border-radius: 7px;
+    width: 85%;
+    background-color: var(--nextui-colors-backgroundHighlight);
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    margin-block-start: 50px;
+    padding-inline-start: 55px;
+    padding-inline-end: 55px;
+    padding-block-start: 30px;
+    padding-block-end: 30px;
+    h1 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
+  .moreQuestion {
+    color: #6874e8;
+    border-radius: 7px;
+    width: 85%;
+    background-color: white;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    margin-block-start: 50px;
+    text-align: center;
+    justify-content: center;
+    text-shadow: 2px 3px 3px #4a4e77;
+    font-size: 4rem;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 4px 4px 6px #b3b3b9;
+    }
+  }
+}
+.groupsWrapper {
+  button {
+    background-color: #6874e8;
+    border-radius: 5px;
+    color: white;
+    height: 50px;
+    font-size: 1.5rem;
+  }
 }
