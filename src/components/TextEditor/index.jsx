@@ -62,8 +62,8 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
   const [message, setMessage] = useState("");
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const [data, setData] = useState({
-    receivers_usernames: [],
-    tags: [],
+    receivers_usernames: ["gabriel.lucena"],
+    tags: ["Persistência"],
   });
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
@@ -198,7 +198,7 @@ export function TextEditor({ onSubmit = () => {}, onSend = () => {} }) {
               }
             }}
             onBlur={(event) => {
-              if(event.relatedTarget.className !== "autocomplete_item") setUserSuggestions([]);
+              if(event.relatedTarget !== null && event.relatedTarget.className !== "autocomplete_item") setUserSuggestions([]);
             }}
             onFocus={async (input) => {
               if (input.target.value.length > 1) {

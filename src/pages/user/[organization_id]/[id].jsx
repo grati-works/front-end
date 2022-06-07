@@ -154,6 +154,15 @@ export default function Profile() {
                   <GratiCard
                     content={message}
                     key={message.id}
+                    reactedMessages={() => {
+                      try {
+                        return message.reactions.filter(
+                          (reaction) => reaction.feedback_id === message.id
+                        )
+                      } catch {
+                        return [];
+                      }
+                    }}
                     deleteFunction={() => handleOpenDeleteModal(message.id)}
                   />
                 ))

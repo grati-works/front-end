@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Card, Avatar, Tooltip, Image } from "@nextui-org/react";
-import { Delete } from "react-iconly";
-import { Emoji } from "emoji-mart";
-import styles from "./styles.module.scss";
-import Link from "next/link";
-import { useEffect } from "react";
-import { useAuth } from "../../hooks/useAuth";
-import { Picker } from "emoji-mart";
-import { emojiPickerTexts } from "../TextEditor";
-import { api } from "../../services/api";
+import { useState } from 'react';
+import { Card, Avatar, Tooltip, Image } from '@nextui-org/react';
+import { Delete } from 'react-iconly';
+import { Emoji } from 'emoji-mart';
+import styles from './styles.module.scss';
+import Link from 'next/link';
+import { useEffect } from 'react';
+import { useAuth } from '../../hooks/useAuth';
+import { Picker } from 'emoji-mart';
+import { emojiPickerTexts } from '../TextEditor';
+import { api } from '../../services/api';
 
 export function GratiCard({ content, deleteFunction }) {
   const [message, setMessage] = useState({ ...content });
@@ -70,7 +70,7 @@ export function GratiCard({ content, deleteFunction }) {
                 src={user.profile_picture}
                 text={user.name}
                 stacked
-                size="lg"
+                size='lg'
               />
             ))}
           </Avatar.Group>
@@ -80,7 +80,7 @@ export function GratiCard({ content, deleteFunction }) {
                 <Link key={currentIndex} href={`/users/${user.id}`}>{`${
                   user.name
                 }${
-                  message.receivers[currentIndex + 1] !== undefined ? `, ` : ""
+                  message.receivers[currentIndex + 1] !== undefined ? `, ` : ''
                 }`}</Link>
               ))}
               {message.receivers.length > 3 &&
@@ -88,7 +88,7 @@ export function GratiCard({ content, deleteFunction }) {
               <span>
                 {message.receivers.length === 1
                   ? message.receivers[0].responsibility
-                  : ""}
+                  : ''}
               </span>
             </p>
             <p className={styles.gratiInfoText}>
@@ -99,13 +99,13 @@ export function GratiCard({ content, deleteFunction }) {
         </div>
         <div className={styles.gratiInfo}>
           <p>
-            Há 4h por{" "}
+            Há 4h por{' '}
             <Link href={`/users/${message.sender.user.id}`}>
               {message.sender.user.name}
             </Link>
           </p>
-          <Avatar size="sm" src={message.sender.user.profile_picture} />
-          <Emoji emoji={{ id: message.emoji }} set="twitter" size={24} />
+          <Avatar size='sm' src={message.sender.user.profile_picture} />
+          <Emoji emoji={{ id: message.emoji }} set='twitter' size={24} />
           <div className={styles.divider} />
           {message.sender.user.id === user?.id && (
             <Delete onClick={() => deleteFunction(message.id)} />
@@ -121,9 +121,9 @@ export function GratiCard({ content, deleteFunction }) {
             <Image
               className={styles.attachment}
               src={message.attachment}
-              alt="Imagem anexada"
+              alt='Imagem anexada'
               showSkeleton
-              objectFit="cover"
+              objectFit='cover'
             />
           </div>
         )}
@@ -137,32 +137,32 @@ export function GratiCard({ content, deleteFunction }) {
                     reacted.feedback_id === message.id
                 ) !== undefined
                   ? styles.reacted
-                  : ""
+                  : ''
               } `}
               onClick={() => toggleReaction(reaction.emoji)}
               key={reaction.emoji}
             >
-              <Emoji emoji={{ id: reaction.emoji }} set="twitter" size={16} />
+              <Emoji emoji={{ id: reaction.emoji }} set='twitter' size={16} />
               {reaction.count}
             </span>
           ))}
           <div className={styles.addReaction}>
             <Tooltip
-              placement="left"
-              trigger="click"
+              placement='left'
+              trigger='click'
               content={
                 <Picker
                   i18n={emojiPickerTexts}
-                  set="twitter"
-                  title="Selecione o emoji"
+                  set='twitter'
+                  title='Selecione o emoji'
                   showPreview={false}
-                  emoji="grinning"
+                  emoji='grinning'
                   onSelect={(emoji) => handleAddReaction(emoji.colons)}
                 />
               }
             >
               <button className={styles.addReactionButton}>
-                <img src="/icons/add-emoji.svg" />
+                <img src='/icons/add-emoji.svg' />
               </button>
             </Tooltip>
           </div>

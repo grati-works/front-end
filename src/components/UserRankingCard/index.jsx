@@ -1,6 +1,5 @@
 import styles from "./styles.module.scss";
 
-import { ChevronUp, ChevronDown } from "react-iconly";
 import { Avatar } from "@nextui-org/react";
 import { useRouter } from "next/router";
 
@@ -39,7 +38,7 @@ export function UserRankingCard({
       </td>
     </tr>
   ) : (
-    <div className={styles.cardContainerSmall}>
+    <div className={styles.cardContainerSmall} onClick={() => push(`/user/${organization_id}/${id}`)}>
       <div className={styles.avatarContainer}>
         <Avatar src={avatar} size="lg" text={name} />
       </div>

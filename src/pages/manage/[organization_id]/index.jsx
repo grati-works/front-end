@@ -402,7 +402,9 @@ export default function Manage() {
               ))}
             </div>
             Gerenciamento de grupos
-            <scrolll-container className={styles.scrollGroup}>
+            <scrolll-container 
+            className={styles.scrollGroup}
+            >
             <div className={styles.manageGroups}>
               {organization?.groups.map((group) => (
                 <div

@@ -18,8 +18,8 @@ export default function SignIn() {
   const { signIn } = useAuth();
   const { push, query } = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("erick.capito@hotmail.com");
+  const [password, setPassword] = useState("12345678Teste!");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
