@@ -27,11 +27,6 @@ export function UserCard({
           </div>
         </td>
         <td className={styles.email}>{email}</td>
-        <td className={styles.group}>
-          <select name="cars" id="cars" className={styles.blockGroup}>
-            <option value={group}>{group}</option>
-          </select>
-        </td>
         <td className={styles.acoes}>
           <button className={styles.editor} onClick={() => updateFunction(id)}>
             <img src="/images/iconPencil.jpg" alt="editor" />

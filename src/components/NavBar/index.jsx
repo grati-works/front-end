@@ -31,7 +31,7 @@ export function NavBar({ user }) {
       }
     }
 
-    isAuthorOfOrganization();
+    if (organization_id) isAuthorOfOrganization();
   }, [pathname]);
   return (
     <nav className={styles.navbarContainer}>

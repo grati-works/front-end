@@ -518,7 +518,6 @@ export default function Manage() {
               <tr>
                 <th>USUÁRIO</th>
                 <th>EMAIL</th>
-                <th>GRUPO</th>
                 <th>AÇÕES</th>
               </tr>
             </thead>
