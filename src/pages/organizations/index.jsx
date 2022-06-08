@@ -63,7 +63,7 @@ export default function Organizacao() {
 
     loadSelectedInfo();
     loadOrganizations();
-  }, [])
+  }, [router.isReady])
 
   return (
     <>
